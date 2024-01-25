@@ -14,6 +14,8 @@ public class playerController : MonoBehaviour
     [SerializeField] float gravityValue;
     [SerializeField] int jumpCount;
     [SerializeField] int sprintMod;
+    [SerializeField] int dashMod;
+    [SerializeField] float dashTime;
 
     [Header("---- Weapon Stats ----")]
     [SerializeField] float shootRate;
@@ -26,22 +28,29 @@ public class playerController : MonoBehaviour
 
     private Vector3 playerVelocity;
     int jumpTimes;
-    Vector3 move;
-    bool isSprinting;
+    Vector3 moveDir;
+    bool isSprinting = false;
     bool isShooting;
+    bool isDashing = false;
     float speedOrig;
+    float counter = 0;
     int HPorignal;
     int selectedGun;
 
     private void Start()
     {
-
+        speedOrig = playerSpeed;
     }
 
     void Update()
     {
         movement();
         sprint();
+        if (playerVelocity.y > 0f && Input.GetButtonDown("Dash"))//Dash is set to F for now
+        {
+            StartCoroutine(dash());
+            counter = 0;
+        }
         StartCoroutine(shoot());
     }
     void movement()
@@ -52,8 +61,8 @@ public class playerController : MonoBehaviour
             playerVelocity.y = 0f;
         }
 
-        move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
-        controller.Move(move * Time.deltaTime * playerSpeed);
+        moveDir = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
+        controller.Move(moveDir * Time.deltaTime * playerSpeed);
 
         if (Input.GetButtonDown("Jump") && jumpTimes < jumpCount)
         {
@@ -66,16 +75,38 @@ public class playerController : MonoBehaviour
     }
     void sprint()
     {
-        if(Input.GetButtonDown("Sprint"))
+        if(!isSprinting && Input.GetButtonDown("Sprint") && playerVelocity.y <= 0)
         {
             playerSpeed *= sprintMod;
             isSprinting = true;
         }
-        else if(Input.GetButtonUp("Sprint"))
+        else if(isSprinting && Input.GetButtonUp("Sprint"))
         {
-            playerSpeed /= sprintMod;
+            playerSpeed = speedOrig;
             isSprinting = false;
         }
+    }
+    IEnumerator dash()
+    {
+        float gravOrig = gravityValue;
+        float prevSpeed = playerSpeed;
+        float startTime = Time.time; 
+
+        while (Time.time - startTime <= dashTime) 
+        {
+            if (!isDashing)
+            {
+                playerSpeed *= dashMod;
+                playerVelocity.y = 0;
+                gravityValue = 0f;
+                isDashing = true;
+            }
+            yield return null;
+        }
+
+        playerSpeed = prevSpeed;
+        gravityValue = gravOrig;
+        isDashing = false;
     }
     public void gunPickup(gunStats gunStat)
     {
