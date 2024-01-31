@@ -5,8 +5,8 @@ using UnityEngine;
 public class cameraController : MonoBehaviour
 {
 
-    [SerializeField] int sensHorizontal;
-    [SerializeField] int sensVertical;
+    [SerializeField] float sensHorizontal;
+    [SerializeField] float sensVertical;
 
     [SerializeField] int lockVertMin;
     [SerializeField] int lockVertMax;
@@ -22,33 +22,21 @@ public class cameraController : MonoBehaviour
         Cursor.visible = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         //get input
-        float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * sensHorizontal;
-        float mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime * sensVertical;
+        float mouseX = Input.GetAxis("Mouse X") * sensHorizontal;
+        float mouseY = Input.GetAxis("Mouse Y") * sensVertical * (inverty ? 1 : -1);
 
-        if (inverty)
-        {
-            xRotation += mouseY;
-        }
-        else
-        {
-            xRotation -= mouseY;
-        }
+        xRotation += mouseY;
 
-
-        //clamp camera roatation
-
+        //clamp camera rotation
         xRotation = Mathf.Clamp(xRotation, lockVertMin, lockVertMax);
 
         //rotate the camera on x axis
-
         transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
 
-        // rotate player
-
+        //rotate player
         transform.parent.Rotate(Vector3.up * mouseX);
     }
 }

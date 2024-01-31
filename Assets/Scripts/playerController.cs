@@ -7,6 +7,7 @@ public class playerController : MonoBehaviour
 {
     [Header("---- Componets ----")]
     [SerializeField] CharacterController controller;
+    [SerializeField] Camera playerCamera; 
 
     [Header("---- Player Stats ----")]
     [SerializeField] float playerSpeed;
@@ -16,6 +17,7 @@ public class playerController : MonoBehaviour
     [SerializeField] int sprintMod;
     [SerializeField] int dashMod;
     [SerializeField] float dashTime;
+    
 
     [Header("---- Weapon Stats ----")]
     [SerializeField] float shootRate;
@@ -36,6 +38,7 @@ public class playerController : MonoBehaviour
     float counter = 0;
     int HPorignal;
     int selectedGun;
+    
 
     private void Start()
     {
@@ -53,6 +56,8 @@ public class playerController : MonoBehaviour
         }
         StartCoroutine(shoot());
     }
+
+
     void movement()
     {
         if (controller.isGrounded && playerVelocity.y < 0)
