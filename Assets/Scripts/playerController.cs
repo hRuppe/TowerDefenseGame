@@ -62,7 +62,7 @@ public class playerController : MonoBehaviour
 
         StartCoroutine(shoot());
         aimDownSights();
-        switchWeapons();
+        switchGun();
         deployTower();
         Interact();
         pauseMenu();
@@ -214,6 +214,70 @@ public class playerController : MonoBehaviour
         return ray.direction;
     }
 
+    // Switch Weapons logic
+    void switchGun()
+    {
+        float scrollInput = Input.GetAxis("Mouse ScrollWheel");
+
+        if (gunInventory.Count > 1)
+        {
+            // Cycle to the next gun in the list
+            if (scrollInput > 0)
+            {
+                selectedGun = (selectedGun + 1) % gunInventory.Count;
+            }
+            else if (scrollInput < 0 && selectedGun > 0)
+            {
+                selectedGun = (selectedGun - 1 + gunInventory.Count) % gunInventory.Count;
+            }
+
+            equipItem(selectedGun);
+        }
+        else if (gunInventory.Count == 1)
+        {
+            // There's only one gun in the inventory
+            Debug.Log("Only one gun in inventory.");
+        }
+        else
+        {
+            // There are no weapons in the inventory
+            Debug.Log("No weapons in inventory");
+        }
+    }
+
+    public void equipItem(int index)
+    {
+        // Check if the index is valid
+
+        if(index >= 0 && index < gunInventory.Count)
+        {
+            GameObject selectedItem = gunInventory[index];
+
+            // Update gunModel with the selected items mesh
+            gunModel.GetComponent<MeshFilter>().sharedMesh = selectedItem.GetComponent<MeshFilter>().sharedMesh;
+            gunModel.GetComponent<MeshRenderer>().sharedMaterial = selectedItem.GetComponent<MeshRenderer>().sharedMaterial;
+
+            // Update the shoot stats
+            gunStats selectedGunStats = selectedItem.GetComponent <gunStats>();
+            if(selectedGunStats != null)
+            {
+                shootRate = selectedGunStats.GetComponent<gunStats>().shootRate;
+                shootDist = selectedGunStats.GetComponent<gunStats>().shootDist;
+                shootDmg = selectedGunStats.GetComponent<gunStats>().shootDmg;
+                hitEffect = selectedGunStats.GetComponent<gunStats>().hitEffect;
+            }
+            else
+            {
+                Debug.Log("Sleected Item does not have gunStats component");
+            }
+        }
+        else
+        {
+            Debug.Log("Invalid index for equipping item");
+        }
+    }
+
+
     // Aim down sights logic
     void aimDownSights()
     {
@@ -248,30 +312,7 @@ public class playerController : MonoBehaviour
         }
     }
 
-    // Switch Weapons logic
-    void switchWeapons()
-    {
-        float scrollInput = Input.GetAxis("Mouse ScrollWheel");
-
-        // Cycle to the next gun in the list (scrolling up)
-        if (scrollInput > 0f)
-        {
-            selectedGun = (selectedGun + 1) % gunList.Count;
-        }
-        // Cycle to the previous gun in the list (scrolling down)
-        else if (scrollInput < 0f && selectedGun > 0)
-        {
-            selectedGun = (selectedGun - 1 + gunList.Count) % gunList.Count;
-        }
-
-        // Change the weapon model or properties based on the selected weapon
-        gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
-        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
-        shootRate = gunList[selectedGun].shootRate;
-        shootDist = gunList[selectedGun].shootDist;
-        shootDmg = gunList[selectedGun].shootDmg;
-        hitEffect = gunList[selectedGun].hitEffect;
-    }
+   
 
     void deployTower()
     {
