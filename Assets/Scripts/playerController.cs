@@ -22,8 +22,11 @@ public class playerController : MonoBehaviour
     [SerializeField] int shootDist;
     [SerializeField] int shootDmg;
     [SerializeField] GameObject gunModel;
-    public List<gunStats> gunList = new List<gunStats>();
     [SerializeField] GameObject hitEffect;
+    public List<gunStats> gunList = new List<gunStats>();
+    public List<GameObject> normalStorage = new List<GameObject>();
+    public List<GameObject> gunInventory = new List<GameObject>();
+
 
 
     private Vector3 playerVelocity;
@@ -131,26 +134,30 @@ public class playerController : MonoBehaviour
         gravityValue = gravOrig;
         isDashing = false;
     }
+    
 
     // Player gun pick up logic
     public void gunPickup(gunStats gunStat)
     {
-        // Instantiate the gun model at the player's position
-        GameObject newGun = Instantiate(gunStat.gunModel, transform.position, Quaternion.identity);
+            // Instantiate the gun model at the player's position
+            GameObject newGun = Instantiate(gunStat.gunModel, transform.position, Quaternion.identity);
 
-        // Parent the gun to the player's hand 
-        newGun.transform.parent = gunModel.transform;
+            // Parent the gun to the player's hand 
+            newGun.transform.parent = gunModel.transform;
 
-        // Set the gun's local position and rotation relative to the player's hand 
-        newGun.transform.localPosition = Vector3.zero;
-        newGun.transform.localRotation = Quaternion.identity;
+            // Set the gun's local position and rotation relative to the player's hand 
+            newGun.transform.localPosition = Vector3.zero;
+            newGun.transform.localRotation = Quaternion.identity;
 
-        shootRate = gunStat.shootRate;
-        shootDist = gunStat.shootDist;
-        shootDmg = gunStat.shootDmg;
-        hitEffect = gunStat.hitEffect;
 
-        // Store the gun's stats and reference
+
+            shootRate = gunStat.shootRate;
+            shootDist = gunStat.shootDist;
+            shootDmg = gunStat.shootDmg;
+            hitEffect = gunStat.hitEffect;
+
+            // Stores the gun in the players inventory and stores the gun stats in the gunList
+            gunInventory.Add(newGun);
         gunList.Add(gunStat);
     }
 
