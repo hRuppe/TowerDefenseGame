@@ -52,23 +52,25 @@ public class playerController : MonoBehaviour
     {
         movement();
         sprint();
+        //SwitchGun();
 
-        // Player dashing
-        if (playerVelocity.y > 0f && Input.GetButtonDown("Dash"))//Dash is set to F for now
-        {
-            StartCoroutine(dash());
-            counter = 0;
-        }
+        //// Player dashing
+        //if (playerVelocity.y > 0f && Input.GetButtonDown("Dash"))//Dash is set to F for now
+        //{
+        //    StartCoroutine(dash());
+        //    counter = 0;
+        //}
 
         StartCoroutine(shoot());
-        aimDownSights();
-        switchGun();
+
+        SwitchGun();
         deployTower();
         Interact();
         pauseMenu();
         menu();
         shop();
         character();
+        AimDownSights();
     }
 
     // Player movement logic
@@ -111,31 +113,6 @@ public class playerController : MonoBehaviour
         }
     }
 
-    // Player dashing logic
-    IEnumerator dash()
-    {
-        float gravOrig = gravityValue;
-        float prevSpeed = playerSpeed;
-        float startTime = Time.time;
-
-        while (Time.time - startTime <= dashTime)
-        {
-            if (!isDashing)
-            {
-                playerSpeed *= dashMod;
-                playerVelocity.y = 0;
-                gravityValue = 0f;
-                isDashing = true;
-            }
-            yield return null;
-        }
-
-        playerSpeed = prevSpeed;
-        gravityValue = gravOrig;
-        isDashing = false;
-    }
-    
-
     // Player gun pick up logic
     public void gunPickup(gunStats gunStat)
     {
@@ -156,8 +133,8 @@ public class playerController : MonoBehaviour
             shootDmg = gunStat.shootDmg;
             hitEffect = gunStat.hitEffect;
 
-            // Stores the gun in the players inventory and stores the gun stats in the gunList
-            gunInventory.Add(newGun);
+        // Stores the gun in the players inventory and stores the gun stats in the gunList
+        gunInventory.Add(newGun);
         gunList.Add(gunStat);
     }
 
@@ -215,9 +192,9 @@ public class playerController : MonoBehaviour
     }
 
     // Switch Weapons logic
-    void switchGun()
+    void SwitchGun()
     {
-        float scrollInput = Input.GetAxis("Mouse ScrollWheel");
+        float scrollInput = Input.GetAxis("MouseScrollWheel");
 
         if (gunInventory.Count > 1)
         {
@@ -268,7 +245,7 @@ public class playerController : MonoBehaviour
             }
             else
             {
-                Debug.Log("Sleected Item does not have gunStats component");
+                Debug.Log("Selected Item does not have gunStats component");
             }
         }
         else
@@ -279,7 +256,7 @@ public class playerController : MonoBehaviour
 
 
     // Aim down sights logic
-    void aimDownSights()
+    void AimDownSights()
     {
         if (Input.GetButtonDown("AimDownSights"))
         {
