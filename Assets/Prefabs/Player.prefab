@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6a729251bc310f4d97e745a0dae33bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensHorizontal: 300
-  sensVertical: 300
+  sensHorizontal: 2.5
+  sensVertical: 2.5
   lockVertMin: -90
   lockVertMax: 90
   inverty: 0
@@ -152,11 +152,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 5742944913479443914}
+  playerCamera: {fileID: 0}
   playerSpeed: 5
   jumpHeight: 15
   gravityValue: 35
   jumpCount: 3
   sprintMod: 3
+  dashMod: 0
+  dashTime: 0
   shootRate: 0
   shootDist: 0
   shootDmg: 0
