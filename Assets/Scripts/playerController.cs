@@ -52,17 +52,7 @@ public class playerController : MonoBehaviour
     {
         movement();
         sprint();
-        //SwitchGun();
-
-        //// Player dashing
-        //if (playerVelocity.y > 0f && Input.GetButtonDown("Dash"))//Dash is set to F for now
-        //{
-        //    StartCoroutine(dash());
-        //    counter = 0;
-        //}
-
         StartCoroutine(shoot());
-
         SwitchGun();
         deployTower();
         Interact();
