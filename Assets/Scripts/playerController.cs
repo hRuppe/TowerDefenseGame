@@ -25,7 +25,7 @@ public class playerController : MonoBehaviour
     [SerializeField] GameObject hitEffect;
     public List<gunStats> gunList = new List<gunStats>();
     public List<GameObject> normalStorage = new List<GameObject>();
-    public List<GameObject> gunInventory = new List<GameObject>();
+   /* public List<GameObject> gunInventory = new List<GameObject>();*/
 
 
 
@@ -60,7 +60,7 @@ public class playerController : MonoBehaviour
         menu();
         shop();
         character();
-        AimDownSights();
+       /* AimDownSights();*/
     }
 
     // Player movement logic
@@ -116,20 +116,17 @@ public class playerController : MonoBehaviour
             newGun.transform.localPosition = Vector3.zero;
             newGun.transform.localRotation = Quaternion.identity;
 
-
-
             shootRate = gunStat.shootRate;
             shootDist = gunStat.shootDist;
             shootDmg = gunStat.shootDmg;
             hitEffect = gunStat.hitEffect;
 
         // Stores the gun in the players inventory and stores the gun stats in the gunList
-        gunInventory.Add(newGun);
         gunList.Add(gunStat);
     }
 
-    // Player drop gun logic
-    public void gunDrop()
+    // Player drop gun logic if the player leaves the collider it drops the weapon. 
+/*    public void gunDrop()
     {
         shootRate = 0;
         shootDist = 0;
@@ -141,7 +138,7 @@ public class playerController : MonoBehaviour
 
         gunList.Clear();
     }
-
+*/
     // Shooting logic
     IEnumerator shoot()
     {
@@ -186,21 +183,19 @@ public class playerController : MonoBehaviour
     {
         float scrollInput = Input.GetAxis("MouseScrollWheel");
 
-        if (gunInventory.Count > 1)
+        if ( gunList.Count > 1)
         {
             // Cycle to the next gun in the list
             if (scrollInput > 0)
             {
-                selectedGun = (selectedGun + 1) % gunInventory.Count;
+                selectedGun = (selectedGun + 1) % gunList.Count;
             }
             else if (scrollInput < 0 && selectedGun > 0)
             {
-                selectedGun = (selectedGun - 1 + gunInventory.Count) % gunInventory.Count;
+                selectedGun = (selectedGun - 1 + gunList.Count) % gunList.Count;
             }
-
-            equipItem(selectedGun);
         }
-        else if (gunInventory.Count == 1)
+        else if (gunList.Count == 1)
         {
             // There's only one gun in the inventory
             Debug.Log("Only one gun in inventory.");
@@ -212,13 +207,13 @@ public class playerController : MonoBehaviour
         }
     }
 
-    public void equipItem(int index)
+    /*public void equipItem(int index)
     {
         // Check if the index is valid
 
-        if(index >= 0 && index < gunInventory.Count)
+        if(index >= 0 && index < gunList.Count)
         {
-            GameObject selectedItem = gunInventory[index];
+            GameObject selectedItem = gunList[index];
 
             // Update gunModel with the selected items mesh
             gunModel.GetComponent<MeshFilter>().sharedMesh = selectedItem.GetComponent<MeshFilter>().sharedMesh;
@@ -242,7 +237,7 @@ public class playerController : MonoBehaviour
         {
             Debug.Log("Invalid index for equipping item");
         }
-    }
+    }*/
 
 
     // Aim down sights logic
