@@ -197,6 +197,7 @@ public class playerController : MonoBehaviour
             if (adjustedScrollInput > 0)
             {
                 selectedGun = (selectedGun + 1) % gunList.Count;
+
             }
             // Cycle to the previous gun in the list
             else if (adjustedScrollInput < 0)
@@ -204,18 +205,8 @@ public class playerController : MonoBehaviour
                 selectedGun = (selectedGun - 1 + gunList.Count) % gunList.Count;
             }
 
-            // Get the selected gun's stats
-            gunStats selectedGunStats = gunList[selectedGun];
+            EquipGun(selectedGun);
 
-            // Update gunModel with the selected item's mesh and material
-            gunModel.GetComponent<MeshFilter>().sharedMesh = selectedGunStats.gunModel.GetComponent<MeshFilter>().sharedMesh;
-            gunModel.GetComponent<MeshRenderer>().sharedMaterial = selectedGunStats.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
-
-            // Update the shoot stats
-            shootRate = selectedGunStats.shootRate;
-            shootDist = selectedGunStats.shootDist;
-            shootDmg = selectedGunStats.shootDmg;
-            hitEffect = selectedGunStats.hitEffect;
         }
         else if (gunList.Count == 1)
         {
@@ -228,6 +219,45 @@ public class playerController : MonoBehaviour
             Debug.Log("No weapons in inventory");
         }
     }
+
+    public void EquipGun(int index)
+    {
+        // Check if the index is valid
+        if (index >= 0 && index < gunList.Count)
+        {
+            // Deactivate the current gun model if it exists
+            if (gunModel != null)
+            {
+                Destroy(gunModel); // Destroy the current gun model
+            }
+
+            // Get the selected gun's stats
+            gunStats selectedGunStats = gunList[index];
+
+            // Instantiate the new gun model
+            gunModel = Instantiate(selectedGunStats.gunModel, transform.position, Quaternion.identity);
+
+            // Set the new gun model's parent to the player to follow its movements
+            gunModel.transform.parent = transform;
+
+            // Set the gun's local position and rotation relative to the player's hand
+            gunModel.transform.localPosition = Vector3.zero; 
+            gunModel.transform.localRotation = Quaternion.identity; 
+
+            // Update the shoot stats
+            shootRate = selectedGunStats.shootRate;
+            shootDist = selectedGunStats.shootDist;
+            shootDmg = selectedGunStats.shootDmg;
+            hitEffect = selectedGunStats.hitEffect;
+        }
+        else
+        {
+            Debug.Log("Invalid index for equipping gun");
+        }
+    }
+
+
+
 
     // Aim down sights logic
     public void AimDownSights()
