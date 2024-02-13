@@ -4,9 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - EnemyLoc
   - Enemy
   - Spawn Pos
+  - Turret
+  - Location To Defend
   layers:
   - Default
   - TransparentFX

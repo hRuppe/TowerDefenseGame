@@ -9,7 +9,6 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator anim;
-    [SerializeField] GameObject endLoc;
 
 
     [Header("---- Enemy Stats ----")]
@@ -17,6 +16,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int animLerpSpeed;
 
+    GameObject objectToAttack;
     bool isShooting;
     bool playerInRange;
     Vector3 playerDir;
@@ -24,7 +24,13 @@ public class enemyAI : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
+        // Find location that the enemy is attacking
+        if (GameObject.FindWithTag("Location To Defend") != null)
+            objectToAttack = GameObject.FindWithTag("Location To Defend");
+
+        // Increments enemies to kill when the enemy spawns so you have a count of all active enemies
         gameManager.instance.enemiesToKill++;
+        // Updates enemies to kill UI
         gameManager.instance.updateUI();
     }
 
@@ -35,14 +41,14 @@ public class enemyAI : MonoBehaviour, IDamage
 
         anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agent.velocity.normalized.magnitude, Time.deltaTime * animLerpSpeed));
 
-        agent.SetDestination(endLoc.transform.position);
+        agent.SetDestination(objectToAttack.transform.position);
     }
 
     void faceLocation()
     {
         playerDir.y = 0;
 
-        Quaternion rotation = Quaternion.LookRotation(endLoc.transform.position);
+        Quaternion rotation = Quaternion.LookRotation(objectToAttack.transform.position);
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * playerFaceSpeed);
     }
 
