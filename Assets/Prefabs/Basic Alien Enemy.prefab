@@ -773,7 +773,7 @@ MonoBehaviour:
   agent: {fileID: 2572393564846090208}
   anim: {fileID: 6786905387522076096}
   HP: 10
-  speed: 6
+  speed: 7.5
 --- !u!195 &2572393564846090208
 NavMeshAgent:
   m_ObjectHideFlags: 0
