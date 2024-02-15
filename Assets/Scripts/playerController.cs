@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -25,7 +26,8 @@ public class playerController : MonoBehaviour
     [SerializeField] GameObject hitEffect;
     public List<gunStats> gunList = new List<gunStats>();
     public List<GameObject> normalStorage = new List<GameObject>();
-    public float scrollSensitivity = 1.0f; // Control the scroll wheel sensitivity 
+    /* public List<GameObject> gunInventory = new List<GameObject>();*/
+
 
 
     private Vector3 playerVelocity;
@@ -38,7 +40,7 @@ public class playerController : MonoBehaviour
     float speedOrig;
     float counter = 0;
     int HPorignal;
-    int selectedGun;
+    int selectedGun = 0;
 
     private void Start()
     {
@@ -51,6 +53,7 @@ public class playerController : MonoBehaviour
     {
         movement();
         sprint();
+        StartCoroutine(dash());
         StartCoroutine(shoot());
         SwitchGun();
         deployTower();
@@ -59,11 +62,11 @@ public class playerController : MonoBehaviour
         menu();
         shop();
         character();
-       /* AimDownSights();*/
+        /* AimDownSights();*/
     }
 
     // Player movement logic
-    public void movement()
+    void movement()
     {
         if (controller.isGrounded && playerVelocity.y < 0)
         {
@@ -88,7 +91,7 @@ public class playerController : MonoBehaviour
     }
 
     // Player sprint logic
-   public void sprint()
+    void sprint()
     {
         if (!isSprinting && Input.GetButtonDown("Sprint") && playerVelocity.y <= 0)
         {
@@ -105,26 +108,70 @@ public class playerController : MonoBehaviour
     // Player gun pick up logic
     public void gunPickup(gunStats gunStat)
     {
-            // Instantiate the gun model at the player's position
-            GameObject newGun = Instantiate(gunStat.gunModel, transform.position, Quaternion.identity);
+        // Instantiate the gun model at the player's position
+        GameObject newGun = Instantiate(gunStat.gunModel, transform.position, Quaternion.identity);
 
-            // Parent the gun to the player's hand 
-            newGun.transform.parent = gunModel.transform;
+        // Parent the gun to the player's hand 
+        newGun.transform.parent = gunModel.transform;
 
-            // Set the gun's local position and rotation relative to the player's hand 
-            newGun.transform.localPosition = Vector3.zero;
-            newGun.transform.localRotation = Quaternion.identity;
+        // Set the gun's local position and rotation relative to the player's hand 
+        newGun.transform.localPosition = Vector3.zero;
+        newGun.transform.localRotation = Quaternion.identity;
 
-            shootRate = gunStat.shootRate;
-            shootDist = gunStat.shootDist;
-            shootDmg = gunStat.shootDmg;
-            hitEffect = gunStat.hitEffect;
+        shootRate = gunStat.shootRate;
+        shootDist = gunStat.shootDist;
+        shootDmg = gunStat.shootDmg;
+        hitEffect = gunStat.hitEffect;
 
         // Stores the gun in the players inventory and stores the gun stats in the gunList
         gunList.Add(gunStat);
-        InstantiateGunModel(gunStat);
     }
 
+
+    IEnumerator dash()
+    {
+        float gravOrig = gravityValue;
+        float prevSpeed = playerSpeed;
+        
+
+        //Checks if player is off the ground and checks for the dash key which is set to F right now
+        if (playerVelocity.y > 0f && Input.GetButtonDown("Dash"))
+        {
+            float startTime = Time.time;
+
+            //time minus the time that the dash started does not equal the amount of time we want the player to dash set in untiy then the player should dash in the air.
+            while (Time.time - startTime < dashTime)
+            {
+                if (!isDashing)
+                {
+                    playerSpeed *= dashMod;
+                    playerVelocity.y = 0;
+                    gravityValue = 0f;
+                    isDashing = true;
+                }
+                yield return null;
+            }
+            //sets all stats back to orignal
+            playerSpeed = prevSpeed;
+            gravityValue = gravOrig;
+            isDashing = false;
+        }
+    }
+
+    // Player drop gun logic if the player leaves the collider it drops the weapon. 
+    /*    public void gunDrop()
+        {
+            shootRate = 0;
+            shootDist = 0;
+            shootDmg = 0;
+            hitEffect = null;
+
+            gunModel.GetComponent<MeshFilter>().sharedMesh = null;
+            gunModel.GetComponent<MeshRenderer>().sharedMaterial = null;
+
+            gunList.Clear();
+        }
+    */
     // Shooting logic
     IEnumerator shoot()
     {
@@ -164,49 +211,33 @@ public class playerController : MonoBehaviour
         return ray.direction;
     }
 
-
-    // Instantiate the gun model in the scene
-    void InstantiateGunModel(gunStats gunStat)
-    {
-        // Instantiate the gun model at the player's position
-        GameObject newGun = Instantiate(gunStat.gunModel, transform.position, Quaternion.identity);
-
-        // Parent the gun to the player's hand 
-        newGun.transform.parent = gunModel.transform;
-
-        // Set the gun's local position and rotation relative to the player's hand 
-        newGun.transform.localPosition = Vector3.zero;
-        newGun.transform.localRotation = Quaternion.identity;
-    }
-
     // Switch Weapons logic
-    public void SwitchGun()
+    void SwitchGun()
     {
-        // Define scroll wheel sensitivity
-        float scrollSensitivity = 0.1f; // Adjust this value to change sensitivity
-
-        // Get scroll input
         float scrollInput = Input.GetAxis("MouseScrollWheel");
-
-        // Apply sensitivity
-        float adjustedScrollInput = scrollInput * scrollSensitivity;
 
         if (gunList.Count > 1)
         {
             // Cycle to the next gun in the list
-            if (adjustedScrollInput > 0)
+            if (scrollInput > 0)
             {
                 selectedGun = (selectedGun + 1) % gunList.Count;
-
             }
-            // Cycle to the previous gun in the list
-            else if (adjustedScrollInput < 0)
+            else if (scrollInput < 0 && selectedGun > 0)
             {
                 selectedGun = (selectedGun - 1 + gunList.Count) % gunList.Count;
             }
 
-            EquipGun(selectedGun);
+            gunList[selectedGun].gunModel.transform.parent = gunModel.transform;
 
+            // Set the gun's local position and rotation relative to the player's hand 
+            gunList[selectedGun].gunModel.transform.localPosition = Vector3.zero;
+            gunList[selectedGun].gunModel.transform.localRotation = Quaternion.identity;
+
+            shootRate = gunList[selectedGun].shootRate;
+            shootDist = gunList[selectedGun].shootDist;
+            shootDmg = gunList[selectedGun].shootDmg;
+            hitEffect = gunList[selectedGun].hitEffect;
         }
         else if (gunList.Count == 1)
         {
@@ -220,47 +251,41 @@ public class playerController : MonoBehaviour
         }
     }
 
-    public void EquipGun(int index)
+    /*public void equipItem(int index)
     {
         // Check if the index is valid
-        if (index >= 0 && index < gunList.Count)
+
+        if(index >= 0 && index < gunList.Count)
         {
-            // Deactivate the current gun model if it exists
-            if (gunModel != null)
-            {
-                Destroy(gunModel); // Destroy the current gun model
-            }
+            GameObject selectedItem = gunList[index];
 
-            // Get the selected gun's stats
-            gunStats selectedGunStats = gunList[index];
-
-            // Instantiate the new gun model
-            gunModel = Instantiate(selectedGunStats.gunModel, transform.position, Quaternion.identity);
-
-            // Set the new gun model's parent to the player to follow its movements
-            gunModel.transform.parent = transform;
-
-            // Set the gun's local position and rotation relative to the player's hand
-            gunModel.transform.localPosition = Vector3.zero; 
-            gunModel.transform.localRotation = Quaternion.identity; 
+            // Update gunModel with the selected items mesh
+            gunModel.GetComponent<MeshFilter>().sharedMesh = selectedItem.GetComponent<MeshFilter>().sharedMesh;
+            gunModel.GetComponent<MeshRenderer>().sharedMaterial = selectedItem.GetComponent<MeshRenderer>().sharedMaterial;
 
             // Update the shoot stats
-            shootRate = selectedGunStats.shootRate;
-            shootDist = selectedGunStats.shootDist;
-            shootDmg = selectedGunStats.shootDmg;
-            hitEffect = selectedGunStats.hitEffect;
+            gunStats selectedGunStats = selectedItem.GetComponent <gunStats>();
+            if(selectedGunStats != null)
+            {
+                shootRate = selectedGunStats.GetComponent<gunStats>().shootRate;
+                shootDist = selectedGunStats.GetComponent<gunStats>().shootDist;
+                shootDmg = selectedGunStats.GetComponent<gunStats>().shootDmg;
+                hitEffect = selectedGunStats.GetComponent<gunStats>().hitEffect;
+            }
+            else
+            {
+                Debug.Log("Selected Item does not have gunStats component");
+            }
         }
         else
         {
-            Debug.Log("Invalid index for equipping gun");
+            Debug.Log("Invalid index for equipping item");
         }
-    }
-
-
+    }*/
 
 
     // Aim down sights logic
-    public void AimDownSights()
+    void AimDownSights()
     {
         if (Input.GetButtonDown("AimDownSights"))
         {
@@ -293,9 +318,9 @@ public class playerController : MonoBehaviour
         }
     }
 
-   
 
-   public void deployTower()
+
+    void deployTower()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -309,32 +334,32 @@ public class playerController : MonoBehaviour
         }
     }
 
-   public void Interact()
+    void Interact()
     {
         // Interact logic
     }
 
-    public void pauseMenu()
+    void pauseMenu()
     {
         // Pause menu logic
     }
 
-    public void menu()
+    void menu()
     {
         // Menu logic
     }
 
-   public void shop()
+    void shop()
     {
         // Shop logic
     }
 
-   public void character()
+    void character()
     {
         // Character logic
     }
 
-   public void respawn()
+    void respawn()
     {
         controller.enabled = false;
         transform.position = gameManager.instance.spawnPos.transform.position;
