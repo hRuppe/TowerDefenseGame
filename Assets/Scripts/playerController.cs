@@ -220,6 +220,7 @@ public class playerController : MonoBehaviour
         }
     }
 
+    // Equipt weapon logic
     public void EquipGun(int index)
     {
         // Check if the index is valid
