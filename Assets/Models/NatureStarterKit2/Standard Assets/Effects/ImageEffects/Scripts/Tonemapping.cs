@@ -234,7 +234,9 @@ namespace UnityStandardAssets.ImageEffects
             adaptionSpeed = adaptionSpeed < 0.001f ? 0.001f : adaptionSpeed;
             tonemapMaterial.SetFloat("_AdaptionSpeed", adaptionSpeed);
 
+#pragma warning disable CS0618 // Type or member is obsolete
             rt.MarkRestoreExpected(); // keeping luminance values between frames, RT restore expected
+#pragma warning restore CS0618 // Type or member is obsolete
 
 #if UNITY_EDITOR
             if (Application.isPlaying && !freshlyBrewedInternalRt)

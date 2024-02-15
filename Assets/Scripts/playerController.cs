@@ -14,7 +14,7 @@ public class playerController : MonoBehaviour
     [SerializeField] float jumpHeight;
     [SerializeField] float gravityValue;
     [SerializeField] int jumpCount;
-    [SerializeField] int sprintMod;
+    [SerializeField] float sprintMod;
     [SerializeField] int dashMod;
     [SerializeField] float dashTime;
     

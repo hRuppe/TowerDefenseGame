@@ -133,13 +133,17 @@ namespace UnityStandardAssets.ImageEffects
 
                 // "merge up" with background COC
                 dofHdrMaterial.SetTexture("_FgOverlap", temp2);
+#pragma warning disable CS0618 // Type or member is obsolete
                 fromTo.MarkRestoreExpected(); // only touching alpha channel, RT restore expected
+#pragma warning restore CS0618 // Type or member is obsolete
                 Graphics.Blit (fromTo, fromTo, dofHdrMaterial,  13);
                 RenderTexture.ReleaseTemporary(temp2);
             }
             else {
                 // capture full coc in alpha channel (fromTo is not read, but bound to detect screen flip)
+#pragma warning disable CS0618 // Type or member is obsolete
 				fromTo.MarkRestoreExpected(); // only touching alpha channel, RT restore expected
+#pragma warning restore CS0618 // Type or member is obsolete
                 Graphics.Blit (fromTo, fromTo, dofHdrMaterial,  0);
             }
         }

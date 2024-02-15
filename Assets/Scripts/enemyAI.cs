@@ -13,13 +13,11 @@ public class enemyAI : MonoBehaviour, IDamage
 
     [Header("---- Enemy Stats ----")]
     [SerializeField] int HP;
-    [SerializeField] int playerFaceSpeed;
-    [SerializeField] int animLerpSpeed;
+    [SerializeField] float speed; 
 
     GameObject objectToAttack;
-    bool isShooting;
-    bool playerInRange;
-    Vector3 playerDir;
+    // This value is the speed value that looks best with a "1" value on the enemy run animation (shouldn't need adjustment)
+    float speedToAnimationDefault = 4.75f; 
 
     // Start is called before the first frame update
     void Start()
@@ -28,28 +26,25 @@ public class enemyAI : MonoBehaviour, IDamage
         if (GameObject.FindWithTag("Location To Defend") != null)
             objectToAttack = GameObject.FindWithTag("Location To Defend");
 
+        // Set enemy speed in the navmesh 
+        agent.speed = speed;
+
+        // Adjust running animation speed with the enemy speed
+        float scalingFactor = 1f / (speedToAnimationDefault / speed);
+        anim.SetFloat("Running Speed Animation Multiplier", scalingFactor);
+
         // Increments enemies to kill when the enemy spawns so you have a count of all active enemies
-        gameManager.instance.enemiesToKill++;
+        //gameManager.instance.enemiesToKill++;
         // Updates enemies to kill UI
-        gameManager.instance.updateUI();
+        //gameManager.instance.updateUI();
     }
 
     // Update is called once per frame
     void Update()
     {
-        faceLocation();
-
-        anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agent.velocity.normalized.magnitude, Time.deltaTime * animLerpSpeed));
+        //anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agent.velocity.normalized.magnitude, Time.deltaTime * animLerpSpeed));
 
         agent.SetDestination(objectToAttack.transform.position);
-    }
-
-    void faceLocation()
-    {
-        playerDir.y = 0;
-
-        Quaternion rotation = Quaternion.LookRotation(objectToAttack.transform.position);
-        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * playerFaceSpeed);
     }
 
     public void takeDamage(int dmg)
@@ -73,18 +68,5 @@ public class enemyAI : MonoBehaviour, IDamage
 
         model.material.color = Color.white;
     }
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = true;
-        }
-    }
-    public void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = false;
-        }
-    }
+    
 }
