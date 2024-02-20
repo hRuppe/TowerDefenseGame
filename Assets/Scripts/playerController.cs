@@ -24,7 +24,8 @@ public class playerController : MonoBehaviour
     [SerializeField] GameObject gunModel;
     [SerializeField] GameObject hitEffect;
     public List<gunStats> gunList = new List<gunStats>();
-    public List<GameObject> normalStorage = new List<GameObject>();
+    public List<itemStats> itemList = new List<itemStats>();
+    
     public float scrollSensitivity = 1.0f; // Control the scroll wheel sensitivity 
 
 
@@ -208,7 +209,7 @@ public class playerController : MonoBehaviour
             EquipGun(selectedGun);
 
         }
-        else if (gunList.Count == 1)
+    /*    else if (gunList.Count == 1)
         {
             // There's only one gun in the inventory
             Debug.Log("Only one gun in inventory.");
@@ -217,7 +218,7 @@ public class playerController : MonoBehaviour
         {
             // There are no weapons in the inventory
             Debug.Log("No weapons in inventory");
-        }
+        }*/
     }
 
     public void EquipGun(int index)
@@ -256,7 +257,12 @@ public class playerController : MonoBehaviour
         }
     }
 
-
+    public void ItemPickup(itemStats itemStat)
+    {
+        // Check to see if the index is valid
+        // Get the selected item status
+        // update the item stats
+    }
 
 
     // Aim down sights logic
