@@ -59,6 +59,7 @@ public class playerController : MonoBehaviour
         menu();
         shop();
         character();
+       /* DropGun();*/
        /* AimDownSights();*/
     }
 
@@ -208,7 +209,7 @@ public class playerController : MonoBehaviour
             EquipGun(selectedGun);
 
         }
-        else if (gunList.Count == 1)
+       /* else if (gunList.Count == 1)
         {
             // There's only one gun in the inventory
             Debug.Log("Only one gun in inventory.");
@@ -217,7 +218,7 @@ public class playerController : MonoBehaviour
         {
             // There are no weapons in the inventory
             Debug.Log("No weapons in inventory");
-        }
+        }*/
     }
 
     // Equipt weapon logic
@@ -257,7 +258,11 @@ public class playerController : MonoBehaviour
         }
     }
 
-
+    // Drop gun logic
+    public void DropGun()
+    {
+        // Destrooy or move to perm storage
+    }
 
 
     // Aim down sights logic
