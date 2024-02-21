@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.AI;
 using TMPro;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
+using UnityEditor.Experimental.GraphView;
 
 public class gameManager : MonoBehaviour
 {
@@ -43,8 +45,8 @@ public class gameManager : MonoBehaviour
 
     private void Start()
     {
+        //checks for button clicks on buy menu first is for the basic turrets and the second is for the leveled up turret
         basicTurretButton.onClick.AddListener(spawnBasicTurret);
-
         Level2TurretButton.onClick.AddListener(spawnLevelTwoTurret);
     }
 
@@ -75,14 +77,20 @@ public class gameManager : MonoBehaviour
     }
     void spawnBasicTurret()
     {
+        //turns off buymenu so player can no longer see it
         BuyMenu.SetActive(false);
+        //sets the turrent index that is used in the playercontroller so that the correct turret is placed
         turretIndex = 0;
+        //makes sure the correct turret is displayed for placement
         turretModels[0].SetActive(true);
     }
     void spawnLevelTwoTurret()
     {
+        //turns off buymenu so player can no longer see it
         BuyMenu.SetActive(false);
+        //sets the turrent index that is used in the playercontroller so that the correct turret is placed
         turretIndex = 1;
+        //makes sure the correct turret is displayed for placement
         turretModels[1].SetActive(true);
     }
     public void pause()
