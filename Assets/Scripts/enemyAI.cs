@@ -9,6 +9,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator anim;
+    public GameObject damageZone;
 
 
     [Header("---- Enemy Stats ----")]

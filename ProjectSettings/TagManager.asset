@@ -8,6 +8,9 @@ TagManager:
   - Spawn Pos
   - Turret
   - Location To Defend
+  - EnemyLoc
+  - LevelOneTurret
+  - LevelTwoTurret
   layers:
   - Default
   - TransparentFX
