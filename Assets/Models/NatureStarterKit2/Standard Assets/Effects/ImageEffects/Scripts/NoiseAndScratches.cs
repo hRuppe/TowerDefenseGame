@@ -51,10 +51,12 @@ namespace UnityStandardAssets.ImageEffects
         protected void Start ()
         {
             // Disable if we don't support image effects
+#pragma warning disable CS0618 // Type or member is obsolete
             if (!SystemInfo.supportsImageEffects) {
                 enabled = false;
                 return;
             }
+#pragma warning restore CS0618 // Type or member is obsolete
 
             if ( shaderRGB == null || shaderYUV == null )
             {

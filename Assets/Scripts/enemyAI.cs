@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 public class enemyAI : MonoBehaviour, IDamage
 {
@@ -13,18 +14,35 @@ public class enemyAI : MonoBehaviour, IDamage
 
     [Header("---- Enemy Stats ----")]
     [SerializeField] int HP;
-    [SerializeField] float speed; 
+    [SerializeField] float speed;
+    [SerializeField] float attackRange = 2f;
 
-    GameObject objectToAttack;
-    // This value is the speed value that looks best with a "1" value on the enemy run animation (shouldn't need adjustment)
-    float speedToAnimationDefault = 4.75f; 
+    EnemyState currentState;
+    GameObject locationToAttack;
+    BoxCollider locationCollider;
+    Vector3 positionToAttack; // Stores random position within the locationCollider to attack
+    Transform randomPositionOnLocation; 
+    public bool inAttackRange = false; 
+    // This value is the speed value that looks best with a "1" value on the enemy run animation (shouldn't need adjustment, which is why it's hardcoded)
+    float speedToAnimationDefault = 4.75f;
+
+    public enum EnemyState
+    {
+        MovingToLocation,
+        AttackingLocation,
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         // Find location that the enemy is attacking
         if (GameObject.FindWithTag("Location To Defend") != null)
-            objectToAttack = GameObject.FindWithTag("Location To Defend");
+        {
+            locationToAttack = GameObject.FindWithTag("Location To Defend");
+            locationCollider = locationToAttack.GetComponent<BoxCollider>();
+            GetRandomPositionInCollider();
+        }
+            
 
         // Set enemy speed in the navmesh 
         agent.speed = speed;
@@ -33,18 +51,61 @@ public class enemyAI : MonoBehaviour, IDamage
         float scalingFactor = 1f / (speedToAnimationDefault / speed);
         anim.SetFloat("Running Speed Animation Multiplier", scalingFactor);
 
-        // Increments enemies to kill when the enemy spawns so you have a count of all active enemies
-        //gameManager.instance.enemiesToKill++;
-        // Updates enemies to kill UI
-        //gameManager.instance.updateUI();
+        // Start enemy in moving state
+        currentState = EnemyState.MovingToLocation; 
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agent.velocity.normalized.magnitude, Time.deltaTime * animLerpSpeed));
+        switch (currentState)
+        {
+            case EnemyState.MovingToLocation:
+                MoveToLocation();
+                break;
+            case EnemyState.AttackingLocation:
+                AttackTower();
+                break;
+        }
+    }
 
-        agent.SetDestination(objectToAttack.transform.position);
+    void MoveToLocation()
+    {
+        // Check if enemy is within range
+        if (inAttackRange)
+        {
+            ChangeState(EnemyState.AttackingLocation);
+        }
+        else
+        {
+            if (agent.destination != positionToAttack)
+            {
+                agent.SetDestination(positionToAttack);
+            }
+        }
+    }
+
+    void AttackTower()
+    {
+        anim.SetBool("Attack", true);
+    }
+
+    public void ChangeState(EnemyState newState)
+    {
+        currentState = newState;
+    }
+
+    void GetRandomPositionInCollider()
+    {
+        Vector3 min = locationCollider.bounds.min;
+        Vector3 max = locationCollider.bounds.max;
+
+        float randomX = Random.Range(min.x, max.x);
+        float randomZ = Random.Range(min.z, max.z);
+
+        // keep y-coordinate same as enemy's current position
+        float y = transform.position.y;
+
+        positionToAttack = new Vector3(randomX, y, randomZ);
     }
 
     public void takeDamage(int dmg)
@@ -67,6 +128,5 @@ public class enemyAI : MonoBehaviour, IDamage
         yield return new WaitForSeconds(0.15f);
 
         model.material.color = Color.white;
-    }
-    
+    } 
 }

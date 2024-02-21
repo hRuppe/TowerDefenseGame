@@ -179,7 +179,9 @@ namespace UnityStandardAssets.ImageEffects
                     }
                     else
                     {
+#pragma warning disable CS0618 // Type or member is obsolete
                         quarterRezColor.MarkRestoreExpected(); // using max blending, RT restore expected
+#pragma warning restore CS0618 // Type or member is obsolete
                         Graphics.Blit (secondQuarterRezColor, quarterRezColor, screenBlend, 10);
                     }
                 }
@@ -313,7 +315,9 @@ namespace UnityStandardAssets.ImageEffects
         private void AddTo (float intensity_, RenderTexture from, RenderTexture to)
         {
             screenBlend.SetFloat ("_Intensity", intensity_);
+#pragma warning disable CS0618 // Type or member is obsolete
             to.MarkRestoreExpected(); // additive blending, RT restore expected
+#pragma warning restore CS0618 // Type or member is obsolete
             Graphics.Blit (from, to, screenBlend, 9);
         }
 
@@ -323,7 +327,9 @@ namespace UnityStandardAssets.ImageEffects
             lensFlareMaterial.SetVector ("colorB", new Vector4 (flareColorB.r, flareColorB.g, flareColorB.b, flareColorB.a) * lensflareIntensity);
             lensFlareMaterial.SetVector ("colorC", new Vector4 (flareColorC.r, flareColorC.g, flareColorC.b, flareColorC.a) * lensflareIntensity);
             lensFlareMaterial.SetVector ("colorD", new Vector4 (flareColorD.r, flareColorD.g, flareColorD.b, flareColorD.a) * lensflareIntensity);
+#pragma warning disable CS0618 // Type or member is obsolete
             to.MarkRestoreExpected(); // additive blending, RT restore expected
+#pragma warning restore CS0618 // Type or member is obsolete
             Graphics.Blit (from, to, lensFlareMaterial);
         }
 
@@ -344,7 +350,9 @@ namespace UnityStandardAssets.ImageEffects
             if (lensFlareVignetteMask)
             {
                 screenBlend.SetTexture ("_ColorBuffer", lensFlareVignetteMask);
+#pragma warning disable CS0618 // Type or member is obsolete
                 to.MarkRestoreExpected(); // using blending, RT restore expected
+#pragma warning restore CS0618 // Type or member is obsolete
                 Graphics.Blit (from == to ? null : from, to, screenBlend, from == to ? 7 : 3);
             }
             else if (from != to)

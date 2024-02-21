@@ -211,12 +211,12 @@ public class playerController : MonoBehaviour
         else if (gunList.Count == 1)
         {
             // There's only one gun in the inventory
-            Debug.Log("Only one gun in inventory.");
+            //Debug.Log("Only one gun in inventory.");
         }
         else
         {
             // There are no weapons in the inventory
-            Debug.Log("No weapons in inventory");
+            //Debug.Log("No weapons in inventory");
         }
     }
 
