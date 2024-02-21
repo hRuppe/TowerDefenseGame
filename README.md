@@ -2,8 +2,8 @@ Ctrl Freaks: Bastion Tower
 Introduction
 
 "Bastion Tower" is a cutting-edge game developed by the Ctrl Freaks team, blending strategic tower defense with immersive time travel exploration. 
-In this game, players become fearless commanders, deploying futuristic towers across various timelines to defend against relentless hordes of temporal invaders. 
-Each victory unlocks new time periods, bringing unique challenges and opportunities. This game is a testament to strategy, exploration, and a deep narrative, offering an unparalleled gaming experience.
+In this game, players experience this as a first person shooter, they become fearless commanders, deploying futuristic towers across various timelines to defend against relentless hordes of temporal invaders. 
+ Each victory unlocks new time periods, bringing unique challenges and opportunities. This game is a testament to strategy, exploration, and a deep narrative, offering an unparalleled gaming experience.
 Features
 
     Advanced Tech Warfare: Utilize futuristic towers for strategic defense.
@@ -38,9 +38,9 @@ License
 "Bastion Tower" is licensed under the MIT License. For more details, see the LICENSE file.
 Contributors
 
-    Eli Rogers: Frontend Development and Game Design.
-    Hunter Ruppe: Backend Development and Gameplay Programming.
-    Natalie Bolinao: Organization and Programming.
+    Eli Rogers: Frontend Development
+    Hunter Ruppe: Backend Development
+    Natalie Bolinao: Backend Development
     John Selders: Design and Support Programming.
 
 Project Status
