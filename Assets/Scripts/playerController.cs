@@ -8,6 +8,7 @@ public class playerController : MonoBehaviour
     [Header("---- Componets ----")]
     [SerializeField] CharacterController controller;
 
+
     [Header("---- Player Stats ----")]
     [SerializeField] float playerSpeed;
     [SerializeField] float jumpHeight;
@@ -124,6 +125,15 @@ public class playerController : MonoBehaviour
         // Stores the gun in the players inventory and stores the gun stats in the gunList
         gunList.Add(gunStat);
         InstantiateGunModel(gunStat);
+    }
+
+    public void ItemPickup(itemStats itemStat)
+    {
+        // If the item is something that does not need to be seen
+        // newItem.GetComponent<Renderer>().enabled = false;
+        // Store the item in the players inventory and store the item stats in the itemList
+        itemList.Add(itemStat);
+        // Add things later here to update the sound or the UI ECT
     }
 
     // Shooting logic
@@ -256,14 +266,6 @@ public class playerController : MonoBehaviour
             Debug.Log("Invalid index for equipping gun");
         }
     }
-
-    public void ItemPickup(itemStats itemStat)
-    {
-        // Check to see if the index is valid
-        // Get the selected item status
-        // update the item stats
-    }
-
 
     // Aim down sights logic
     public void AimDownSights()

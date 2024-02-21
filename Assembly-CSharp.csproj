@@ -70,6 +70,7 @@
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\PostProcessingProfile.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\PostProcessingContext.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Components\MotionBlurComponent.cs" />
+    <Compile Include="Assets\Scripts\itemPickup.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Attributes\MinAttribute.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\BloomAndFlares.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Components\BloomComponent.cs" />
@@ -117,6 +118,7 @@
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\PostProcessingModel.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\CameraMotionBlur.cs" />
     <Compile Include="Assets\Scripts\EnemySpawner.cs" />
+    <Compile Include="Assets\Scripts\itemStats.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\GlobalFog.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Components\GrainComponent.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\PostEffectsBase.cs" />
@@ -155,8 +157,6 @@
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\CreaseShading.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Models\AntialiasingModel.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Models\DitheringModel.cs" />
-    <Compile Include="Assets\Scripts\itemPickup.cs" />
-    <Compile Include="Assets\Scripts\itemStats.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\Tonemapper.shader" />

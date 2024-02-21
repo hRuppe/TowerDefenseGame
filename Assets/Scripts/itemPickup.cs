@@ -20,7 +20,7 @@ public class itemPickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            /* gameManager.instance.playerScript.gunDrop();*/
+            // DO nothing
         }
     }
 }
