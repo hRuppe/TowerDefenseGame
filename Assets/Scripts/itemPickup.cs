@@ -5,14 +5,14 @@ using UnityEngine;
 public class itemPickup : MonoBehaviour
 {
 
-    [SerializeField] itemStats itemStat;
+    [SerializeField] GameObject gameObj;
 
     // Start is called before the first frame update
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            gameManager.instance.playerScript.ItemPickup(itemStat);
+            gameManager.instance.playerScript.ItemPickup(gameObj);
             Destroy(gameObject);
         }
     }

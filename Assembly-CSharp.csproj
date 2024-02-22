@@ -66,6 +66,7 @@
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Utils\MaterialFactory.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Components\ScreenSpaceReflectionComponent.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\DepthOfFieldDeprecated.cs" />
+    <Compile Include="Assets\Kabungus\HouseholdItems\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\Bloom.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\PostProcessingProfile.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\PostProcessingContext.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Models\BloomModel.cs" />
     <Compile Include="Assets\Scripts\IDamage.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Attributes\TrackballAttribute.cs" />
+    <Compile Include="Assets\Kabungus\HouseholdItems\Scripts\MouseLook.cs" />
     <Compile Include="Assets\Scripts\gameManager.cs" />
     <Compile Include="Assets\Scripts\TurretBehavior.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\Grayscale.cs" />
@@ -157,6 +159,7 @@
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\CreaseShading.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Models\AntialiasingModel.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Models\DitheringModel.cs" />
+    <Compile Include="Assets\healthPickup.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\Tonemapper.shader" />

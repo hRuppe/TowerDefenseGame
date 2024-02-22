@@ -17,6 +17,7 @@ public class playerController : MonoBehaviour
     [SerializeField] float sprintMod;
     [SerializeField] int dashMod;
     [SerializeField] float dashTime;
+    public int playerHealth = 100;
 
     [Header("---- Weapon Stats ----")]
     [SerializeField] float shootRate;
@@ -25,7 +26,7 @@ public class playerController : MonoBehaviour
     [SerializeField] GameObject gunModel;
     [SerializeField] GameObject hitEffect;
     public List<gunStats> gunList = new List<gunStats>();
-    public List<itemStats> itemList = new List<itemStats>();
+    public List<GameObject> itemList = new List<GameObject>();
     
     public float scrollSensitivity = 1.0f; // Control the scroll wheel sensitivity 
 
@@ -127,12 +128,12 @@ public class playerController : MonoBehaviour
         InstantiateGunModel(gunStat);
     }
 
-    public void ItemPickup(itemStats itemStat)
+    public void ItemPickup(GameObject gameObj)
     {
         // If the item is something that does not need to be seen
         // newItem.GetComponent<Renderer>().enabled = false;
         // Store the item in the players inventory and store the item stats in the itemList
-        itemList.Add(itemStat);
+        itemList.Add(gameObj);
         // Add things later here to update the sound or the UI ECT
     }
 
