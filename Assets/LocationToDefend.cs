@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -7,11 +8,9 @@ public class LocationToDefend : MonoBehaviour
 {
     [SerializeField] int locationHealth;
 
-    private void OnTriggerEnter(Collider other)
+    public void TakeDamage(int dmg)
     {
-        Debug.Log("enemy entered trigger"); 
-        enemyAI enemy = other.GetComponent<enemyAI>();
-
-        enemy.inAttackRange = true; 
+        locationHealth -= dmg; 
     }
+
 }

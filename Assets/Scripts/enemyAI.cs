@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
@@ -15,16 +16,20 @@ public class enemyAI : MonoBehaviour, IDamage
     [Header("---- Enemy Stats ----")]
     [SerializeField] int HP;
     [SerializeField] float speed;
-    [SerializeField] float attackRange = 2f;
+    [SerializeField] int attackDmg; 
+    [SerializeField] float attackRange;
+    [SerializeField] float rotationSpeed;
+    
 
-    EnemyState currentState;
-    GameObject locationToAttack;
-    BoxCollider locationCollider;
+    EnemyState currentState; // The current state of this enemy (moving, attacking, etc)
+    GameObject locationToAttack; // Gameobject that the enemy is attacking
+    BoxCollider locationCollider; // Collider on the gameobject the enemy is attacking
+    LocationToDefend locationScript; // Script attached to the location to access needed functions
     Vector3 positionToAttack; // Stores random position within the locationCollider to attack
-    Transform randomPositionOnLocation; 
-    public bool inAttackRange = false; 
-    // This value is the speed value that looks best with a "1" value on the enemy run animation (shouldn't need adjustment, which is why it's hardcoded)
-    float speedToAnimationDefault = 4.75f;
+    public bool inAttackRange = false; // Start enemy out of attack range so it can be triggered later
+    float speedToAnimationDefault = 4.75f; // This value is the speed value that looks best with a "1" value on the enemy run animation (shouldn't need adjustment, which is why it's hardcoded)
+
+
 
     public enum EnemyState
     {
@@ -32,26 +37,27 @@ public class enemyAI : MonoBehaviour, IDamage
         AttackingLocation,
     }
 
-    // Start is called before the first frame update
+    
     void Start()
     {
-        // Find location that the enemy is attacking
+        // Finds gameobject that the enemy is attacking
         if (GameObject.FindWithTag("Location To Defend") != null)
         {
             locationToAttack = GameObject.FindWithTag("Location To Defend");
             locationCollider = locationToAttack.GetComponent<BoxCollider>();
-            GetRandomPositionInCollider();
+            locationScript = locationToAttack.GetComponent<LocationToDefend>();
+            SetPositionToAttack();
         }
             
 
-        // Set enemy speed in the navmesh 
+        // Sets the enemy nav mesh speed to what it's set to in this script
         agent.speed = speed;
 
         // Adjust running animation speed with the enemy speed
         float scalingFactor = 1f / (speedToAnimationDefault / speed);
         anim.SetFloat("Running Speed Animation Multiplier", scalingFactor);
 
-        // Start enemy in moving state
+        // Starts enemy in moving state
         currentState = EnemyState.MovingToLocation; 
     }
 
@@ -70,22 +76,31 @@ public class enemyAI : MonoBehaviour, IDamage
 
     void MoveToLocation()
     {
+        // If not already set, sets the destination for the enemy (should only enter this the 1st time it enters MoveToLocation)
+        if (agent.destination != positionToAttack)
+        {
+            SetPositionToAttack();
+            agent.SetDestination(positionToAttack);
+        }
+
+        // Check if the current position is within attack range
+        if (Vector3.Distance(transform.position, positionToAttack) <= attackRange)
+        {
+            inAttackRange = true;
+        }
+
         // Check if enemy is within range
         if (inAttackRange)
         {
             ChangeState(EnemyState.AttackingLocation);
         }
-        else
-        {
-            if (agent.destination != positionToAttack)
-            {
-                agent.SetDestination(positionToAttack);
-            }
-        }
     }
 
     void AttackTower()
     {
+        // Stops enemy from moving
+        agent.isStopped = true;
+
         anim.SetBool("Attack", true);
     }
 
@@ -94,18 +109,27 @@ public class enemyAI : MonoBehaviour, IDamage
         currentState = newState;
     }
 
-    void GetRandomPositionInCollider()
+    void SetPositionToAttack()
     {
-        Vector3 min = locationCollider.bounds.min;
-        Vector3 max = locationCollider.bounds.max;
+        BoxCollider collider = locationCollider.GetComponent<BoxCollider>();
 
-        float randomX = Random.Range(min.x, max.x);
-        float randomZ = Random.Range(min.z, max.z);
+        Vector3 localMin = collider.center - collider.size / 2;
+        Vector3 localMax = collider.center + collider.size / 2;
 
-        // keep y-coordinate same as enemy's current position
-        float y = transform.position.y;
+        while (!locationCollider.bounds.Contains(positionToAttack))
+        {
+            float randomX = Random.Range(localMin.x, localMax.x);
+            float randomY = Random.Range(localMin.y, localMax.y);
+            float randomZ = Random.Range(localMin.z, localMax.z);
 
-        positionToAttack = new Vector3(randomX, y, randomZ);
+            positionToAttack = locationCollider.transform.TransformPoint(new Vector3(randomX, randomY, randomZ));
+        }
+    }
+
+    // Function is called by the enemy attack animation
+    public void AttackLocation()
+    {
+        locationScript.TakeDamage(attackDmg); 
     }
 
     public void takeDamage(int dmg)
