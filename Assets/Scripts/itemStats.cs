@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu]
 public class itemStats : MonoBehaviour
 {
+    public string itemName;
+    public int itemID; 
     public float healingAmount;
     public int despawTimer;
     public int itemCount;
