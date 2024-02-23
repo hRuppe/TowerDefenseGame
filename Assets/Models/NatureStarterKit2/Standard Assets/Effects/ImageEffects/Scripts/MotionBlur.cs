@@ -21,13 +21,11 @@ namespace UnityStandardAssets.ImageEffects
 
         override protected void Start()
         {
-#pragma warning disable CS0618 // Type or member is obsolete
             if (!SystemInfo.supportsRenderTextures)
             {
                 enabled = false;
                 return;
             }
-#pragma warning restore CS0618 // Type or member is obsolete
             base.Start();
         }
 
@@ -53,9 +51,7 @@ namespace UnityStandardAssets.ImageEffects
             if (extraBlur)
             {
                 RenderTexture blurbuffer = RenderTexture.GetTemporary(source.width/4, source.height/4, 0);
-#pragma warning disable CS0618 // Type or member is obsolete
                 accumTexture.MarkRestoreExpected();
-#pragma warning restore CS0618 // Type or member is obsolete
                 Graphics.Blit(accumTexture, blurbuffer);
                 Graphics.Blit(blurbuffer,accumTexture);
                 RenderTexture.ReleaseTemporary(blurbuffer);
@@ -70,9 +66,7 @@ namespace UnityStandardAssets.ImageEffects
 
             // We are accumulating motion over frames without clear/discard
             // by design, so silence any performance warnings from Unity
-#pragma warning disable CS0618 // Type or member is obsolete
             accumTexture.MarkRestoreExpected();
-#pragma warning restore CS0618 // Type or member is obsolete
 
             // Render the image using the motion blur shader
             Graphics.Blit (source, accumTexture, material);

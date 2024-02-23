@@ -38,9 +38,9 @@ License
 "Bastion Tower" is licensed under the MIT License. For more details, see the LICENSE file.
 Contributors
 
-    Eli Rogers: Frontend Development
-    Hunter Ruppe: Backend Development
-    Natalie Bolinao: Backend Development
+    Eli Rogers: Frontend Development and Game Design.
+    Hunter Ruppe: Backend Development and Gameplay Programming.
+    Natalie Bolinao: Organization and Programming.
     John Selders: Design and Support Programming.
 
 Project Status
