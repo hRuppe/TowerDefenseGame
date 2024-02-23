@@ -9,11 +9,9 @@ public class TurretBehavior : MonoBehaviour
     [Header("---- Turret behavior ----")]
     [SerializeField] int faceEnemySpeed;
     [SerializeField] float shootRate;
-    [SerializeField] int shootDist;
     [SerializeField] int shootDmg;
     [SerializeField] Transform firePoint;
     [SerializeField] GameObject bulletPrefab;
-    [SerializeField] int bulletVelocity;
     Vector3 direction;
 
     Transform enemy;
@@ -39,7 +37,6 @@ public class TurretBehavior : MonoBehaviour
             // Instantiate bullet prefab at firePoint position and rotation
             bulletPrefab.GetComponent<BulletDamage>().shootDirection = direction;
             Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-            // Add code here to handle bullet behavior (e.g., apply force, damage, etc.)
         }
     }
 
@@ -48,7 +45,6 @@ public class TurretBehavior : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             enemy = other.GetComponent<Transform>();
-
             StartCoroutine(Fire());
         }
 

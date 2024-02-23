@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 8837132759854725973}
   - component: {fileID: 8909238325752088885}
   - component: {fileID: 8859278724542244486}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Basic Turret
-  m_TagString: Turret
+  m_TagString: LevelOneTurret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,13 +49,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0d72ebb5a491464dad0552cbbad75a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faceEnemySpeed: 5
-  shootRate: 1
-  shootDist: 200
+  faceEnemySpeed: 20
+  shootRate: 0.2
   shootDmg: 1
   firePoint: {fileID: 8859278725087862420}
   bulletPrefab: {fileID: 4944232645063333771, guid: 56f894f44fdf54e4da6807e7f453878d, type: 3}
-  bulletVelocity: 0
 --- !u!33 &8829102946202257469
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -150,7 +148,7 @@ GameObject:
   - component: {fileID: 8862044970487937287}
   - component: {fileID: 8829102946656276617}
   - component: {fileID: 8837132759192335603}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: canon_lvl_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,7 +232,7 @@ GameObject:
   - component: {fileID: 8862044970577403247}
   - component: {fileID: 8829102947990515909}
   - component: {fileID: 8837132761180884101}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: gunpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -316,7 +314,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8859278725087862420}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ShootingPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}

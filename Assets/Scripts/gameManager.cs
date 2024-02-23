@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using TMPro;
+using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
+using UnityEditor.Experimental.GraphView;
 
 public class gameManager : MonoBehaviour
 {
@@ -15,6 +18,11 @@ public class gameManager : MonoBehaviour
     [Header("---- UI ----")]
     public GameObject pauseMenu;
     public GameObject winMenu;
+    public GameObject BuyMenu;
+    [SerializeField] Button basicTurretButton;
+    [SerializeField] Button Level2TurretButton;
+    public GameObject basicTurret;
+    public GameObject level2Turret;
     public GameObject playerDeadMenu;
     public GameObject playerDamageScreen;
 
@@ -22,6 +30,8 @@ public class gameManager : MonoBehaviour
 
     public GameObject spawnPos;
     public int enemiesToKill;
+    public List<GameObject> turretModels;
+    public int turretIndex;
 
     public bool isPaused = false;
 
@@ -29,9 +39,15 @@ public class gameManager : MonoBehaviour
     void Awake()
     {
         instance = this;
-        player = GameObject.FindGameObjectWithTag("EnemyLoc");
         spawnPos = GameObject.FindGameObjectWithTag("Spawn Pos");
         playerScript.GetComponent<CharacterController>();
+    }
+
+    private void Start()
+    {
+        //checks for button clicks on buy menu first is for the basic turrets and the second is for the leveled up turret
+        basicTurretButton.onClick.AddListener(spawnBasicTurret);
+        Level2TurretButton.onClick.AddListener(spawnLevelTwoTurret);
     }
 
     // Update is called once per frame
@@ -47,15 +63,40 @@ public class gameManager : MonoBehaviour
         {
             pause();
         }
-        else
+        else if (!isPaused && !BuyMenu.activeSelf)
         {
             unPause();
         }
+        //Checks for input of menu button(Currently set to M) and checks no other menu screens are open
+        if (Input.GetButtonDown("Menu") && !playerDeadMenu.activeSelf && !winMenu.activeSelf)
+        {
+            Cursor.visible = true;
+            BuyMenu.SetActive(true);
+            Cursor.lockState = CursorLockMode.Confined;
+        }
     }
-
+    void spawnBasicTurret()
+    {
+        //turns off buymenu so player can no longer see it
+        BuyMenu.SetActive(false);
+        //sets the turrent index that is used in the playercontroller so that the correct turret is placed
+        turretIndex = 0;
+        //makes sure the correct turret is displayed for placement
+        turretModels[0].SetActive(true);
+    }
+    void spawnLevelTwoTurret()
+    {
+        //turns off buymenu so player can no longer see it
+        BuyMenu.SetActive(false);
+        //sets the turrent index that is used in the playercontroller so that the correct turret is placed
+        turretIndex = 1;
+        //makes sure the correct turret is displayed for placement
+        turretModels[1].SetActive(true);
+    }
     public void pause()
     {
         Time.timeScale = 0;
+
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
     }

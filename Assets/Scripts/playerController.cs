@@ -53,13 +53,13 @@ public class playerController : MonoBehaviour
         sprint();
         StartCoroutine(shoot());
         SwitchGun();
-        deployTower();
         Interact();
         pauseMenu();
         menu();
         shop();
+        placeTurret();
         character();
-       /* AimDownSights();*/
+        /* AimDownSights();*/
     }
 
     // Player movement logic
@@ -88,7 +88,7 @@ public class playerController : MonoBehaviour
     }
 
     // Player sprint logic
-   public void sprint()
+    public void sprint()
     {
         if (!isSprinting && Input.GetButtonDown("Sprint") && playerVelocity.y <= 0)
         {
@@ -105,20 +105,20 @@ public class playerController : MonoBehaviour
     // Player gun pick up logic
     public void gunPickup(gunStats gunStat)
     {
-            // Instantiate the gun model at the player's position
-            GameObject newGun = Instantiate(gunStat.gunModel, transform.position, Quaternion.identity);
+        // Instantiate the gun model at the player's position
+        GameObject newGun = Instantiate(gunStat.gunModel, transform.position, Quaternion.identity);
 
-            // Parent the gun to the player's hand 
-            newGun.transform.parent = gunModel.transform;
+        // Parent the gun to the player's hand 
+        newGun.transform.parent = gunModel.transform;
 
-            // Set the gun's local position and rotation relative to the player's hand 
-            newGun.transform.localPosition = Vector3.zero;
-            newGun.transform.localRotation = Quaternion.identity;
+        // Set the gun's local position and rotation relative to the player's hand 
+        newGun.transform.localPosition = Vector3.zero;
+        newGun.transform.localRotation = Quaternion.identity;
 
-            shootRate = gunStat.shootRate;
-            shootDist = gunStat.shootDist;
-            shootDmg = gunStat.shootDmg;
-            hitEffect = gunStat.hitEffect;
+        shootRate = gunStat.shootRate;
+        shootDist = gunStat.shootDist;
+        shootDmg = gunStat.shootDmg;
+        hitEffect = gunStat.hitEffect;
 
         // Stores the gun in the players inventory and stores the gun stats in the gunList
         gunList.Add(gunStat);
@@ -241,8 +241,8 @@ public class playerController : MonoBehaviour
             gunModel.transform.parent = transform;
 
             // Set the gun's local position and rotation relative to the player's hand
-            gunModel.transform.localPosition = Vector3.zero; 
-            gunModel.transform.localRotation = Quaternion.identity; 
+            gunModel.transform.localPosition = Vector3.zero;
+            gunModel.transform.localRotation = Quaternion.identity;
 
             // Update the shoot stats
             shootRate = selectedGunStats.shootRate;
@@ -255,10 +255,6 @@ public class playerController : MonoBehaviour
             Debug.Log("Invalid index for equipping gun");
         }
     }
-
-
-
-
     // Aim down sights logic
     public void AimDownSights()
     {
@@ -293,48 +289,51 @@ public class playerController : MonoBehaviour
         }
     }
 
-   
-
-   public void deployTower()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            // Instantiate a tower object at the players position
-            // Instantiate(deployPosition, transform.position, Quaternion.identity);
-        }
-        else if (Input.GetKey(KeyCode.E))
-        {
-            // If a player holds the E button down then they can upgrade the tower
-            //UpgradeTower();
-        }
-    }
-
-   public void Interact()
+    public void Interact()
     {
         // Interact logic
     }
-
     public void pauseMenu()
     {
         // Pause menu logic
     }
-
     public void menu()
     {
         // Menu logic
     }
-
-   public void shop()
+    public void shop()
     {
         // Shop logic
     }
+    public void placeTurret()
+    {
+        // checks for placeTurret button(E key) and checks to make sure that the turret is being displayed for placement so that the user can't just place turrets randomly
+        if(Input.GetButtonDown("PlaceTurret") && gameManager.instance.turretModels[gameManager.instance.turretIndex].activeSelf)
+        {
+            //gets the current turrentIndex that is set in the gamemanager when a player picks on a button in buy menu
+            if(gameManager.instance.turretIndex == 0)
+            {
+                //Creates the basic turret that is set in the gameManager
+                Instantiate(gameManager.instance.basicTurret, gameManager.instance.turretModels[gameManager.instance.turretIndex].transform.position, gameManager.instance.turretModels[gameManager.instance.turretIndex].transform.rotation);
+                //Disables preview view for placing turret
+                gameManager.instance.turretModels[gameManager.instance.turretIndex].SetActive(false);
+            }
+            else if(gameManager.instance.turretIndex == 1)
+            {
+                //Creates the level 2 turret that is set in the gameManager
+                Instantiate(gameManager.instance.level2Turret, gameManager.instance.turretModels[gameManager.instance.turretIndex].transform.position, gameManager.instance.turretModels[gameManager.instance.turretIndex].transform.rotation);
+                //Disables preview view for placing turret
+                gameManager.instance.turretModels[gameManager.instance.turretIndex].SetActive(false);
+            }
 
-   public void character()
+        }
+    }
+    public void character()
     {
         // Character logic
     }
 
-   public void respawn()
+    public void respawn()
     {
         controller.enabled = false;
         transform.position = gameManager.instance.spawnPos.transform.position;
