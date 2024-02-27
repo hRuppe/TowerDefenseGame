@@ -162,13 +162,7 @@
     <Compile Include="Assets\ProgressBar\Script\ProgressBarCircle.cs" />
     <Compile Include="Assets\ProgressBar\Script\ProgressBar.cs" />
     <Compile Include="Assets\ProgressBar\Scene\Demo.cs" />
-    <Compile Include="Assets\IntenseNation\Ultimate Currency Manager\Demo\Scripts\Demo.cs" />
-    <Compile Include="Assets\IntenseNation\Ultimate Currency Manager\Scripts\CurrencyTextManager.cs" />
-    <Compile Include="Assets\IntenseNation\Ultimate Currency Manager\Scripts\ConvertedCurrency.cs" />
-    <Compile Include="Assets\IntenseNation\Ultimate Currency Manager\Scripts\Currency.cs" />
-    <Compile Include="Assets\IntenseNation\Ultimate Currency Manager\Demo\Scripts\Demo_CurrencyConverter.cs" />
-    <Compile Include="Assets\IntenseNation\Ultimate Currency Manager\Scripts\CurrencyManager.cs" />
-    <Compile Include="Assets\IntenseNation\Ultimate Currency Manager\Demo\Scripts\Demo_CurrencyCounter.cs" />
+    <Compile Include="Assets\Scripts\currencyPickup.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\Tonemapper.shader" />
