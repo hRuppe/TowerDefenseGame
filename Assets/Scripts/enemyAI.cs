@@ -11,7 +11,6 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator anim;
-    public GameObject damageZone;
 
 
     [Header("---- Enemy Stats ----")]
@@ -19,15 +18,14 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] float speed;
     [SerializeField] int attackDmg; 
     [SerializeField] float attackRange;
-    [SerializeField] float rotationSpeed;
-    
 
+    Rigidbody enemyRB; 
     EnemyState currentState; // The current state of this enemy (moving, attacking, etc)
     GameObject locationToAttack; // Gameobject that the enemy is attacking
     BoxCollider locationCollider; // Collider on the gameobject the enemy is attacking
     LocationToDefend locationScript; // Script attached to the location to access needed functions
     Vector3 positionToAttack; // Stores random position within the locationCollider to attack
-    public bool inAttackRange = false; // Start enemy out of attack range so it can be triggered later
+    bool inAttackRange = false; // Start enemy out of attack range so it can be triggered later
     float speedToAnimationDefault = 4.75f; // This value is the speed value that looks best with a "1" value on the enemy run animation (shouldn't need adjustment, which is why it's hardcoded)
 
 
@@ -41,6 +39,10 @@ public class enemyAI : MonoBehaviour, IDamage
     
     void Start()
     {
+        // Add to enemy count & update UI
+        gameManager.instance.enemiesToKill++;
+        gameManager.instance.updateUI(); 
+
         // Finds gameobject that the enemy is attacking
         if (GameObject.FindWithTag("Location To Defend") != null)
         {
@@ -49,7 +51,9 @@ public class enemyAI : MonoBehaviour, IDamage
             locationScript = locationToAttack.GetComponent<LocationToDefend>();
             SetPositionToAttack();
         }
-            
+
+        // Set rigidbody reference
+        enemyRB = GetComponent<Rigidbody>();
 
         // Sets the enemy nav mesh speed to what it's set to in this script
         agent.speed = speed;
@@ -101,6 +105,8 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         // Stops enemy from moving
         agent.isStopped = true;
+        enemyRB.freezeRotation = true; 
+
 
         anim.SetBool("Attack", true);
     }
@@ -135,10 +141,12 @@ public class enemyAI : MonoBehaviour, IDamage
 
     public void takeDamage(int dmg)
     {
+        
         HP -= dmg;
 
         StartCoroutine(flashDamage());
 
+        // Enemy death scenario
         if (HP <= 0)
         {
             gameManager.instance.updateEnemyNumber();
