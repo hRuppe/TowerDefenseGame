@@ -716,7 +716,7 @@ GameObject:
   - component: {fileID: 6831659757230594605}
   - component: {fileID: 1820451591713622316}
   m_Layer: 6
-  m_Name: Basic Alien Enemy
+  m_Name: Tower Attacking Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -778,8 +778,6 @@ MonoBehaviour:
   speed: 5.5
   attackDmg: 2
   attackRange: 1.75
-  rotationSpeed: 5
-  inAttackRange: 0
 --- !u!195 &2572393564846090208
 NavMeshAgent:
   m_ObjectHideFlags: 0

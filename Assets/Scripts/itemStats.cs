@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class itemStats : MonoBehaviour
+public class itemStats : ScriptableObject
 {
     public string itemName;
     public int itemID; 
