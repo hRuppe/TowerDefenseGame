@@ -5,7 +5,7 @@ using UnityEngine;
 public class currencyPickup : MonoBehaviour
 {
     [SerializeField] int currencyAmount;
-
+    
     // Start is called before the first frame update
     public void OnTriggerEnter(Collider other)
     {
