@@ -27,7 +27,7 @@ public class playerController : MonoBehaviour
     [SerializeField] GameObject hitEffect;
     public List<gunStats> gunList = new List<gunStats>();
     public List<GameObject> itemList = new List<GameObject>();
-    
+
     public float scrollSensitivity = 1.0f; // Control the scroll wheel sensitivity 
 
 
@@ -58,6 +58,7 @@ public class playerController : MonoBehaviour
         SwitchGun();
         Interact();
         pauseMenu();
+        StartCoroutine(dash());
         menu();
         shop();
         placeTurret();
@@ -103,6 +104,49 @@ public class playerController : MonoBehaviour
             playerSpeed = speedOrig;
             isSprinting = false;
         }
+    }
+
+    IEnumerator dash()
+    {
+        float gravOrig = gravityValue;
+        float prevSpeed = playerSpeed;
+
+        //Checks if player is off the ground and checks for the dash key which is set to F right now
+        if (playerVelocity.y > 0f && Input.GetButtonDown("Dash"))
+        {
+            float startTime = Time.time;
+
+            //time minus the time that the dash started does not equal the amount of time we want the player to dash set in untiy then the player should dash in the air.
+            while (Time.time - startTime < dashTime)
+            {
+                if (!isDashing)
+                {
+                    playerSpeed = 20;
+                    playerVelocity.y = 0;
+                    gravityValue = 0f;
+                    isDashing = true;
+                }
+                yield return null;
+            }
+            //sets all stats back to orignal
+            playerSpeed = prevSpeed;
+            gravityValue = gravOrig;
+            isDashing = false;
+        }
+    }
+
+    // Player drop gun logic if the player leaves the collider it drops the weapon. 
+    public void gunDrop()
+    {
+        shootRate = 0;
+        shootDist = 0;
+        shootDmg = 0;
+        hitEffect = null;
+
+        gunModel.GetComponent<MeshFilter>().sharedMesh = null;
+        gunModel.GetComponent<MeshRenderer>().sharedMaterial = null;
+
+        gunList.Clear();
     }
 
     // Player gun pick up logic
@@ -220,16 +264,16 @@ public class playerController : MonoBehaviour
             EquipGun(selectedGun);
 
         }
-       /* else if (gunList.Count == 1)
-        {
-            // There's only one gun in the inventory
-            Debug.Log("Only one gun in inventory.");
-        }
-        else
-        {
-            // There are no weapons in the inventory
-            //Debug.Log("No weapons in inventory");
-        }*/
+        /* else if (gunList.Count == 1)
+         {
+             // There's only one gun in the inventory
+             Debug.Log("Only one gun in inventory.");
+         }
+         else
+         {
+             // There are no weapons in the inventory
+             //Debug.Log("No weapons in inventory");
+         }*/
     }
 
     // Equipt weapon logic
@@ -321,24 +365,30 @@ public class playerController : MonoBehaviour
     public void placeTurret()
     {
         // checks for placeTurret button(E key) and checks to make sure that the turret is being displayed for placement so that the user can't just place turrets randomly
-        if(Input.GetButtonDown("PlaceTurret") && gameManager.instance.turretModels[gameManager.instance.turretIndex].activeSelf)
+        if (Input.GetButtonDown("PlaceTurret") && gameManager.instance.turretModels[gameManager.instance.turretIndex].activeSelf)
         {
             //gets the current turrentIndex that is set in the gamemanager when a player picks on a button in buy menu
-            if(gameManager.instance.turretIndex == 0)
+            if (gameManager.instance.turretIndex == 0)
             {
                 //Creates the basic turret that is set in the gameManager
                 Instantiate(gameManager.instance.basicTurret, gameManager.instance.turretModels[gameManager.instance.turretIndex].transform.position, gameManager.instance.turretModels[gameManager.instance.turretIndex].transform.rotation);
                 //Disables preview view for placing turret
                 gameManager.instance.turretModels[gameManager.instance.turretIndex].SetActive(false);
             }
-            else if(gameManager.instance.turretIndex == 1)
+            else if (gameManager.instance.turretIndex == 1)
             {
                 //Creates the level 2 turret that is set in the gameManager
                 Instantiate(gameManager.instance.level2Turret, gameManager.instance.turretModels[gameManager.instance.turretIndex].transform.position, gameManager.instance.turretModels[gameManager.instance.turretIndex].transform.rotation);
                 //Disables preview view for placing turret
                 gameManager.instance.turretModels[gameManager.instance.turretIndex].SetActive(false);
             }
-
+            else if (gameManager.instance.turretIndex == 2)
+            {
+                //Creates the level 2 turret that is set in the gameManager
+                Instantiate(gameManager.instance.rocketTurret, gameManager.instance.turretModels[gameManager.instance.turretIndex].transform.position, gameManager.instance.turretModels[gameManager.instance.turretIndex].transform.rotation);
+                //Disables preview view for placing turret
+                gameManager.instance.turretModels[gameManager.instance.turretIndex].SetActive(false);
+            }
         }
     }
     public void character()

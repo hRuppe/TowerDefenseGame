@@ -20,9 +20,11 @@ public class gameManager : MonoBehaviour
     public GameObject winMenu;
     public GameObject BuyMenu;
     [SerializeField] Button basicTurretButton;
-    [SerializeField] Button Level2TurretButton;
+    [SerializeField] Button level2TurretButton;
+    [SerializeField] Button rocketTurretButton;
     public GameObject basicTurret;
     public GameObject level2Turret;
+    public GameObject rocketTurret;
     public GameObject playerDeadMenu;
     public GameObject playerDamageScreen;
 
@@ -47,7 +49,8 @@ public class gameManager : MonoBehaviour
     {
         //checks for button clicks on buy menu first is for the basic turrets and the second is for the leveled up turret
         basicTurretButton.onClick.AddListener(spawnBasicTurret);
-        Level2TurretButton.onClick.AddListener(spawnLevelTwoTurret);
+        level2TurretButton.onClick.AddListener(spawnLevelTwoTurret);
+        rocketTurretButton.onClick.AddListener(spawnRocketTurret);
     }
 
     // Update is called once per frame
@@ -92,6 +95,15 @@ public class gameManager : MonoBehaviour
         turretIndex = 1;
         //makes sure the correct turret is displayed for placement
         turretModels[1].SetActive(true);
+    }
+    void spawnRocketTurret()
+    {
+        //turns off buymenu so player can no longer see it
+        BuyMenu.SetActive(false);
+        //sets the turrent index that is used in the playercontroller so that the correct turret is placed
+        turretIndex = 2;
+        //makes sure the correct turret is displayed for placement
+        turretModels[2].SetActive(true);
     }
     public void pause()
     {
