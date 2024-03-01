@@ -270,7 +270,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 815761949218236937, guid: 021be1bcf78258549af19946d6e74c07, type: 3}
       propertyPath: spawnTimeInterval
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 815761949218236937, guid: 021be1bcf78258549af19946d6e74c07, type: 3}
       propertyPath: enemyPrefabToSpawn
@@ -278,7 +278,7 @@ PrefabInstance:
       objectReference: {fileID: 7574823120900204354, guid: a592bf05e51418341a296a1cace16b9c, type: 3}
     - target: {fileID: 815761949218236937, guid: 021be1bcf78258549af19946d6e74c07, type: 3}
       propertyPath: numberOfEnemiesToSpawn
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 815761949218236942, guid: 021be1bcf78258549af19946d6e74c07, type: 3}
       propertyPath: m_RootOrder
@@ -286,7 +286,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 815761949218236942, guid: 021be1bcf78258549af19946d6e74c07, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -27.88
+      value: -27.57
       objectReference: {fileID: 0}
     - target: {fileID: 815761949218236942, guid: 021be1bcf78258549af19946d6e74c07, type: 3}
       propertyPath: m_LocalPosition.y
@@ -294,7 +294,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 815761949218236942, guid: 021be1bcf78258549af19946d6e74c07, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -40.34
+      value: -40.76
       objectReference: {fileID: 0}
     - target: {fileID: 815761949218236942, guid: 021be1bcf78258549af19946d6e74c07, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1477,7 +1477,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 815761949218236937, guid: 021be1bcf78258549af19946d6e74c07, type: 3}
       propertyPath: spawnTimeInterval
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 815761949218236937, guid: 021be1bcf78258549af19946d6e74c07, type: 3}
       propertyPath: enemyPrefabToSpawn
@@ -1485,7 +1485,7 @@ PrefabInstance:
       objectReference: {fileID: 2104245195404458555, guid: 93ac9bcb5a6a6c9489ab3c668ebe94b8, type: 3}
     - target: {fileID: 815761949218236937, guid: 021be1bcf78258549af19946d6e74c07, type: 3}
       propertyPath: numberOfEnemiesToSpawn
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 815761949218236942, guid: 021be1bcf78258549af19946d6e74c07, type: 3}
       propertyPath: m_RootOrder
@@ -1493,7 +1493,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 815761949218236942, guid: 021be1bcf78258549af19946d6e74c07, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -32.25013
+      value: -33.56
       objectReference: {fileID: 0}
     - target: {fileID: 815761949218236942, guid: 021be1bcf78258549af19946d6e74c07, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1501,7 +1501,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 815761949218236942, guid: 021be1bcf78258549af19946d6e74c07, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -39.000156
+      value: -40.79
       objectReference: {fileID: 0}
     - target: {fileID: 815761949218236942, guid: 021be1bcf78258549af19946d6e74c07, type: 3}
       propertyPath: m_LocalRotation.w
