@@ -891,11 +891,11 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 0
-  cloudProjectId: 
+  cloudProjectId: 02bc8298-16f6-43ff-9641-0002a307a9cf
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: TowerDefenseGame
+  organizationId: nkbolinao
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 

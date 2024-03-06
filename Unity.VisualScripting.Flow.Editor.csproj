@@ -68,8 +68,8 @@
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Flow\Framework\Control\SelectUnitDescriptor.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Flow\Description\FlowMacroDescriptor.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Flow\Connections\InvalidConnectionWidget.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Flow\Framework\Control\SelectOnFlowDescriptor.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Flow\Framework\Control\ForEachDescriptor.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Flow\Framework\Control\SelectOnFlowDescriptor.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Flow\Framework\Nesting\SuperUnitEditor.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Flow\Units\UnitWidget.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Flow\Plugin\Migrations\Migration_1_1_3_to_1_2_0.cs" />
@@ -514,7 +514,7 @@
       <HintPath>Library\PackageCache\com.unity.testtools.codecoverage@1.0.1\lib\ReportGenerator\ReportGeneratorMerged.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.2\Runtime\Newtonsoft.Json.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@3.2.1\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="unityplastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>

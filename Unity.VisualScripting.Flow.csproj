@@ -58,8 +58,8 @@
   <ItemGroup>
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\Framework\Graph\HasScriptGraph.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\Connections\ControlConnection.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\Framework\Variables\IsVariableDefined.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\FlowGraph.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\Framework\Variables\IsVariableDefined.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\Framework\Math\Minimum.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\Framework\Events\Physics2D\OnCollisionStay2D.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\Framework\Events\Lifecycle\Start.cs" />
@@ -110,8 +110,8 @@
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\Framework\Logic\ApproximatelyEqual.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\Framework\Variables\SaveVariables.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\Framework\Math\Vector4\Vector4Minimum.cs" />
-    <Compile Include="Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\Framework\Events\Physics2D\OnTriggerEnter2D.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\Framework\Events\Physics\OnCollisionStay.cs" />
+    <Compile Include="Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\Framework\Events\Physics2D\OnTriggerEnter2D.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\EditorBinding\UnitSubtitleAttribute.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\Framework\Math\Vector3\Vector3CrossProduct.cs" />
     <Compile Include="Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\Framework\Events\Input\OnMouseEnter.cs" />
@@ -746,7 +746,7 @@
       <HintPath>Library\PackageCache\com.unity.testtools.codecoverage@1.0.1\lib\ReportGenerator\ReportGeneratorMerged.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.2\Runtime\Newtonsoft.Json.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@3.2.1\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="unityplastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>

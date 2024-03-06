@@ -56,20 +56,21 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.services.core@1.4.3\Runtime\Configuration\AssemblyInfo.cs" />
-    <Compile Include="Library\PackageCache\com.unity.services.core@1.4.3\Runtime\Configuration\StreamingAssetsConfigurationLoader.cs" />
-    <Compile Include="Library\PackageCache\com.unity.services.core@1.4.3\Runtime\Configuration\Utils\StreamingAssetsUtils.cs" />
-    <Compile Include="Library\PackageCache\com.unity.services.core@1.4.3\Runtime\Configuration\SerializableProjectConfiguration.cs" />
-    <Compile Include="Library\PackageCache\com.unity.services.core@1.4.3\Runtime\Configuration\ConfigurationCollectionHelper.cs" />
-    <Compile Include="Library\PackageCache\com.unity.services.core@1.4.3\Runtime\Configuration\IConfigurationLoader.cs" />
-    <Compile Include="Library\PackageCache\com.unity.services.core@1.4.3\Runtime\Configuration\MemoryConfigurationLoader.cs" />
-    <Compile Include="Library\PackageCache\com.unity.services.core@1.4.3\Runtime\Configuration\ProjectConfiguration.cs" />
-    <Compile Include="Library\PackageCache\com.unity.services.core@1.4.3\Runtime\Configuration\CloudProjectId.cs" />
-    <Compile Include="Library\PackageCache\com.unity.services.core@1.4.3\Runtime\Configuration\ConfigurationEntry.cs" />
-    <Compile Include="Library\PackageCache\com.unity.services.core@1.4.3\Runtime\Configuration\ConfigurationUtils.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@1.12.0\Runtime\Configuration\ExternalUserId.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@1.12.0\Runtime\Configuration\AssemblyInfo.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@1.12.0\Runtime\Configuration\StreamingAssetsConfigurationLoader.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@1.12.0\Runtime\Configuration\Utils\StreamingAssetsUtils.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@1.12.0\Runtime\Configuration\SerializableProjectConfiguration.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@1.12.0\Runtime\Configuration\ConfigurationCollectionHelper.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@1.12.0\Runtime\Configuration\IConfigurationLoader.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@1.12.0\Runtime\Configuration\MemoryConfigurationLoader.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@1.12.0\Runtime\Configuration\ProjectConfiguration.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@1.12.0\Runtime\Configuration\CloudProjectId.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@1.12.0\Runtime\Configuration\ConfigurationEntry.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@1.12.0\Runtime\Configuration\ConfigurationUtils.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Library\PackageCache\com.unity.services.core@1.4.3\Runtime\Configuration\Unity.Services.Core.Configuration.asmdef" />
+    <None Include="Library\PackageCache\com.unity.services.core@1.12.0\Runtime\Configuration\Unity.Services.Core.Configuration.asmdef" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -355,7 +356,7 @@
       <HintPath>Library\PackageCache\com.unity.testtools.codecoverage@1.0.1\lib\ReportGenerator\ReportGeneratorMerged.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.2\Runtime\Newtonsoft.Json.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@3.2.1\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="unityplastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>

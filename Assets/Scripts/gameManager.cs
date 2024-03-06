@@ -29,6 +29,7 @@ public class gameManager : MonoBehaviour
     public GameObject playerDamageScreen;
 
     public TextMeshProUGUI enemiesLeft;
+    public TextMeshProUGUI currency;
 
     public GameObject spawnPos;
     public int enemiesToKill;
@@ -142,8 +143,14 @@ public class gameManager : MonoBehaviour
             youWin();
         }
     }
+    
     public void updateUI()
     {
         enemiesLeft.text = enemiesToKill.ToString("F0");
     }
+    /*public void updateCurrency()
+    {
+        currency.text = currency.ToString("F0");
+
+    }*/
 }

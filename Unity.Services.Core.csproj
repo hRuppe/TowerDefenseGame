@@ -56,20 +56,25 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.services.core@1.4.3\Runtime\Core\Initialization\UnityProjectNotLinkedException.cs" />
-    <Compile Include="Library\PackageCache\com.unity.services.core@1.4.3\Runtime\Core\Initialization\ServicesInitializationException.cs" />
-    <Compile Include="Library\PackageCache\com.unity.services.core@1.4.3\Runtime\Core\UnityServices.cs" />
-    <Compile Include="Library\PackageCache\com.unity.services.core@1.4.3\Runtime\Core\CommonErrorCodes.cs" />
-    <Compile Include="Library\PackageCache\com.unity.services.core@1.4.3\Runtime\Core\AssemblyInfo.cs" />
-    <Compile Include="Library\PackageCache\com.unity.services.core@1.4.3\Runtime\Core\DynamicDependency\PreserveDependencyAttribute.cs" />
-    <Compile Include="Library\PackageCache\com.unity.services.core@1.4.3\Runtime\Core\RequestFailedException.cs" />
-    <Compile Include="Library\PackageCache\com.unity.services.core@1.4.3\Runtime\Core\Initialization\ServicesInitializationState.cs" />
-    <Compile Include="Library\PackageCache\com.unity.services.core@1.4.3\Runtime\Core\Utils\UnityThreadUtils.cs" />
-    <Compile Include="Library\PackageCache\com.unity.services.core@1.4.3\Runtime\Core\IUnityServices.cs" />
-    <Compile Include="Library\PackageCache\com.unity.services.core@1.4.3\Runtime\Core\Initialization\InitializationOptions.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@1.12.0\Runtime\Core\Initialization\UnityProjectNotLinkedException.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@1.12.0\Runtime\Core\UnityServicesBuilder.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@1.12.0\Runtime\Core\Initialization\ServicesInitializationException.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@1.12.0\Runtime\Core\ExternalUserIdProperty.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@1.12.0\Runtime\Core\UnityServices.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@1.12.0\Runtime\Core\CommonErrorCodes.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@1.12.0\Runtime\Core\AssemblyInfo.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@1.12.0\Runtime\Core\Initialization\ServicesCreationException.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@1.12.0\Runtime\Core\ServicesType.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@1.12.0\Runtime\Core\DynamicDependency\PreserveDependencyAttribute.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@1.12.0\Runtime\Core\RequestFailedException.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@1.12.0\Runtime\Core\Initialization\ServicesInitializationState.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@1.12.0\Runtime\Core\Utils\UnityThreadUtils.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@1.12.0\Runtime\Core\IService.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@1.12.0\Runtime\Core\IUnityServices.cs" />
+    <Compile Include="Library\PackageCache\com.unity.services.core@1.12.0\Runtime\Core\Initialization\InitializationOptions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Library\PackageCache\com.unity.services.core@1.4.3\Runtime\Core\Unity.Services.Core.asmdef" />
+    <None Include="Library\PackageCache\com.unity.services.core@1.12.0\Runtime\Core\Unity.Services.Core.asmdef" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -355,7 +360,7 @@
       <HintPath>Library\PackageCache\com.unity.testtools.codecoverage@1.0.1\lib\ReportGenerator\ReportGeneratorMerged.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.2\Runtime\Newtonsoft.Json.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@3.2.1\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="unityplastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@1.17.2\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>

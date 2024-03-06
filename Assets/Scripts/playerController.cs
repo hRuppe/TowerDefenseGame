@@ -18,6 +18,8 @@ public class playerController : MonoBehaviour
     [SerializeField] int dashMod;
     [SerializeField] float dashTime;
     public int playerHealth = 100;
+    public ProgressBar Pb;
+    public int playerCurrency = 50;
 
     [Header("---- Weapon Stats ----")]
     [SerializeField] float shootRate;
@@ -62,7 +64,7 @@ public class playerController : MonoBehaviour
         menu();
         shop();
         placeTurret();
-        character();
+        UpdateProgressBar();
         /* AimDownSights();*/
     }
 
@@ -391,11 +393,17 @@ public class playerController : MonoBehaviour
             }
         }
     }
-    public void character()
+   
+    // Logic for updating the progress bar
+    public void UpdateProgressBar()
     {
-        // Character logic
+        // Check if the progress bar refrence is not null and the player health is within range
+        if(Pb != null && playerHealth >=0 && playerHealth <= 100){
+            Pb.BarValue = playerHealth;
+        }
     }
-
+    
+    
     public void respawn()
     {
         controller.enabled = false;
