@@ -78,7 +78,6 @@
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Components\BloomComponent.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\ScreenOverlay.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\BlurOptimized.cs" />
-    <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\Scripts\FPSController\CharController_Motor.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\BloomOptimized.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\DepthOfField.cs" />
@@ -132,8 +131,6 @@
     <Compile Include="Assets\VFX\Travis Game Assets\Hit Impact Effects\Demo Scene\Scripts\HitImpactEffectsPreview.cs" />
     <Compile Include="Assets\Scripts\healthPickup.cs" />
     <Compile Include="Assets\Scripts\Enemy Scripts\TowerAttackingEnemy.cs" />
-    <Compile Include="Assets\Scripts\healthPickup.cs" />
-    <Compile Include="Assets\Scripts\enemyAI.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\VignetteAndChromaticAberration.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Models\MotionBlurModel.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\ImageEffectBase.cs" />
