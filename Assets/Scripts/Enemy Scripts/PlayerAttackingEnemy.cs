@@ -7,7 +7,7 @@ public class PlayerAttackingEnemy : BaseEnemy
     float distanceToPlayer; 
     GameObject player; 
     Vector3 currentPlayerPos;
-    SpearDamage spearDamageScript; 
+    SpearDamage spearDamageScript;
 
     protected override void Start()
     {
@@ -67,6 +67,9 @@ public class PlayerAttackingEnemy : BaseEnemy
         }
         else
         {
+            // Look at the player while attacking
+            transform.LookAt(player.transform.position);
+
             // Randomly choose an attack animation
             int randomIndex = Random.Range(0, attackAnimationNames.Length);
 
@@ -79,6 +82,7 @@ public class PlayerAttackingEnemy : BaseEnemy
             anim.SetBool(attackAnimationNames[randomIndex], true);
         }
     }
+
 
     public void TryDamagePlayer()
     {
