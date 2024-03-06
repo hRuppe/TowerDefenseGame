@@ -89,9 +89,10 @@ public class PlayerAttackingEnemy : BaseEnemy
         if (spearDamageScript.GetSpearContactedPlayer())
         {
             gameManager.instance.playerScript.playerHealth -= attackDmg;
+            StartCoroutine(gameManager.instance.playerDamageFlash()); 
         }
 
-        spearDamageScript.ResetSpearContactedPlayer(); 
+        spearDamageScript.ResetSpearContactedPlayer();
     }
 
     void UpdatePlayerPos()
