@@ -53,6 +53,7 @@ public class gameManager : MonoBehaviour
         basicTurretButton.onClick.AddListener(spawnBasicTurret);
         level2TurretButton.onClick.AddListener(spawnLevelTwoTurret);
         rocketTurretButton.onClick.AddListener(spawnRocketTurret);
+        updateCurrency();
     }
 
     // Update is called once per frame
