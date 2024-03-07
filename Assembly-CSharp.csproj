@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\ColorCorrectionCurves.cs" />
+    <Compile Include="Assets\Scripts\StartButton.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\ImageEffects.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\EdgeDetection.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\Blur.cs" />
@@ -71,7 +72,7 @@
     <Compile Include="Assets\Scripts\Enemy Scripts\PlayerAttackingEnemy.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\PostProcessingContext.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Components\MotionBlurComponent.cs" />
-    <Compile Include="Assets\Scripts\Items Scripts\itemPickup.cs" />
+    <Compile Include="Assets\Scripts\Items Scripts\ItemPickup.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Attributes\MinAttribute.cs" />
     <Compile Include="Assets\Scripts\LocationToDefend.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\BloomAndFlares.cs" />
@@ -123,7 +124,7 @@
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\PostProcessingModel.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\CameraMotionBlur.cs" />
     <Compile Include="Assets\Scripts\Enemy Scripts\EnemySpawner.cs" />
-    <Compile Include="Assets\Scripts\Items Scripts\itemStats.cs" />
+    <Compile Include="Assets\Scripts\Items Scripts\ItemStats.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\GlobalFog.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Components\GrainComponent.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\PostEffectsBase.cs" />
@@ -167,7 +168,6 @@
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Models\AntialiasingModel.cs" />
     <Compile Include="Assets\Scripts\Economy\EconemyScript.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Models\DitheringModel.cs" />
-    <Compile Include="Assets\Scripts\StartButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\Tonemapper.shader" />
@@ -288,6 +288,7 @@
     <None Include="Assets\Models\Flooded_Grounds\Resources\WavingGrass.shader" />
     <None Include="Assets\Models\Flooded_Grounds\Resources\TreeCreator\TreeCreatorBarkOptimized.shader" />
     <None Include="Assets\Models\Flooded_Grounds\PostProcessing\Resources\Shaders\Common.cginc" />
+    <None Include="Assets\Boltset\readme.txt" />
     <None Include="Assets\Models\Flooded_Grounds\PostProcessing\Editor Resources\Monitors\VectorscopeRender.shader" />
     <None Include="Assets\Models\Flooded_Grounds\PostProcessing\Resources\Shaders\Bloom.shader" />
     <None Include="Assets\Models\Flooded_Grounds\PostProcessing\Resources\Shaders\Uber.shader" />

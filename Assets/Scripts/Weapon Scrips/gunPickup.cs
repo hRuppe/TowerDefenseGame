@@ -14,11 +14,5 @@ public class gunPickup : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void OnTriggerExit(Collider other)
-    {
-        if(other.CompareTag("Player"))
-        {
-           /* gameManager.instance.playerScript.gunDrop();*/
-        }
-    }
+    
 }

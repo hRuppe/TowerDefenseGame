@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class healthPickup : MonoBehaviour
 {
-    [SerializeField] int healthAmount;
+    [SerializeField] ItemStats itemStats;
 
     public void OnTriggerEnter(Collider other)
     {
@@ -14,7 +14,8 @@ public class healthPickup : MonoBehaviour
             if (playerController != null)
             {
                 // Calculate the health to add based on the player's max health
-                int healthToAdd = Mathf.Min(100 - playerController.playerHealth, healthAmount);
+                float healthToAddFloat = Mathf.Min(100f - playerController.playerHealth, itemStats.healthAmount);
+                int healthToAdd = Mathf.FloorToInt(healthToAddFloat); // Convert float to int
 
                 // If player's health is less than 100, add health
                 if (playerController.playerHealth < 100)
@@ -23,8 +24,8 @@ public class healthPickup : MonoBehaviour
                 }
                 else
                 {
-                    // Otherwise, add health pack to player's items list
-                    playerController.ItemPickup(gameObject);
+                    // Otherwise, add itemStats to player's items list
+                    playerController.ItemPickup(itemStats);
                 }
 
                 // Destroy health pack object
