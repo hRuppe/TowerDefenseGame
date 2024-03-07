@@ -49,6 +49,7 @@ public class gameManager : MonoBehaviour
         //checks for button clicks on buy menu first is for the basic turrets and the second is for the leveled up turret
         basicTurretButton.onClick.AddListener(spawnBasicTurret);
         Level2TurretButton.onClick.AddListener(spawnLevelTwoTurret);
+        updateCurrency();
     }
 
     // Update is called once per frame
