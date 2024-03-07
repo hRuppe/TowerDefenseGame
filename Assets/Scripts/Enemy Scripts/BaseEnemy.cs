@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public abstract class BaseEnemy : MonoBehaviour, IDamage
 {
@@ -10,6 +11,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
     [SerializeField] protected Renderer model;
     [SerializeField] protected NavMeshAgent agent;
     [SerializeField] protected Animator anim;
+    [SerializeField] protected Slider healthBar; 
 
     // Stats that may need adjustment in the editor
     [Header("---- Enemy Stats ----")]
@@ -61,6 +63,14 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
         // Adjust running animation speed with the enemy speed
         float scalingFactor = 1f / (speedToAnimationDefault / speed);
         anim.SetFloat("Running Speed Animation Multiplier", scalingFactor);
+
+        // Set max healthbar value to enemies max health
+        healthBar.maxValue = HP;
+    }
+
+    protected virtual void Update()
+    {
+        healthBar.transform.LookAt(gameManager.instance.player.transform); 
     }
 
     // Used to change the enemy state
@@ -81,6 +91,9 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
 
         HP -= dmg;
 
+        UpdateEnemyHealthBar(HP); 
+
+        // Enemy flashes red to show it was hit
         StartCoroutine(flashDamage());
 
         // Enemy death scenario
@@ -109,5 +122,10 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
     public void ResumeAgentMovement()
     {
         agent.isStopped = false;
+    }
+
+    public void UpdateEnemyHealthBar(float currentHealth)
+    {
+        healthBar.value = currentHealth;
     }
 }
