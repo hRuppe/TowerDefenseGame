@@ -148,9 +148,11 @@ public class gameManager : MonoBehaviour
     {
         enemiesLeft.text = enemiesToKill.ToString("F0");
     }
-    /*public void updateCurrency()
-    {
-        currency.text = currency.ToString("F0");
 
-    }*/
+    public void updateCurrency()
+    {
+        // Update the currency in the upper left side of the screen
+        currency.text = playerScript.playerCurrency.ToString("F0");
+
+    }
 }

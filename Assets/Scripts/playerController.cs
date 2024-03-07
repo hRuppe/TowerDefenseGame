@@ -19,7 +19,7 @@ public class playerController : MonoBehaviour
     [SerializeField] float dashTime;
     public int playerHealth = 100;
     public ProgressBar Pb;
-    public int playerCurrency = 50;
+    public int playerCurrency;
 
     [Header("---- Weapon Stats ----")]
     [SerializeField] float shootRate;
@@ -402,8 +402,18 @@ public class playerController : MonoBehaviour
             Pb.BarValue = playerHealth;
         }
     }
-    
-    
+
+    // Logic for player currency
+    public void IncreaseCurrency(int amount)
+    {
+        playerCurrency += amount;
+    }
+
+    public int GetCurrency()
+    {
+        return playerCurrency;
+    }
+
     public void respawn()
     {
         controller.enabled = false;
