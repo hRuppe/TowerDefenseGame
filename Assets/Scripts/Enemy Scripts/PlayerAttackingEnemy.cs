@@ -26,8 +26,10 @@ public class PlayerAttackingEnemy : BaseEnemy
         ChangeState(EnemyState.MovingToPlayer);
     }
 
-    void Update()
+    protected override void Update()
     {
+        base.Update();
+
         UpdatePlayerPos(); 
 
         switch (currentState)

@@ -16,8 +16,10 @@ public class TowerAttackingEnemy : BaseEnemy
         ChangeState(EnemyState.MovingToLocation); 
     }
 
-    void Update()
+    protected override void Update()
     {
+        base.Update(); 
+
         switch (currentState)
         {
             case EnemyState.MovingToLocation:
