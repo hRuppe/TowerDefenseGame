@@ -213,6 +213,9 @@ MonoBehaviour:
   dashMod: 5
   dashTime: 0.2
   playerHealth: 100
+  Pb: {fileID: 0}
+  playerCurrency: 50
+  playerHealth: 100
   shootRate: 0
   shootDist: 0
   shootDmg: 0

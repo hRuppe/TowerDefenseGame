@@ -26,8 +26,10 @@ public class PlayerAttackingEnemy : BaseEnemy
         ChangeState(EnemyState.MovingToPlayer);
     }
 
-    void Update()
+    protected override void Update()
     {
+        base.Update();
+
         UpdatePlayerPos(); 
 
         switch (currentState)
@@ -89,9 +91,10 @@ public class PlayerAttackingEnemy : BaseEnemy
         if (spearDamageScript.GetSpearContactedPlayer())
         {
             gameManager.instance.playerScript.playerHealth -= attackDmg;
+            StartCoroutine(gameManager.instance.playerDamageFlash()); 
         }
 
-        spearDamageScript.ResetSpearContactedPlayer(); 
+        spearDamageScript.ResetSpearContactedPlayer();
     }
 
     void UpdatePlayerPos()

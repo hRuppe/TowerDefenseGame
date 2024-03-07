@@ -27,6 +27,7 @@ public class gameManager : MonoBehaviour
     public GameObject rocketTurret;
     public GameObject playerDeadMenu;
     public GameObject playerDamageScreen;
+    public Slider defensiveLocationHealthBar; 
 
     public TextMeshProUGUI enemiesLeft;
     public TextMeshProUGUI currency;
@@ -122,7 +123,7 @@ public class gameManager : MonoBehaviour
     public IEnumerator playerDamageFlash()
     {
         playerDamageScreen.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.2f);
         playerDamageScreen.SetActive(false);
     }
 
@@ -148,9 +149,11 @@ public class gameManager : MonoBehaviour
     {
         enemiesLeft.text = enemiesToKill.ToString("F0");
     }
-    /*public void updateCurrency()
-    {
-        currency.text = currency.ToString("F0");
 
-    }*/
+    public void updateCurrency()
+    {
+        // Update the currency in the upper left side of the screen
+        currency.text = playerScript.playerCurrency.ToString("F0");
+
+    }
 }
