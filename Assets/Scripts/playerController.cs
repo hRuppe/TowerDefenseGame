@@ -200,8 +200,10 @@ public class playerController : MonoBehaviour
                 {
                     hit.collider.GetComponent<IDamage>().takeDamage(shootDmg);
                 }
-
-                Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
+                if(hit.collider.tag != "Turret")
+                {
+                    Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
+                }
             }
 
             yield return new WaitForSeconds(shootRate);
