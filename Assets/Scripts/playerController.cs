@@ -17,6 +17,7 @@ public class playerController : MonoBehaviour
     [SerializeField] float sprintMod;
     [SerializeField] int dashMod;
     [SerializeField] float dashTime;
+    public string playerName = "Player One";
     public int playerHealth = 100;
     public ProgressBar Pb;
     public int playerCurrency;
@@ -29,9 +30,7 @@ public class playerController : MonoBehaviour
     [SerializeField] GameObject hitEffect;
     public List<gunStats> gunList = new List<gunStats>();
     public List<ItemStats> itemList = new List<ItemStats>();
-
     public float scrollSensitivity = 1.0f; // Control the scroll wheel sensitivity 
-
 
     private Vector3 playerVelocity;
     int jumpTimes;

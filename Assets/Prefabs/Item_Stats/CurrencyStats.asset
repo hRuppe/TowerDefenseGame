@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: badeed36da7fb1345b58b615d97cd3e0, type: 3}
   m_Name: CurrencyStats
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: Currency
   healthAmount: 0
   itemCount: 0
   upgradeAmount: 0

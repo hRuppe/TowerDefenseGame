@@ -10,6 +10,7 @@ public class TurretBehavior : MonoBehaviour
     [SerializeField] int faceEnemySpeed;
     [SerializeField] float shootRate;
     [SerializeField] int shootDmg;
+    [SerializeField] int towerUpgrade;
     [SerializeField] Transform firePoint;
     [SerializeField] GameObject bulletPrefab;
     Vector3 direction;
