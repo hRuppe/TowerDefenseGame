@@ -27,7 +27,9 @@ public class gameManager : MonoBehaviour
     public GameObject rocketTurret;
     public GameObject playerDeadMenu;
     public GameObject playerDamageScreen;
-    public Slider defensiveLocationHealthBar; 
+    public Slider defensiveLocationHealthBar;
+    public GameObject noteObject; 
+    public TMP_Text noteText; 
 
     public TextMeshProUGUI enemiesLeft;
     public TextMeshProUGUI currency;
