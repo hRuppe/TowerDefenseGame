@@ -10,4 +10,5 @@ public class ItemStats : ScriptableObject
     public int itemCount;
     public int upgradeAmount;
     public int currencyAmount;
+    public int itemPrice;
 }
