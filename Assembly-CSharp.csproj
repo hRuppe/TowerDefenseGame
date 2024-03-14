@@ -67,13 +67,14 @@
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\PostEffectsHelper.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Utils\MaterialFactory.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Components\ScreenSpaceReflectionComponent.cs" />
+    <Compile Include="Assets\Animations\ParticlePack\Shared\Scripts\ProximityActivate.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\DepthOfFieldDeprecated.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\Bloom.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\PostProcessingProfile.cs" />
     <Compile Include="Assets\Scripts\Enemy Scripts\PlayerAttackingEnemy.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\PostProcessingContext.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Components\MotionBlurComponent.cs" />
-    <Compile Include="Assets\Scripts\Items Scripts\ItemPickup.cs" />
+    <Compile Include="Assets\Scripts\Items Scripts\itemPickup.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Attributes\MinAttribute.cs" />
     <Compile Include="Assets\Scripts\LocationToDefend.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\BloomAndFlares.cs" />
@@ -81,10 +82,12 @@
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\ScreenOverlay.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\BlurOptimized.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\Scripts\FPSController\CharController_Motor.cs" />
+    <Compile Include="Assets\Animations\ParticlePack\Shared\Ramps\Runtime\RampAsset.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\BloomOptimized.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\DepthOfField.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\NoiseAndScratches.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Components\DitheringComponent.cs" />
+    <Compile Include="Assets\Animations\ParticlePack\Shared\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\PostProcessingComponent.cs" />
     <Compile Include="Assets\Scripts\Weapon Scrips\gunPickup.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\ColorCorrectionLookup.cs" />
@@ -110,6 +113,7 @@
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Components\FxaaComponent.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\SepiaTone.cs" />
     <Compile Include="Assets\Models\WhiteCity\Offer\Asset_Store_Offers.cs" />
+    <Compile Include="Assets\Animations\ParticlePack\Shared\Scripts\SimpleCharacterMotor.cs" />
     <Compile Include="Assets\Scene Teleportation Kit\Scripts\player\PlayerMovement.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Attributes\GetSetAttribute.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Components\ChromaticAberrationComponent.cs" />
@@ -126,9 +130,10 @@
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Models\VignetteModel.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Models\GrainModel.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\PostProcessingModel.cs" />
+    <Compile Include="Assets\Animations\ParticlePack\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\CameraMotionBlur.cs" />
     <Compile Include="Assets\Scripts\Enemy Scripts\EnemySpawner.cs" />
-    <Compile Include="Assets\Scripts\Items Scripts\ItemStats.cs" />
+    <Compile Include="Assets\Scripts\Items Scripts\itemStats.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\GlobalFog.cs" />
     <Compile Include="Assets\Scene Teleportation Kit\Scripts\teleport\SpawnPoint.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Components\GrainComponent.cs" />
@@ -139,6 +144,7 @@
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Models\UserLutModel.cs" />
     <Compile Include="Assets\VFX\Travis Game Assets\Hit Impact Effects\Demo Scene\Scripts\HitImpactEffectsPreview.cs" />
     <Compile Include="Assets\Scripts\Items Scripts\healthPickup.cs" />
+    <Compile Include="Assets\Animations\ParticlePack\Shared\Scripts\AdjustTimeScale.cs" />
     <Compile Include="Assets\Scripts\Enemy Scripts\TowerAttackingEnemy.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\VignetteAndChromaticAberration.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Models\MotionBlurModel.cs" />
@@ -163,6 +169,7 @@
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Models\ColorGradingModel.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Models\ScreenSpaceReflectionModel.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Components\DepthOfFieldComponent.cs" />
+    <Compile Include="Assets\Animations\ParticlePack\EffectExamples\Misc Effects\Scripts\SpawnEffect.cs" />
     <Compile Include="Assets\Scene Teleportation Kit\Scripts\teleport\Teleportable.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Components\FogComponent.cs" />
     <Compile Include="Assets\Scripts\Weapon Scrips\BulletDamage.cs" />
@@ -215,6 +222,7 @@
     <None Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\ConvertDepth.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\Models\Flooded_Grounds\PostProcessing\Resources\Shaders\TAA.cginc" />
+    <None Include="Assets\Animations\ParticlePack\EffectExamples\Misc Effects\Prefabs\Readme_Dissolve_Respawn_.txt" />
     <None Include="Assets\Models\Flooded_Grounds\PostProcessing\Resources\Shaders\AmbientOcclusion.cginc" />
     <None Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\TwirlEffect.shader" />
     <None Include="Assets\Models\Flooded_Grounds\Resources\TreeCreator\TreeCreatorBark.shader" />
@@ -240,12 +248,14 @@
     <None Include="Assets\Models\Flooded_Grounds\PostProcessing\Resources\Shaders\UberSecondPass.cginc" />
     <None Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\SepiaToneEffect.shader" />
     <None Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrection3DLut.shader" />
+    <None Include="Assets\Animations\ParticlePack\EffectExamples\Magic Effects\Shaders\Ice.shader" />
     <None Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\SimpleClear.shader" />
     <None Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\ContrastComposite.shader" />
     <None Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\MinMaxReduction.shader" />
     <None Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\BlurEffectConeTaps.shader" />
     <None Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\Bokeh34.shader" />
     <None Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionEffect.shader" />
+    <None Include="Assets\Animations\ParticlePack\EffectExamples\Misc Effects\Shaders\Respawn.shader" />
     <None Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\FisheyeShader.shader" />
     <None Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
@@ -305,6 +315,7 @@
     <None Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\DepthOfFieldScatter.shader" />
     <None Include="Assets\Models\Flooded_Grounds\PostProcessing\Resources\Shaders\DepthOfField.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\Animations\ParticlePack\EffectExamples\Misc Effects\Shaders\FireFly.shader" />
     <None Include="Assets\Models\Flooded_Grounds\PostProcessing\Resources\Shaders\TAA.shader" />
     <None Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\EdgeDetectNormals.shader" />
     <None Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />
@@ -324,6 +335,7 @@
     <None Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\NFAA.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAAPreset2.shader" />
+    <None Include="Assets\Animations\ParticlePack\EffectExamples\Misc Effects\Shaders\Dissolve.shader" />
     <None Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\TiltShiftHdrLensBlur.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\Models\Flooded_Grounds\Content\Shaders\FG_Skybox_Rotating.shader" />
