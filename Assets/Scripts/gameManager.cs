@@ -18,6 +18,7 @@ public class gameManager : MonoBehaviour
     [Header("---- UI ----")]
     public GameObject pauseMenu;
     public GameObject winMenu;
+    public GameObject loseMenu;
     public GameObject BuyMenu;
     [SerializeField] Button basicTurretButton;
     [SerializeField] Button level2TurretButton;
@@ -28,18 +29,21 @@ public class gameManager : MonoBehaviour
     public GameObject playerDeadMenu;
     public GameObject playerDamageScreen;
     public Slider defensiveLocationHealthBar;
-    public GameObject noteObject; 
-    public TMP_Text noteText; 
+    public GameObject noteObject;
+    public TMP_Text noteText;
+    public TMP_Text readNotePrompt;
 
     public TextMeshProUGUI enemiesLeft;
     public TextMeshProUGUI currency;
+    public TextMeshProUGUI defensiveScoreUI; 
 
     public GameObject spawnPos;
-    public int enemiesToKill;
+    [HideInInspector] public int enemiesToKill;
+    public int defensiveScore;
     public List<GameObject> turretModels;
-    public int turretIndex;
+    [HideInInspector] public int turretIndex;
 
-    public bool isPaused = false;
+    [HideInInspector] public bool isPaused = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -136,6 +140,12 @@ public class gameManager : MonoBehaviour
         isPaused = true;
     }
 
+    public void YouLose()
+    {
+        loseMenu.SetActive(true);
+        isPaused = true; 
+    }
+
     public void updateEnemyNumber()
     {
         enemiesToKill--;
@@ -151,6 +161,7 @@ public class gameManager : MonoBehaviour
     public void updateUI()
     {
         enemiesLeft.text = enemiesToKill.ToString("F0");
+        defensiveScoreUI.text = "Defensive Score " + defensiveScore; 
     }
 
     public void updateCurrency()
