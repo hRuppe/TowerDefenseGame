@@ -4412,6 +4412,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1968362434}
     - target: {fileID: 8474867177488896508, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
+      propertyPath: currency
+      value: 
+      objectReference: {fileID: 790834970}
+    - target: {fileID: 8474867177488896508, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
       propertyPath: playerScript
       value: 
       objectReference: {fileID: 1921313448}
@@ -5096,6 +5100,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 495364, guid: cfe0412d7fa12f243b181e3f547a2294, type: 3}
   m_PrefabInstance: {fileID: 748346206}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &790834970 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 629471396369343023, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
+  m_PrefabInstance: {fileID: 666305295}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &791568401
 PrefabInstance:
   m_ObjectHideFlags: 0
