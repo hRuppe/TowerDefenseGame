@@ -62,6 +62,7 @@ MonoBehaviour:
   rocketTurret: {fileID: 7973285793286051267, guid: 0302b7f68e2eea94297307279855013d, type: 3}
   playerDeadMenu: {fileID: 8048244820324290658}
   playerDamageScreen: {fileID: 5649973759171256026, guid: 6e243b8de705a6641bdb1e9c0e87c69a, type: 3}
+  defensiveLocationHealthBar: {fileID: 0}
   enemiesLeft: {fileID: 8967915716527580356}
   currency: {fileID: 0}
   spawnPos: {fileID: 0}

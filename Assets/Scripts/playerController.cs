@@ -17,9 +17,10 @@ public class playerController : MonoBehaviour
     [SerializeField] float sprintMod;
     [SerializeField] int dashMod;
     [SerializeField] float dashTime;
+    public string playerName = "Player One";
     public int playerHealth = 100;
     public ProgressBar Pb;
-    public int playerCurrency = 50;
+    public int playerCurrency;
 
     [Header("---- Weapon Stats ----")]
     [SerializeField] float shootRate;
@@ -28,10 +29,8 @@ public class playerController : MonoBehaviour
     [SerializeField] GameObject gunModel;
     [SerializeField] GameObject hitEffect;
     public List<gunStats> gunList = new List<gunStats>();
-    public List<GameObject> itemList = new List<GameObject>();
-
+    public List<ItemStats> itemList = new List<ItemStats>();
     public float scrollSensitivity = 1.0f; // Control the scroll wheel sensitivity 
-
 
     private Vector3 playerVelocity;
     int jumpTimes;
@@ -174,12 +173,12 @@ public class playerController : MonoBehaviour
         InstantiateGunModel(gunStat);
     }
 
-    public void ItemPickup(GameObject gameObj)
+    public void ItemPickup(ItemStats itemStats)
     {
         // If the item is something that does not need to be seen
         // newItem.GetComponent<Renderer>().enabled = false;
         // Store the item in the players inventory and store the item stats in the itemList
-        itemList.Add(gameObj);
+        itemList.Add(itemStats);
         // Add things later here to update the sound or the UI ECT
     }
 
@@ -268,16 +267,6 @@ public class playerController : MonoBehaviour
             EquipGun(selectedGun);
 
         }
-        /* else if (gunList.Count == 1)
-         {
-             // There's only one gun in the inventory
-             Debug.Log("Only one gun in inventory.");
-         }
-         else
-         {
-             // There are no weapons in the inventory
-             //Debug.Log("No weapons in inventory");
-         }*/
     }
 
     // Equipt weapon logic
@@ -404,8 +393,18 @@ public class playerController : MonoBehaviour
             Pb.BarValue = playerHealth;
         }
     }
-    
-    
+
+    // Logic for player currency
+    public void IncreaseCurrency(int amount)
+    {
+        playerCurrency += amount;
+    }
+
+    public int GetCurrency()
+    {
+        return playerCurrency;
+    }
+
     public void respawn()
     {
         controller.enabled = false;
