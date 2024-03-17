@@ -11,11 +11,18 @@ public class TurretBehavior : MonoBehaviour
     [SerializeField] float shootRate;
     [SerializeField] int shootDmg;
     [SerializeField] int towerUpgrade;
+    [SerializeField] int defensivePoints;
     [SerializeField] Transform firePoint;
     [SerializeField] GameObject bulletPrefab;
     Vector3 direction;
 
     Transform enemy;
+
+    private void Start()
+    {
+        gameManager.instance.defensiveScore += defensivePoints;
+        gameManager.instance.updateUI(); 
+    }
 
     void Update()
     {

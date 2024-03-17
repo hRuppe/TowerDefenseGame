@@ -21,6 +21,11 @@ public class LocationToDefend : MonoBehaviour
         locationHealth -= dmg;
 
         UpdateDefenseLocationHealthBar(locationHealth); 
+
+        if (locationHealth <= 0)
+        {
+            gameManager.instance.YouLose(); 
+        }
     }
 
     private void UpdateDefenseLocationHealthBar(float currentHealth)
