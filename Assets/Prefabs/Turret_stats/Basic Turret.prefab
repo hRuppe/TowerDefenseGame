@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8859278724542244486}
   m_Layer: 0
   m_Name: Basic Turret
-  m_TagString: LevelOneTurret
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,6 +52,7 @@ MonoBehaviour:
   faceEnemySpeed: 20
   shootRate: 0.2
   shootDmg: 1
+  towerUpgrade: 0
   firePoint: {fileID: 8859278725087862420}
   bulletPrefab: {fileID: 4944232645063333771, guid: 56f894f44fdf54e4da6807e7f453878d, type: 3}
 --- !u!33 &8829102946202257469
