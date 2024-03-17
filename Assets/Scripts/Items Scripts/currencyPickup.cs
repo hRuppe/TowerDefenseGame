@@ -17,7 +17,7 @@ public class currencyPickup : MonoBehaviour
             gameManager.instance.updateCurrency();
 
             // Destroy the currency pickup GameObject
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 }
