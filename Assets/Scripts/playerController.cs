@@ -44,6 +44,7 @@ public class playerController : MonoBehaviour
     int HPorignal;
     int selectedGun;
 
+
     private void Start()
     {
         // Initalize the players speed

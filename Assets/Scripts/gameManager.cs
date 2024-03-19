@@ -35,7 +35,11 @@ public class gameManager : MonoBehaviour
 
     public TextMeshProUGUI enemiesLeft;
     public TextMeshProUGUI currency;
+<<<<<<< Updated upstream
     public TextMeshProUGUI defensiveScoreUI; 
+=======
+    public TextMeshProUGUI shopCurrency;
+>>>>>>> Stashed changes
 
     public GameObject spawnPos;
     [HideInInspector] public int enemiesToKill;
@@ -168,6 +172,7 @@ public class gameManager : MonoBehaviour
     {
         // Update the currency in the upper left side of the screen
         currency.text = playerScript.playerCurrency.ToString("F0");
+        shopCurrency.text = playerScript.playerCurrency.ToString("F0");
 
     }
 }

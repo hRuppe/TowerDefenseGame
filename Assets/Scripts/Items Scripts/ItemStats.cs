@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class ItemStats : ScriptableObject
 {
-    public string itemName;
+    public string itemId;
     public float healthAmount;
     public int itemCount;
     public int upgradeAmount;
