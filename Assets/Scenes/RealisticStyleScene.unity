@@ -4844,11 +4844,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 495364, guid: 01643aaa7b23a2a45a76b3dc86715fab, type: 3}
   m_PrefabInstance: {fileID: 1383025020}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &642063436 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1915139535464699804, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
-  m_PrefabInstance: {fileID: 666305295}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &648725391
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5072,16 +5067,8 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 941099024, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 941099025, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 400
-      objectReference: {fileID: 0}
-    - target: {fileID: 1915139535464699804, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 2074125424646658202, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
+      propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2074125424646658202, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
@@ -5092,10 +5079,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1968362434}
-    - target: {fileID: 8474867177488896508, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
-      propertyPath: loseMenu
-      value: 
-      objectReference: {fileID: 642063436}
     - target: {fileID: 8474867177488896508, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
       propertyPath: playerScript
       value: 

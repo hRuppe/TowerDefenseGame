@@ -32,6 +32,7 @@ public class gameManager : MonoBehaviour
     public GameObject noteObject;
     public TMP_Text noteText;
     public TMP_Text readNotePrompt;
+    public TMP_Text playerNameUI; 
 
     public TextMeshProUGUI enemiesLeft;
     public TextMeshProUGUI currency;
@@ -60,6 +61,12 @@ public class gameManager : MonoBehaviour
         level2TurretButton.onClick.AddListener(spawnLevelTwoTurret);
         rocketTurretButton.onClick.AddListener(spawnRocketTurret);
         updateCurrency();
+
+        // Check for player name
+        if (PlayerPrefs.HasKey("PlayerName"))
+        {
+            playerNameUI.text = PlayerPrefs.GetString("PlayerName"); 
+        }
     }
 
     // Update is called once per frame
