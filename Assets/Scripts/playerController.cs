@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -21,6 +22,7 @@ public class playerController : MonoBehaviour
     public int playerHealth = 100;
     public ProgressBar Pb;
     public int playerCurrency;
+    public int playerBolts;
 
     [Header("---- Weapon Stats ----")]
     [SerializeField] float shootRate;
@@ -57,7 +59,6 @@ public class playerController : MonoBehaviour
         sprint();
         StartCoroutine(shoot());
         SwitchGun();
-        Interact();
         pauseMenu();
         StartCoroutine(dash());
         menu();
@@ -265,7 +266,6 @@ public class playerController : MonoBehaviour
             }
 
             EquipGun(selectedGun);
-
         }
     }
 
@@ -338,11 +338,6 @@ public class playerController : MonoBehaviour
             isAiming = false;
         }
     }
-
-    public void Interact()
-    {
-        // Interact logic
-    }
     public void pauseMenu()
     {
         // Pause menu logic
@@ -380,7 +375,7 @@ public class playerController : MonoBehaviour
                 //Creates the level 2 turret that is set in the gameManager
                 Instantiate(gameManager.instance.rocketTurret, gameManager.instance.turretModels[gameManager.instance.turretIndex].transform.position, gameManager.instance.turretModels[gameManager.instance.turretIndex].transform.rotation);
                 //Disables preview view for placing turret
-                gameManager.instance.turretModels[gameManager.instance.turretIndex].SetActive(false);
+                gameManager.instance.turretModels[gameManager.instance.turretIndex].SetActive(false); 
             }
         }
     }

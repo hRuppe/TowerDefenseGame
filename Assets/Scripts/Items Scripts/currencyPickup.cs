@@ -8,7 +8,13 @@ public class currencyPickup : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && tag == "Bolt")
+        {
+            gameManager.instance.playerScript.playerBolts += 5;
+            Destroy(gameObject);
+        }
+
+        if (other.CompareTag("Player") && tag != "Bolt")
         {
             // Increase the player's currency
             other.GetComponent<playerController>().IncreaseCurrency(itemStats.currencyAmount);

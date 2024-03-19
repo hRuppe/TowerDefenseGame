@@ -11,6 +11,8 @@ TagManager:
   - EnemyLoc
   - LevelOneTurret
   - LevelTwoTurret
+  - Bolt
+  - Price
   layers:
   - Default
   - TransparentFX
