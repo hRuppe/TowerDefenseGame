@@ -1156,6 +1156,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &710551352 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2384028007997380924, guid: 1cc0703c40a320c41b868ba38de9f0d2, type: 3}
+  m_PrefabInstance: {fileID: 5742944913007114786}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &728820812
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3837,6 +3842,10 @@ PrefabInstance:
       propertyPath: turretModels.Array.data[1]
       value: 
       objectReference: {fileID: 1235148069}
+    - target: {fileID: 8474867177488896508, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
+      propertyPath: turretModels.Array.data[2]
+      value: 
+      objectReference: {fileID: 710551352}
     - target: {fileID: 8967915718381338962, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
       propertyPath: m_Pivot.x
       value: 0
