@@ -35,6 +35,7 @@ public class gameManager : MonoBehaviour
 
     public TextMeshProUGUI enemiesLeft;
     public TextMeshProUGUI currency;
+    public TextMeshProUGUI shopCurrency;
     public TextMeshProUGUI defensiveScoreUI; 
 
     public GameObject spawnPos;
@@ -168,6 +169,7 @@ public class gameManager : MonoBehaviour
     {
         // Update the currency in the upper left side of the screen
         currency.text = playerScript.playerCurrency.ToString("F0");
+        shopCurrency.text = playerScript.playerCurrency.ToString("F0");
 
     }
 }
