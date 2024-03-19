@@ -177,6 +177,15 @@
     <Compile Include="Assets\Scripts\mainMenu.cs" />
     <Compile Include="Assets\Scripts\Economy\EconemyScript.cs" />
     <Compile Include="Assets\Scripts\CustomizableNote.cs" />
+    <Compile Include="Assets\Animations\ParticlePack\Shared\Ramps\Runtime\RampAsset.cs" />
+    <Compile Include="Assets\Animations\ParticlePack\Shared\Scripts\SimpleCharacterMotor.cs" />
+    <Compile Include="Assets\Animations\ParticlePack\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Animations\ParticlePack\Shared\Scripts\SimpleCameraController.cs" />
+    <Compile Include="Assets\Scripts\mainMenu.cs" />
+    <Compile Include="Assets\Animations\ParticlePack\Shared\Scripts\ProximityActivate.cs" />
+    <Compile Include="Assets\Animations\ParticlePack\EffectExamples\Misc Effects\Scripts\SpawnEffect.cs" />
+    <Compile Include="Assets\Scripts\CustomizableNote.cs" />
+    <Compile Include="Assets\Animations\ParticlePack\Shared\Scripts\AdjustTimeScale.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\Tonemapper.shader" />
