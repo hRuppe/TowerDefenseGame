@@ -830,6 +830,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: a894c4c86d9e18f4d9d7ccd1a66399d7, type: 3}
   m_PrefabInstance: {fileID: 929726637}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &546865820 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 0c24714f8a1e6ae4cb08373ba73aaf5c, type: 3}
+  m_PrefabInstance: {fileID: 1961126458}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &546865825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546865820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5f32516f7bc4b04cb958ad0ac34a53e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemStats: {fileID: 11400000, guid: 1d3d3f9c07b9bd940940087442ddb5f5, type: 2}
 --- !u!4 &555482247 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 472700, guid: d638ef2ca2fe20c4c9c08e125692d3f4, type: 3}
@@ -1138,6 +1156,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &710551352 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2384028007997380924, guid: 1cc0703c40a320c41b868ba38de9f0d2, type: 3}
+  m_PrefabInstance: {fileID: 5742944913007114786}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &728820812
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3063,8 +3086,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1633594130}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.1, z: 0.5}
   m_Center: {x: 0.00034351653, y: 0.00022946773, z: -0.00008434853}
@@ -3700,7 +3723,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 699423774, guid: 0c24714f8a1e6ae4cb08373ba73aaf5c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0c24714f8a1e6ae4cb08373ba73aaf5c, type: 3}
 --- !u!4 &1972617986 stripped
 Transform:
@@ -3818,6 +3842,10 @@ PrefabInstance:
       propertyPath: turretModels.Array.data[1]
       value: 
       objectReference: {fileID: 1235148069}
+    - target: {fileID: 8474867177488896508, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
+      propertyPath: turretModels.Array.data[2]
+      value: 
+      objectReference: {fileID: 710551352}
     - target: {fileID: 8967915718381338962, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
       propertyPath: m_Pivot.x
       value: 0

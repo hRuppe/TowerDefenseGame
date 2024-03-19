@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: badeed36da7fb1345b58b615d97cd3e0, type: 3}
-  m_Name: CurrencyStats
+  m_Name: GoldCoinsStats
   m_EditorClassIdentifier: 
-  itemName: Currency
+  itemName: 
   healthAmount: 0
   itemCount: 0
   upgradeAmount: 0
-  currencyAmount: 10
+  currencyAmount: 50
