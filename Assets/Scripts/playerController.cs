@@ -40,10 +40,10 @@ public class playerController : MonoBehaviour
     bool isSprinting = false;
     bool isShooting;
     bool isDashing = false;
-    bool isAiming = false;
+    //bool isAiming = false;
     float speedOrig;
-    float counter = 0;
-    int HPorignal;
+    //float counter = 0;
+    //int HPorignal;
     int selectedGun;
 
     private void Start()
@@ -306,38 +306,38 @@ public class playerController : MonoBehaviour
         }
     }
     // Aim down sights logic
-    public void AimDownSights()
-    {
-        if (Input.GetButtonDown("AimDownSights"))
-        {
-            // Reduce the players speed while aiming
-            playerSpeed /= 2f;
+    //public void AimDownSights()
+    //{
+    //    if (Input.GetButtonDown("AimDownSights"))
+    //    {
+    //        // Reduce the players speed while aiming
+    //        playerSpeed /= 2f;
 
-            // Allow zooming in
-            Camera.main.fieldOfView = 40f;
+    //        // Allow zooming in
+    //        Camera.main.fieldOfView = 40f;
 
-            // Moving the weapon position closer to the camera
-            gunModel.transform.localPosition = new Vector3(0.5f, 0.5f, 1.0f);
+    //        // Moving the weapon position closer to the camera
+    //        gunModel.transform.localPosition = new Vector3(0.5f, 0.5f, 1.0f);
 
-            // Set aiming flag to true
-            isAiming = true;
+    //        // Set aiming flag to true
+    //        isAiming = true;
 
-        }
-        else if (Input.GetButtonUp("AimDownSights"))
-        {
-            // Restore the players speed
-            playerSpeed = speedOrig;
+    //    }
+    //    else if (Input.GetButtonUp("AimDownSights"))
+    //    {
+    //        // Restore the players speed
+    //        playerSpeed = speedOrig;
 
-            // Reset the camera
-            Camera.main.fieldOfView = 60f;
+    //        // Reset the camera
+    //        Camera.main.fieldOfView = 60f;
 
-            // Reset the weapon position to default
-            gunModel.transform.localPosition = new Vector3(0f, 0f, 0f);
+    //        // Reset the weapon position to default
+    //        gunModel.transform.localPosition = new Vector3(0f, 0f, 0f);
 
-            // Set aiming flad to false
-            isAiming = false;
-        }
-    }
+    //        // Set aiming flad to false
+    //        isAiming = false;
+    //    }
+    //}
     public void pauseMenu()
     {
         // Pause menu logic

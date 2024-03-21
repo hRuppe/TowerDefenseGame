@@ -75,7 +75,7 @@
     <Compile Include="Assets\Scripts\Enemy Scripts\PlayerAttackingEnemy.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\PostProcessingContext.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Components\MotionBlurComponent.cs" />
-    <Compile Include="Assets\Scripts\Items Scripts\itemPickup.cs" />
+    <Compile Include="Assets\Scripts\Items Scripts\ItemPickup.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Attributes\MinAttribute.cs" />
     <Compile Include="Assets\Scripts\LocationToDefend.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\BloomAndFlares.cs" />
@@ -84,6 +84,7 @@
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\BlurOptimized.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\Scripts\FPSController\CharController_Motor.cs" />
     <Compile Include="Assets\Animations\ParticlePack\Shared\Ramps\Runtime\RampAsset.cs" />
+    <Compile Include="Assets\Scripts\Items Scripts\BoltPickUp.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\BloomOptimized.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\DepthOfField.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\NoiseAndScratches.cs" />
@@ -184,7 +185,6 @@
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Models\AntialiasingModel.cs" />
     <Compile Include="Assets\Scripts\Economy\EconemyScript.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Models\DitheringModel.cs" />
-    <Compile Include="Assets\Scripts\Items Scripts\BoltPickUp.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\Tonemapper.shader" />
