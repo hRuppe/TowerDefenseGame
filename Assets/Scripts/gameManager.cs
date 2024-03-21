@@ -11,11 +11,15 @@ public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
 
+    [Header("---- Game Settings ----")]
+    [SerializeField] int defensiveScoreToProgress;
+
     [Header("---- Player Stuff ----")]
     public GameObject player;
     public playerController playerScript;
 
     [Header("---- UI ----")]
+    [Header("---- UI Elements ----")]
     public GameObject pauseMenu;
     public GameObject winMenu;
     public GameObject loseMenu;
@@ -32,6 +36,7 @@ public class gameManager : MonoBehaviour
     public GameObject noteObject;
     public TMP_Text noteText;
     public TMP_Text readNotePrompt;
+    public TMP_Text playerNameUI; 
 
     public TextMeshProUGUI enemiesLeft;
     public TextMeshProUGUI currency;
@@ -40,11 +45,15 @@ public class gameManager : MonoBehaviour
 
     public GameObject spawnPos;
     [HideInInspector] public int enemiesToKill;
-    public int defensiveScore;
+    [HideInInspector] public int defensiveScore;
     public List<GameObject> turretModels;
     [HideInInspector] public int turretIndex;
 
     [HideInInspector] public bool isPaused = false;
+    bool spawnedPortal = false;
+
+    [Header("---- Other ----")]
+    [SerializeField] GameObject portalPrefab;
 
     // Start is called before the first frame update
     void Awake()
@@ -56,11 +65,19 @@ public class gameManager : MonoBehaviour
 
     private void Start()
     {
+        updateUI();
+
         //checks for button clicks on buy menu first is for the basic turrets and the second is for the leveled up turret
         basicTurretButton.onClick.AddListener(spawnBasicTurret);
         level2TurretButton.onClick.AddListener(spawnLevelTwoTurret);
         rocketTurretButton.onClick.AddListener(spawnRocketTurret);
         updateCurrency();
+
+        // Check for player name
+        if (PlayerPrefs.HasKey("PlayerName"))
+        {
+            playerNameUI.text = PlayerPrefs.GetString("PlayerName"); 
+        }
     }
 
     // Update is called once per frame
@@ -87,6 +104,9 @@ public class gameManager : MonoBehaviour
             BuyMenu.SetActive(true);
             Cursor.lockState = CursorLockMode.Confined;
         }
+
+        // Checks to see if player has hit required defensive score to progress
+        CheckDefensiveScore(); 
     }
     void spawnBasicTurret()
     {
@@ -163,13 +183,34 @@ public class gameManager : MonoBehaviour
     {
         enemiesLeft.text = enemiesToKill.ToString("F0");
         defensiveScoreUI.text = "Defensive Score " + defensiveScore; 
+        defensiveScoreUI.text = "Defensive Score " + defensiveScore + "/" + defensiveScoreToProgress; 
     }
 
     public void updateCurrency()
     {
         // Update the currency in the upper left side of the screen
         currency.text = playerScript.playerCurrency.ToString("F0");
-        shopCurrency.text = playerScript.playerCurrency.ToString("F0");
+        //currency.text = playerScript.playerCurrency.ToString("F0");
+        currency.text = '$' + playerScript.playerCurrency.ToString(); 
+    }
 
+    private void CheckDefensiveScore()
+    {
+        if (defensiveScore >= defensiveScoreToProgress)
+        {
+            StartCoroutine(SpawnPortal()); 
+        }
+    }
+
+    IEnumerator SpawnPortal()
+    {
+        if (!spawnedPortal)
+        {
+            spawnedPortal = true;
+            yield return new WaitForSeconds(3f); 
+            Vector3 portalSpawnPos = player.transform.position + player.transform.forward * 10f;
+            portalPrefab.GetComponent<ParticleSystem>().Play(); 
+            Instantiate(portalPrefab, portalSpawnPos, player.transform.rotation);
+        }
     }
 }
