@@ -44,8 +44,8 @@ public class playerController : MonoBehaviour
     float counter = 0;
     int HPorignal;
     int selectedGun;
-    int expPts;
-    int expPtsToLvl = new int[25]; // Experience points to level set to 25 for now. Can change later
+   /* int expPts;
+    int expPtsToLvl = new int[25]; // Experience points to level set to 25 for now. Can change later*/
 
     private void Start()
     {
@@ -408,7 +408,6 @@ public class playerController : MonoBehaviour
         return playerCurrency;
     }
 
-    public 
 
     public void respawn()
     {
