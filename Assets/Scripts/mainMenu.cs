@@ -25,9 +25,18 @@ public class mainMenu : MonoBehaviour
         SceneManager.LoadScene(1,LoadSceneMode.Single);
     }
 
+    // Checks that there is something in the name input to enable/disable new game btn
     public void EnableNewGameBtn()
     {
-        newGameBtn.enabled = true;
-        newGameBtn.interactable = true; 
+        if (nameInput.text.Length < 1)
+        {
+            newGameBtn.enabled = false;
+            newGameBtn.interactable = false;
+        }
+        else
+        {
+            newGameBtn.enabled = true;
+            newGameBtn.interactable = true;
+        }
     }
 }
