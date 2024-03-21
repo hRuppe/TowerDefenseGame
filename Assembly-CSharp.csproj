@@ -111,6 +111,7 @@
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Components\FxaaComponent.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\SepiaTone.cs" />
     <Compile Include="Assets\Models\WhiteCity\Offer\Asset_Store_Offers.cs" />
+    <Compile Include="Assets\shopPrice.cs" />
     <Compile Include="Assets\Scene Teleportation Kit\Scripts\player\PlayerMovement.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Attributes\GetSetAttribute.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Components\ChromaticAberrationComponent.cs" />
@@ -177,10 +178,6 @@
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Models\AntialiasingModel.cs" />
     <Compile Include="Assets\Scripts\Economy\EconemyScript.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Models\DitheringModel.cs" />
-<<<<<<< Updated upstream
-    <Compile Include="Assets\shopPrice.cs" />
-=======
->>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\Tonemapper.shader" />
