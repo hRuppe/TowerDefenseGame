@@ -43,7 +43,6 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI shopCurrency;
     public TextMeshProUGUI defensiveScoreUI; 
 
-    public GameObject spawnPos;
     [HideInInspector] public int enemiesToKill;
     [HideInInspector] public int defensiveScore;
     public List<GameObject> turretModels;
@@ -59,7 +58,6 @@ public class gameManager : MonoBehaviour
     void Awake()
     {
         instance = this;
-        spawnPos = GameObject.FindGameObjectWithTag("Spawn Pos");
         playerScript.GetComponent<CharacterController>();
     }
 

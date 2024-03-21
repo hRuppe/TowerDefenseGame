@@ -407,13 +407,4 @@ public class playerController : MonoBehaviour
     {
         return playerCurrency;
     }
-
-
-    public void respawn()
-    {
-        controller.enabled = false;
-        transform.position = gameManager.instance.spawnPos.transform.position;
-        gameManager.instance.playerDeadMenu.SetActive(false);
-        controller.enabled = true;
-    }
 }
