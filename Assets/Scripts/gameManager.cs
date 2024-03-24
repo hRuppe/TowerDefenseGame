@@ -23,13 +23,10 @@ public class gameManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject winMenu;
     public GameObject loseMenu;
-    public GameObject BuyMenu;
+    public GameObject shopMenu;
     [SerializeField] Button basicTurretButton;
     [SerializeField] Button level2TurretButton;
     [SerializeField] Button rocketTurretButton;
-    [SerializeField] TMP_Text needMoreBolts;
-    [SerializeField] TMP_Text needMoreBolts2;
-    [SerializeField] TMP_Text needMoreBolts3;
     public int level1TurretPrice;
     public int level2TurretPrice;
     public int rocketTurretPrice;
@@ -43,7 +40,6 @@ public class gameManager : MonoBehaviour
     public TMP_Text noteText;
     public TMP_Text readNotePrompt;
     public TMP_Text playerNameUI; 
-
 
     public TextMeshProUGUI enemiesLeft;
     public TextMeshProUGUI currency;
@@ -90,9 +86,9 @@ public class gameManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel") && !playerDeadMenu.activeSelf && !winMenu.activeSelf)
         {
-            if(BuyMenu.activeSelf)
+            if(shopMenu.activeSelf)
             {
-                BuyMenu.SetActive(false);
+                shopMenu.SetActive(false);
                 unPause();
             }
             else
@@ -105,21 +101,21 @@ public class gameManager : MonoBehaviour
         {
             pause();
         }
-        else if (!isPaused && !BuyMenu.activeSelf)
+        else if (!isPaused && !shopMenu.activeSelf)
         {
             unPause();
         }
         //Checks for input of menu button(Currently set to M) and checks no other menu screens are open
         if (Input.GetButtonDown("Menu") && !playerDeadMenu.activeSelf && !winMenu.activeSelf && !turretModels[0].activeSelf && !turretModels[1].activeSelf && !turretModels[2].activeSelf)
         {
-            if (BuyMenu.activeSelf)
+            if (shopMenu.activeSelf)
             {
-                BuyMenu.SetActive(false);
+                shopMenu.SetActive(false);
             }
             else
             {
                 Cursor.visible = true;
-                BuyMenu.SetActive(true);
+                shopMenu.SetActive(true);
                 Cursor.lockState = CursorLockMode.Confined;
             }
         }
@@ -133,36 +129,27 @@ public class gameManager : MonoBehaviour
         if (gameManager.instance.playerScript.playerBolts >= level1TurretPrice)
         {
             basicTurretButton.interactable = true;
-            needMoreBolts.gameObject.SetActive(false);
         }
         else
         {
             basicTurretButton.interactable = false;
-            needMoreBolts.SetText("Need " + (level1TurretPrice - gameManager.instance.playerScript.playerBolts).ToString() + " more bolts");
-            needMoreBolts.gameObject.SetActive(true);
         }
 
         if (gameManager.instance.playerScript.playerBolts >= level2TurretPrice)
         {
             level2TurretButton.interactable = true;
-            needMoreBolts2.gameObject.SetActive(false);
         }
         else
         {
             level2TurretButton.interactable = false;
-            needMoreBolts2.SetText("Need " + (level2TurretPrice - gameManager.instance.playerScript.playerBolts).ToString() + " more bolts");
-            needMoreBolts2.gameObject.SetActive(true);
         }
         if (gameManager.instance.playerScript.playerBolts >= rocketTurretPrice)
         {
             rocketTurretButton.interactable = true;
-            needMoreBolts3.gameObject.SetActive(false);
         }
         else
         {
             rocketTurretButton.interactable = false;
-            needMoreBolts3.SetText("Need " + (rocketTurretPrice - gameManager.instance.playerScript.playerBolts).ToString() + " more bolts");
-            needMoreBolts3.gameObject.SetActive(true);
         }
     }
     public void spawnBasicTurret()
@@ -171,7 +158,7 @@ public class gameManager : MonoBehaviour
         {
             gameManager.instance.playerScript.playerBolts -= level1TurretPrice;
             //turns off buy menu so player can no longer see it
-            BuyMenu.SetActive(false);
+            shopMenu.SetActive(false);
             //sets the turrent index that is used in the playercontroller so that the correct turret is placed
             turretIndex = 0;
             //makes sure the correct turret is displayed for placement
@@ -183,8 +170,8 @@ public class gameManager : MonoBehaviour
         if (gameManager.instance.playerScript.playerBolts >= level2TurretPrice)
         {
             gameManager.instance.playerScript.playerBolts -= level2TurretPrice;
-            //turns off buymenu so player can no longer see it
-            BuyMenu.SetActive(false);
+            //turns off shopMenu so player can no longer see it
+            shopMenu.SetActive(false);
             //sets the turrent index that is used in the playercontroller so that the correct turret is placed
             turretIndex = 1;
             //makes sure the correct turret is displayed for placement
@@ -196,8 +183,8 @@ public class gameManager : MonoBehaviour
         if (gameManager.instance.playerScript.playerBolts >= rocketTurretPrice)
         {
             gameManager.instance.playerScript.playerBolts -= rocketTurretPrice;
-            //turns off buymenu so player can no longer see it
-            BuyMenu.SetActive(false);
+            //turns off shopMenu so player can no longer see it
+            shopMenu.SetActive(false);
             //sets the turrent index that is used in the playercontroller so that the correct turret is placed
             turretIndex = 2;
             //makes sure the correct turret is displayed for placement
