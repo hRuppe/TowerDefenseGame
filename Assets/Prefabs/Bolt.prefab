@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4283809602494975678}
   - component: {fileID: 4283809602704518750}
   - component: {fileID: 7866421223887691823}
-  - component: {fileID: 22960467}
+  - component: {fileID: 3684059167511694523}
   m_Layer: 0
   m_Name: Bolt
   m_TagString: Bolt
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveIncrement: 20
   rotationSpeed: 1
---- !u!114 &22960467
+--- !u!114 &3684059167511694523
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4283809602498014686}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5f32516f7bc4b04cb958ad0ac34a53e, type: 3}
+  m_Script: {fileID: 11500000, guid: 81fb98931f901834b8081ace5df7d6d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   itemStats: {fileID: 11400000, guid: 1d3d3f9c07b9bd940940087442ddb5f5, type: 2}
