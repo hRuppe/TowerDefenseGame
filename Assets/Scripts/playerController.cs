@@ -22,6 +22,7 @@ public class playerController : MonoBehaviour
     public int playerHealth = 100;
     public ProgressBar Pb;
     public int playerCurrency;
+    public int playerLevel = 1;
     public int playerBolts;
 
     [Header("---- Weapon Stats ----")]
@@ -45,6 +46,8 @@ public class playerController : MonoBehaviour
     //float counter = 0;
     //int HPorignal;
     int selectedGun;
+   /* int expPts;
+    int expPtsToLvl = new int[25]; // Experience points to level set to 25 for now. Can change later*/
 
     private void Start()
     {
@@ -398,13 +401,5 @@ public class playerController : MonoBehaviour
     public int GetCurrency()
     {
         return playerCurrency;
-    }
-
-    public void respawn()
-    {
-        controller.enabled = false;
-        transform.position = gameManager.instance.spawnPos.transform.position;
-        gameManager.instance.playerDeadMenu.SetActive(false);
-        controller.enabled = true;
     }
 }

@@ -303,7 +303,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5649973759171256025
 Transform:
   m_ObjectHideFlags: 0
@@ -419,5 +419,6 @@ MonoBehaviour:
   shootRate: 0.5
   shootDmg: 1
   towerUpgrade: 0
+  defensivePoints: 3
   firePoint: {fileID: 5649973758495137062}
   bulletPrefab: {fileID: 4944232645063333771, guid: 56f894f44fdf54e4da6807e7f453878d, type: 3}
