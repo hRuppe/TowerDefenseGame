@@ -5,6 +5,8 @@ using UnityEngine;
 public class healthPickup : MonoBehaviour
 {
     [SerializeField] ItemStats itemStats;
+    int expGained = 5;
+
 
     public void OnTriggerEnter(Collider other)
     {
@@ -27,6 +29,7 @@ public class healthPickup : MonoBehaviour
                     // Otherwise, add itemStats to player's items list
                     playerController.ItemPickup(itemStats);
                 }
+                gameManager.instance.playerScript.GainExperience(expGained); // Add experience points
 
                 // Destroy health pack object
                 Destroy(gameObject);
