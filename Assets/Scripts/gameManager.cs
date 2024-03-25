@@ -214,23 +214,5 @@ public class gameManager : MonoBehaviour
     }
 
 
-    public void PurchaseItemWithCurrency(ItemStats itemStats)
-    {
-        // Check if the player has enough currency to purchase the item
-        if (playerScript.GetCurrency() >= itemStats.itemPrice)
-        {
-            // Deduct the item price from the player's currency
-            playerScript.DecreaseCurrency(itemStats.itemPrice);
-
-            // Add the purchased item to the player's itemList
-            playerScript.itemList.Add(itemStats);
-
-            // Update the UI to reflect the new currency amount
-            updateCurrency();
-        }
-        else
-        {
-            Debug.Log("Not enough currency to purchase the item.");
-        }
-    }
+    
 }
