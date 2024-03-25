@@ -188,8 +188,9 @@ public class gameManager : MonoBehaviour
     {
         // Update the currency in the upper left side of the screen
         currency.text = playerScript.playerCurrency.ToString("F0");
-        //currency.text = playerScript.playerCurrency.ToString("F0");
-        currency.text = '$' + playerScript.playerCurrency.ToString(); 
+
+        //Updates the currency in the shop
+        shopCurrency.text = '$' + playerScript.playerCurrency.ToString("F0"); 
     }
 
     private void CheckDefensiveScore()
@@ -209,6 +210,27 @@ public class gameManager : MonoBehaviour
             Vector3 portalSpawnPos = player.transform.position + player.transform.forward * 10f;
             portalPrefab.GetComponent<ParticleSystem>().Play(); 
             Instantiate(portalPrefab, portalSpawnPos, player.transform.rotation);
+        }
+    }
+
+
+    public void PurchaseItemWithCurrency(ItemStats itemStats)
+    {
+        // Check if the player has enough currency to purchase the item
+        if (playerScript.GetCurrency() >= itemStats.itemPrice)
+        {
+            // Deduct the item price from the player's currency
+            playerScript.DecreaseCurrency(itemStats.itemPrice);
+
+            // Add the purchased item to the player's itemList
+            playerScript.itemList.Add(itemStats);
+
+            // Update the UI to reflect the new currency amount
+            updateCurrency();
+        }
+        else
+        {
+            Debug.Log("Not enough currency to purchase the item.");
         }
     }
 }

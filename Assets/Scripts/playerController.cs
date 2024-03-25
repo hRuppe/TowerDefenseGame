@@ -402,6 +402,13 @@ public class playerController : MonoBehaviour
     public void IncreaseCurrency(int amount)
     {
         playerCurrency += amount;
+        gameManager.instance.updateCurrency();
+    }
+
+    public void DecreaseCurrency(int amount)
+    { 
+        playerCurrency -= amount;
+        gameManager.instance.updateCurrency();
     }
 
     public void GainExperience(int amount)
@@ -424,8 +431,6 @@ public class playerController : MonoBehaviour
         playerExpPoints %= 100;
     }
 
-
-
     private void LevelUp()
     {
         playerLevel++;
@@ -439,4 +444,5 @@ public class playerController : MonoBehaviour
     {
         return playerCurrency;
     }
+
 }

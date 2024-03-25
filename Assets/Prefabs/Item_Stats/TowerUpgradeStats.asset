@@ -17,3 +17,4 @@ MonoBehaviour:
   itemCount: 1
   upgradeAmount: 10
   currencyAmount: 0
+  itemPrice: 20
