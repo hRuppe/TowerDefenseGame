@@ -69,9 +69,7 @@ public class gameManager : MonoBehaviour
         updateUI();
 
         //checks for button clicks on buy menu first is for the basic turrets and the second is for the leveled up turret
-        basicTurretButton.onClick.AddListener(spawnBasicTurret);
-        level2TurretButton.onClick.AddListener(spawnLevelTwoTurret);
-        rocketTurretButton.onClick.AddListener(spawnRocketTurret);
+
         updateCurrency();
 
         // Check for player name
