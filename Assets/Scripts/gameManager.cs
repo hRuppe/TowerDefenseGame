@@ -30,6 +30,7 @@ public class gameManager : MonoBehaviour
     public GameObject basicTurret;
     public GameObject level2Turret;
     public GameObject rocketTurret;
+    public GameObject barbedWire; 
     public GameObject playerDeadMenu;
     public GameObject playerDamageScreen;
     public Slider defensiveLocationHealthBar;
@@ -133,6 +134,16 @@ public class gameManager : MonoBehaviour
         //makes sure the correct turret is displayed for placement
         turretModels[2].SetActive(true);
     }
+    public void SpawnBarbedWire()
+    {
+        //turns off buymenu so player can no longer see it
+        BuyMenu.SetActive(false);
+        //sets the turrent index that is used in the playercontroller so that the correct turret is placed
+        turretIndex = 3;
+        //makes sure the correct turret is displayed for placement
+        turretModels[3].SetActive(true);
+    }
+
     public void pause()
     {
         Time.timeScale = 0;

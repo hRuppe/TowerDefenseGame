@@ -12,12 +12,15 @@ public class CustomizableNote : MonoBehaviour
     bool noteOpen = false;
     bool inNoteRange = false; 
     TMP_Text readNotePrompt;
+    AudioSource audioSource; 
 
     private void Start()
     {
         readNotePrompt = gameManager.instance.readNotePrompt;
 
         readNotePrompt.text = "Press 'r' to read note...";
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -47,6 +50,7 @@ public class CustomizableNote : MonoBehaviour
 
     private void OpenNote()
     {
+        audioSource.Play();
         gameManager.instance.noteObject.SetActive(true);
         readNotePrompt.text = "Press 'c' to close note...";
         noteOpen = true;
@@ -54,6 +58,7 @@ public class CustomizableNote : MonoBehaviour
 
     private void CloseNote()
     {
+        audioSource.Play();
         gameManager.instance.noteObject.SetActive(false);
         readNotePrompt.text = "Press 'r' to read note...";
         noteOpen = false;
