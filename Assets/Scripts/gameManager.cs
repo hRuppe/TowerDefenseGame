@@ -160,7 +160,7 @@ public class gameManager : MonoBehaviour
             //sets the turrent index that is used in the playercontroller so that the correct turret is placed
             turretIndex = 0;
             //makes sure the correct turret is displayed for placement
-            turretModels[0].SetActive(true);
+            turretModels[turretIndex].SetActive(true);
         }
     }
     public void spawnLevelTwoTurret()
@@ -173,7 +173,7 @@ public class gameManager : MonoBehaviour
             //sets the turrent index that is used in the playercontroller so that the correct turret is placed
             turretIndex = 1;
             //makes sure the correct turret is displayed for placement
-            turretModels[1].SetActive(true);
+            turretModels[turretIndex].SetActive(true);
         }
     }
     public void spawnRocketTurret()
@@ -186,9 +186,10 @@ public class gameManager : MonoBehaviour
             //sets the turrent index that is used in the playercontroller so that the correct turret is placed
             turretIndex = 2;
             //makes sure the correct turret is displayed for placement
-            turretModels[2].SetActive(true);
+            turretModels[turretIndex].SetActive(true);
         }
     }
+
     public void pause()
     {
         Time.timeScale = 0;

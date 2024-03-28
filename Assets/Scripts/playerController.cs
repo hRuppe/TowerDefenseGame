@@ -356,7 +356,7 @@ public class playerController : MonoBehaviour
     public void placeTurret()
     {
         // checks for placeTurret button(E key) and checks to make sure that the turret is being displayed for placement so that the user can't just place turrets randomly
-        if (Input.GetButtonDown("PlaceTurret") && gameManager.instance.turretModels[gameManager.instance.turretIndex].activeSelf)
+        if (Input.GetButtonDown("PlaceItem") && gameManager.instance.turretModels[gameManager.instance.turretIndex].activeSelf)
         {
             //gets the current turrentIndex that is set in the gamemanager when a player picks on a button in buy menu
             if (gameManager.instance.turretIndex == 0)
