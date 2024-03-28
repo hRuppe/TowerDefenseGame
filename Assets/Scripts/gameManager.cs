@@ -245,8 +245,9 @@ public class gameManager : MonoBehaviour
     {
         // Update the currency in the upper left side of the screen
         currency.text = playerScript.playerCurrency.ToString("F0");
-        //currency.text = playerScript.playerCurrency.ToString("F0");
-        currency.text = '$' + playerScript.playerCurrency.ToString(); 
+
+        //Updates the currency in the shop
+        shopCurrency.text = '$' + playerScript.playerCurrency.ToString("F0"); 
     }
 
     private void CheckDefensiveScore()
@@ -268,4 +269,7 @@ public class gameManager : MonoBehaviour
             Instantiate(portalPrefab, portalSpawnPos, player.transform.rotation);
         }
     }
+
+
+    
 }

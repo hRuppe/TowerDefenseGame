@@ -30,7 +30,9 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
     protected bool inAttackRange = false; // Start enemy out of attack range so it can be triggered later
     protected float speedToAnimationDefault = 4.75f; // This value is the speed value that looks best with a "1" value on the enemy run animation (shouldn't need adjustment, which is why it's hardcoded)                                                // Array of attacks to randomly choose from
     protected string[] attackAnimationNames = { "Attack1", "Attack2" };
-    protected float originalSpeed; 
+    protected float originalSpeed;
+
+    int expGained = 11;
 
     // Enum that holds all states the enemy could be in
     public enum EnemyState
@@ -104,6 +106,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
         if (HP <= 0)
         {
             gameManager.instance.updateEnemyNumber();
+            gameManager.instance.playerScript.GainExperience(expGained); // Add experience points
             Destroy(gameObject);
         }
     }

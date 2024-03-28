@@ -24,6 +24,7 @@ public class playerController : MonoBehaviour
     public int playerCurrency;
     public int playerLevel = 1;
     public int playerBolts;
+    public int playerExpPoints = 100;
 
     [Header("---- Weapon Stats ----")]
     [SerializeField] float shootRate;
@@ -52,8 +53,7 @@ public class playerController : MonoBehaviour
     //float counter = 0;
     //int HPorignal;
     int selectedGun;
-   /* int expPts;
-    int expPtsToLvl = new int[25]; // Experience points to level set to 25 for now. Can change later*/
+    int expPtsToLvl = 100; 
 
     private void Start()
     {
@@ -77,6 +77,7 @@ public class playerController : MonoBehaviour
         shop();
         placeTurret();
         UpdateProgressBar();
+        GainExperience(playerExpPoints);
         /* AimDownSights();*/
     }
 
@@ -410,6 +411,42 @@ public class playerController : MonoBehaviour
     public void IncreaseCurrency(int amount)
     {
         playerCurrency += amount;
+        gameManager.instance.updateCurrency();
+    }
+
+    public void DecreaseCurrency(int amount)
+    { 
+        playerCurrency -= amount;
+        gameManager.instance.updateCurrency();
+    }
+
+    public void GainExperience(int amount)
+    {
+        playerExpPoints += amount;
+
+        // Ensure that the player's experience points are positive
+        playerExpPoints = Mathf.Max(playerExpPoints, 0);
+
+        // Calculate how many times the player has reached or exceeded 100 experience points
+        int levelUps = playerExpPoints / 100;
+
+        // Level up the player for each multiple of 100 experience points
+        for (int i = 0; i < levelUps; i++)
+        {
+            LevelUp();
+        }
+
+        // Update the remaining experience points after leveling up
+        playerExpPoints %= 100;
+    }
+
+    private void LevelUp()
+    {
+        playerLevel++;
+        playerExpPoints -= expPtsToLvl;
+
+        // Increase the amount the player needs next time to level up (can be modified)
+        expPtsToLvl += 50;
     }
 
     public int GetCurrency()
