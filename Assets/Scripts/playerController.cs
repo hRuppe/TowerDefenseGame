@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -22,6 +23,7 @@ public class playerController : MonoBehaviour
     public ProgressBar Pb;
     public int playerCurrency;
     public int playerLevel = 1;
+    public int playerBolts;
 
     [Header("---- Weapon Stats ----")]
     [SerializeField] float shootRate;
@@ -33,16 +35,22 @@ public class playerController : MonoBehaviour
     public List<ItemStats> itemList = new List<ItemStats>();
     public float scrollSensitivity = 1.0f; // Control the scroll wheel sensitivity 
 
+    [Header("---- SFX ----")]
+    [SerializeField] AudioClip[] footstepSFX;
+
+    private bool canPlayFootstep = true;
+    private float footstepDelay = 0.3f;
+    AudioSource playerAudioSource; 
     private Vector3 playerVelocity;
     int jumpTimes;
     Vector3 moveDir;
     bool isSprinting = false;
     bool isShooting;
     bool isDashing = false;
-    bool isAiming = false;
+    //bool isAiming = false;
     float speedOrig;
-    float counter = 0;
-    int HPorignal;
+    //float counter = 0;
+    //int HPorignal;
     int selectedGun;
    /* int expPts;
     int expPtsToLvl = new int[25]; // Experience points to level set to 25 for now. Can change later*/
@@ -51,6 +59,9 @@ public class playerController : MonoBehaviour
     {
         // Initalize the players speed
         speedOrig = playerSpeed;
+
+        // Initialize player audio source
+        playerAudioSource = GetComponent<AudioSource>();
     }
 
     // Called once per frame
@@ -60,7 +71,6 @@ public class playerController : MonoBehaviour
         sprint();
         StartCoroutine(shoot());
         SwitchGun();
-        Interact();
         pauseMenu();
         StartCoroutine(dash());
         menu();
@@ -80,7 +90,7 @@ public class playerController : MonoBehaviour
         }
 
         moveDir = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
-        controller.Move(moveDir * Time.deltaTime * playerSpeed);
+        controller.Move(moveDir * Time.deltaTime * playerSpeed);                
 
         if (Input.GetButtonDown("Jump") && jumpTimes < jumpCount)
         {
@@ -93,6 +103,11 @@ public class playerController : MonoBehaviour
 
         playerVelocity.y -= gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+
+        if (controller.isGrounded && (horizontalInput != 0f || verticalInput != 0f) && canPlayFootstep)
+        {
+            StartCoroutine(PlayFootstepWithDelay());
+        }
     }
 
     // Player sprint logic
@@ -268,7 +283,6 @@ public class playerController : MonoBehaviour
             }
 
             EquipGun(selectedGun);
-
         }
     }
 
@@ -309,43 +323,38 @@ public class playerController : MonoBehaviour
         }
     }
     // Aim down sights logic
-    public void AimDownSights()
-    {
-        if (Input.GetButtonDown("AimDownSights"))
-        {
-            // Reduce the players speed while aiming
-            playerSpeed /= 2f;
+    //public void AimDownSights()
+    //{
+    //    if (Input.GetButtonDown("AimDownSights"))
+    //    {
+    //        // Reduce the players speed while aiming
+    //        playerSpeed /= 2f;
 
-            // Allow zooming in
-            Camera.main.fieldOfView = 40f;
+    //        // Allow zooming in
+    //        Camera.main.fieldOfView = 40f;
 
-            // Moving the weapon position closer to the camera
-            gunModel.transform.localPosition = new Vector3(0.5f, 0.5f, 1.0f);
+    //        // Moving the weapon position closer to the camera
+    //        gunModel.transform.localPosition = new Vector3(0.5f, 0.5f, 1.0f);
 
-            // Set aiming flag to true
-            isAiming = true;
+    //        // Set aiming flag to true
+    //        isAiming = true;
 
-        }
-        else if (Input.GetButtonUp("AimDownSights"))
-        {
-            // Restore the players speed
-            playerSpeed = speedOrig;
+    //    }
+    //    else if (Input.GetButtonUp("AimDownSights"))
+    //    {
+    //        // Restore the players speed
+    //        playerSpeed = speedOrig;
 
-            // Reset the camera
-            Camera.main.fieldOfView = 60f;
+    //        // Reset the camera
+    //        Camera.main.fieldOfView = 60f;
 
-            // Reset the weapon position to default
-            gunModel.transform.localPosition = new Vector3(0f, 0f, 0f);
+    //        // Reset the weapon position to default
+    //        gunModel.transform.localPosition = new Vector3(0f, 0f, 0f);
 
-            // Set aiming flad to false
-            isAiming = false;
-        }
-    }
-
-    public void Interact()
-    {
-        // Interact logic
-    }
+    //        // Set aiming flad to false
+    //        isAiming = false;
+    //    }
+    //}
     public void pauseMenu()
     {
         // Pause menu logic
@@ -383,7 +392,7 @@ public class playerController : MonoBehaviour
                 //Creates the level 2 turret that is set in the gameManager
                 Instantiate(gameManager.instance.rocketTurret, gameManager.instance.turretModels[gameManager.instance.turretIndex].transform.position, gameManager.instance.turretModels[gameManager.instance.turretIndex].transform.rotation);
                 //Disables preview view for placing turret
-                gameManager.instance.turretModels[gameManager.instance.turretIndex].SetActive(false);
+                gameManager.instance.turretModels[gameManager.instance.turretIndex].SetActive(false); 
             }
         }
     }
@@ -406,5 +415,19 @@ public class playerController : MonoBehaviour
     public int GetCurrency()
     {
         return playerCurrency;
+    }
+
+    IEnumerator PlayFootstepWithDelay()
+    {
+        canPlayFootstep = false;
+        PlayRandomFootstepSFX();
+        yield return new WaitForSeconds(footstepDelay);
+        canPlayFootstep = true;
+    }
+
+    private void PlayRandomFootstepSFX()
+    {
+        int randIndex = Random.Range(0, footstepSFX.Length);
+        playerAudioSource.PlayOneShot(footstepSFX[randIndex]);
     }
 }

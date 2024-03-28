@@ -24,6 +24,14 @@ public class mainMenu : MonoBehaviour
         // Load first level
         SceneManager.LoadScene(1,LoadSceneMode.Single);
     }
+    public void settingsScreen()
+    {
+        SceneManager.LoadScene(2,LoadSceneMode.Single);
+    }
+    public void exitGame()
+    {
+        Application.Quit();
+    }
 
     // Checks that there is something in the name input to enable/disable new game btn
     public void EnableNewGameBtn()

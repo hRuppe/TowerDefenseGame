@@ -5,7 +5,7 @@ using UnityEngine.AI;
 using TMPro;
 using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
-using UnityEditor.Experimental.GraphView;
+using Unity.VisualScripting;
 
 public class gameManager : MonoBehaviour
 {
@@ -23,10 +23,13 @@ public class gameManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject winMenu;
     public GameObject loseMenu;
-    public GameObject BuyMenu;
+    public GameObject shopMenu;
     [SerializeField] Button basicTurretButton;
     [SerializeField] Button level2TurretButton;
     [SerializeField] Button rocketTurretButton;
+    public int level1TurretPrice;
+    public int level2TurretPrice;
+    public int rocketTurretPrice;
     public GameObject basicTurret;
     public GameObject level2Turret;
     public GameObject rocketTurret;
@@ -67,9 +70,7 @@ public class gameManager : MonoBehaviour
         updateUI();
 
         //checks for button clicks on buy menu first is for the basic turrets and the second is for the leveled up turret
-        basicTurretButton.onClick.AddListener(spawnBasicTurret);
-        level2TurretButton.onClick.AddListener(spawnLevelTwoTurret);
-        rocketTurretButton.onClick.AddListener(spawnRocketTurret);
+
         updateCurrency();
 
         // Check for player name
@@ -84,60 +85,115 @@ public class gameManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel") && !playerDeadMenu.activeSelf && !winMenu.activeSelf)
         {
-            isPaused = !isPaused;
-            pauseMenu.SetActive(isPaused);
+            if(shopMenu.activeSelf)
+            {
+                shopMenu.SetActive(false);
+                unPause();
+            }
+            else
+            {
+                isPaused = !isPaused;
+                pauseMenu.SetActive(isPaused);
+            } 
         }
-
         if (isPaused)
         {
             pause();
         }
-        else if (!isPaused && !BuyMenu.activeSelf)
+        else if (!isPaused && !shopMenu.activeSelf)
         {
             unPause();
         }
         //Checks for input of menu button(Currently set to M) and checks no other menu screens are open
-        if (Input.GetButtonDown("Menu") && !playerDeadMenu.activeSelf && !winMenu.activeSelf)
+        if (Input.GetButtonDown("Menu") && !playerDeadMenu.activeSelf && !winMenu.activeSelf && !turretModels[0].activeSelf && !turretModels[1].activeSelf && !turretModels[2].activeSelf)
         {
-            Cursor.visible = true;
-            BuyMenu.SetActive(true);
-            Cursor.lockState = CursorLockMode.Confined;
+            if (shopMenu.activeSelf)
+            {
+                shopMenu.SetActive(false);
+            }
+            else
+            {
+                Cursor.visible = true;
+                shopMenu.SetActive(true);
+                Cursor.lockState = CursorLockMode.Confined;
+            }
         }
 
         // Checks to see if player has hit required defensive score to progress
         CheckDefensiveScore(); 
+        turretButtons();
     }
-    void spawnBasicTurret()
+    void turretButtons()
     {
-        //turns off buymenu so player can no longer see it
-        BuyMenu.SetActive(false);
-        //sets the turrent index that is used in the playercontroller so that the correct turret is placed
-        turretIndex = 0;
-        //makes sure the correct turret is displayed for placement
-        turretModels[0].SetActive(true);
+        if (gameManager.instance.playerScript.playerBolts >= level1TurretPrice)
+        {
+            basicTurretButton.interactable = true;
+        }
+        else
+        {
+            basicTurretButton.interactable = false;
+        }
+
+        if (gameManager.instance.playerScript.playerBolts >= level2TurretPrice)
+        {
+            level2TurretButton.interactable = true;
+        }
+        else
+        {
+            level2TurretButton.interactable = false;
+        }
+        if (gameManager.instance.playerScript.playerBolts >= rocketTurretPrice)
+        {
+            rocketTurretButton.interactable = true;
+        }
+        else
+        {
+            rocketTurretButton.interactable = false;
+        }
     }
-    void spawnLevelTwoTurret()
+    public void spawnBasicTurret()
     {
-        //turns off buymenu so player can no longer see it
-        BuyMenu.SetActive(false);
-        //sets the turrent index that is used in the playercontroller so that the correct turret is placed
-        turretIndex = 1;
-        //makes sure the correct turret is displayed for placement
-        turretModels[1].SetActive(true);
+        if (gameManager.instance.playerScript.playerBolts >= level1TurretPrice)
+        {
+            gameManager.instance.playerScript.playerBolts -= level1TurretPrice;
+            //turns off buy menu so player can no longer see it
+            shopMenu.SetActive(false);
+            //sets the turrent index that is used in the playercontroller so that the correct turret is placed
+            turretIndex = 0;
+            //makes sure the correct turret is displayed for placement
+            turretModels[0].SetActive(true);
+        }
     }
-    void spawnRocketTurret()
+    public void spawnLevelTwoTurret()
     {
-        //turns off buymenu so player can no longer see it
-        BuyMenu.SetActive(false);
-        //sets the turrent index that is used in the playercontroller so that the correct turret is placed
-        turretIndex = 2;
-        //makes sure the correct turret is displayed for placement
-        turretModels[2].SetActive(true);
+        if (gameManager.instance.playerScript.playerBolts >= level2TurretPrice)
+        {
+            gameManager.instance.playerScript.playerBolts -= level2TurretPrice;
+            //turns off shopMenu so player can no longer see it
+            shopMenu.SetActive(false);
+            //sets the turrent index that is used in the playercontroller so that the correct turret is placed
+            turretIndex = 1;
+            //makes sure the correct turret is displayed for placement
+            turretModels[1].SetActive(true);
+        }
+    }
+    public void spawnRocketTurret()
+    {
+        if (gameManager.instance.playerScript.playerBolts >= rocketTurretPrice)
+        {
+            gameManager.instance.playerScript.playerBolts -= rocketTurretPrice;
+            //turns off shopMenu so player can no longer see it
+            shopMenu.SetActive(false);
+            //sets the turrent index that is used in the playercontroller so that the correct turret is placed
+            turretIndex = 2;
+            //makes sure the correct turret is displayed for placement
+            turretModels[2].SetActive(true);
+        }
     }
     public void SpawnBarbedWire()
     {
         //turns off buymenu so player can no longer see it
-        BuyMenu.SetActive(false);
+        shopMenu.SetActive(false);
         //sets the turrent index that is used in the playercontroller so that the correct turret is placed
         turretIndex = 3;
         //makes sure the correct turret is displayed for placement
@@ -173,7 +229,7 @@ public class gameManager : MonoBehaviour
     public void YouLose()
     {
         loseMenu.SetActive(true);
-        isPaused = true; 
+        isPaused = true;
     }
 
     public void updateEnemyNumber()
@@ -187,11 +243,11 @@ public class gameManager : MonoBehaviour
             youWin();
         }
     }
-    
+
     public void updateUI()
     {
         enemiesLeft.text = enemiesToKill.ToString("F0");
-        defensiveScoreUI.text = "Defensive Score " + defensiveScore; 
+        defensiveScoreUI.text = "Defensive Score " + defensiveScore;
         defensiveScoreUI.text = "Defensive Score " + defensiveScore + "/" + defensiveScoreToProgress; 
     }
 
