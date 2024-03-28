@@ -30,6 +30,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
     protected bool inAttackRange = false; // Start enemy out of attack range so it can be triggered later
     protected float speedToAnimationDefault = 4.75f; // This value is the speed value that looks best with a "1" value on the enemy run animation (shouldn't need adjustment, which is why it's hardcoded)                                                // Array of attacks to randomly choose from
     protected string[] attackAnimationNames = { "Attack1", "Attack2" };
+    protected float originalSpeed; 
 
     // Enum that holds all states the enemy could be in
     public enum EnemyState
@@ -66,6 +67,9 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
 
         // Set max healthbar value to enemies max health
         healthBar.maxValue = HP;
+
+        // Save original speed
+        originalSpeed = speed; 
     }
 
     protected virtual void Update()
@@ -127,5 +131,17 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
     public void UpdateEnemyHealthBar(float currentHealth)
     {
         healthBar.value = currentHealth;
+    }
+
+    public void ChangeEnemySpeed(float speedScaler)
+    {
+        speed *= speedScaler;
+        agent.speed = speed;
+    }
+
+    public void ResetSpeed()
+    {
+        speed = originalSpeed;
+        agent.speed = speed;
     }
 }
