@@ -22,7 +22,7 @@ public class playerController : MonoBehaviour
     public ProgressBar Pb;
     public int playerCurrency;
     public int playerLevel = 1;
-    public int playerExpPoints = 100;
+    public int playerExpPoints = 0;
 
     [Header("---- Weapon Stats ----")]
     [SerializeField] float shootRate;
