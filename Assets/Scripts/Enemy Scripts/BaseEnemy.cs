@@ -11,7 +11,9 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
     [SerializeField] protected Renderer model;
     [SerializeField] protected NavMeshAgent agent;
     [SerializeField] protected Animator anim;
-    [SerializeField] protected Slider healthBar; 
+    [SerializeField] protected Slider healthBar;
+    [SerializeField] protected AudioClip[] enemySFX;
+
 
     // Stats that may need adjustment in the editor
     [Header("---- Enemy Stats ----")]
@@ -19,7 +21,12 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
     [SerializeField] protected float speed;
     [SerializeField] protected int attackDmg;
     [SerializeField] protected float attackRange;
-    
+
+    // Settings for SFX
+    [Header("---- SFX Settings ----")]
+    [SerializeField] protected float minTimeBetweenSounds = 2f;
+    [SerializeField] protected float maxTimeBetweenSounds = 5f;
+
     // Variables that don't need to be shown in the inspector
     protected Rigidbody enemyRB;
     protected EnemyState currentState; // The current state of this enemy (moving, attacking, etc)
@@ -31,6 +38,8 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
     protected float speedToAnimationDefault = 4.75f; // This value is the speed value that looks best with a "1" value on the enemy run animation (shouldn't need adjustment, which is why it's hardcoded)                                                // Array of attacks to randomly choose from
     protected string[] attackAnimationNames = { "Attack1", "Attack2" };
     protected float originalSpeed;
+    protected AudioSource audioSource;
+    protected float nextSoundTime;
 
     int expGained = 11;
 
@@ -72,11 +81,24 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
 
         // Save original speed
         originalSpeed = speed; 
+
+        // Set audio source
+        audioSource = GetComponent<AudioSource>();
+
+        // Sets the initial time for the next sound
+        nextSoundTime = Time.time + Random.Range(minTimeBetweenSounds, maxTimeBetweenSounds);
     }
 
     protected virtual void Update()
     {
-        healthBar.transform.LookAt(gameManager.instance.player.transform); 
+        healthBar.transform.LookAt(gameManager.instance.player.transform);
+
+        // Check if it's time to play another sound & play it, then get another sound time
+        if (Time.time >= nextSoundTime)
+        {
+            PlayRandomSound();
+            nextSoundTime = Time.time + Random.Range(minTimeBetweenSounds, maxTimeBetweenSounds);
+        }
     }
 
     // Used to change the enemy state
@@ -146,5 +168,22 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
     {
         speed = originalSpeed;
         agent.speed = speed;
+    }
+
+    public void PlayRandomSound()
+    {
+        if (enemySFX.Length == 0)
+        {
+            Debug.LogWarning("No audio clips assigned to enemySFX array.");
+            return;
+        }
+
+        int randomIndex = Random.Range(0, enemySFX.Length);
+        AudioClip randomClip = enemySFX[randomIndex];
+
+        if (randomClip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(randomClip);
+        }
     }
 }

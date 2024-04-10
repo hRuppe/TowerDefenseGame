@@ -82,6 +82,10 @@ public class PlayerAttackingEnemy : BaseEnemy
             }
             // Start random attack animation
             anim.SetBool(attackAnimationNames[randomIndex], true);
+
+            // Play sfx for attack
+            if (!audioSource.isPlaying)
+                PlayRandomSound(); 
         }
     }
 
