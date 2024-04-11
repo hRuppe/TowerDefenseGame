@@ -33,4 +33,9 @@ public class LocationToDefend : MonoBehaviour
         gameManager.instance.defensiveLocationHealthBar.value = currentHealth; 
     }
 
+    public int GetLocationHealth()
+    {
+        return locationHealth; 
+    }
+
 }

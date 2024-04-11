@@ -7,12 +7,17 @@ using UnityEngine.UI;
 public abstract class BaseEnemy : MonoBehaviour, IDamage
 {
     // Components that need to be assgined in the editor
-    [Header("----  Components ----")]
+    [Header("---- General Components ----")]
     [SerializeField] protected Renderer model;
     [SerializeField] protected NavMeshAgent agent;
     [SerializeField] protected Animator anim;
     [SerializeField] protected Slider healthBar;
+    
+    [Header("---- Audio Components ----")]
     [SerializeField] protected AudioClip[] enemySFX;
+    [SerializeField] protected AudioClip[] footstepSFX;
+    [SerializeField] protected AudioClip[] whooshSFX;
+    [SerializeField] protected AudioClip thudSFX; 
 
 
     // Stats that may need adjustment in the editor
@@ -39,6 +44,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
     protected string[] attackAnimationNames = { "Attack1", "Attack2" };
     protected float originalSpeed;
     protected AudioSource audioSource;
+    protected AudioSource weaponAudioSource; 
     protected float nextSoundTime;
 
     int expGained = 11;
@@ -82,8 +88,9 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
         // Save original speed
         originalSpeed = speed; 
 
-        // Set audio source
+        // Set audio sources
         audioSource = GetComponent<AudioSource>();
+        weaponAudioSource = GetComponentInChildren<AudioSource>();
 
         // Sets the initial time for the next sound
         nextSoundTime = Time.time + Random.Range(minTimeBetweenSounds, maxTimeBetweenSounds);
@@ -181,9 +188,48 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
         int randomIndex = Random.Range(0, enemySFX.Length);
         AudioClip randomClip = enemySFX[randomIndex];
 
+        if (!audioSource.isPlaying && randomClip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(randomClip);
+        }
+    }
+
+    public void PlayRandomFootstepSFX()
+    {
+        if (footstepSFX.Length == 0)
+        {
+            Debug.LogWarning("No audio clips assigned to footstepSFX array.");
+            return;
+        }
+
+        int randomIndex = Random.Range(0, footstepSFX.Length);
+        AudioClip randomClip = footstepSFX[randomIndex];
+
         if (randomClip != null && audioSource != null)
         {
             audioSource.PlayOneShot(randomClip);
+        }
+    }
+
+    public void PlayWeaponThudSFX()
+    {
+        weaponAudioSource.PlayOneShot(thudSFX);  
+    }
+
+    public void PlayWeaponWhooshSFX()
+    {
+        if (footstepSFX.Length == 0)
+        {
+            Debug.LogWarning("No audio clips assigned to whooshSFX array.");
+            return;
+        }
+
+        int randomIndex = Random.Range(0, whooshSFX.Length);
+        AudioClip randomClip = whooshSFX[randomIndex];
+
+        if (randomClip != null && audioSource != null)
+        {
+            weaponAudioSource.PlayOneShot(randomClip);
         }
     }
 }

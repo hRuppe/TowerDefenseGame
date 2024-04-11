@@ -1074,6 +1074,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slowDownPercentage: 0.5
+  drainDmg: 1
+  damageInterval: 2
+  defensivePoints: 1
 --- !u!1 &4231691453680339806
 GameObject:
   m_ObjectHideFlags: 0

@@ -107,7 +107,7 @@ public class playerController : MonoBehaviour
 
         if (controller.isGrounded && (horizontalInput != 0f || verticalInput != 0f) && canPlayFootstep)
         {
-            StartCoroutine(PlayFootstepWithDelay());
+            //StartCoroutine(PlayFootstepWithDelay());
         }
     }
 
