@@ -39,6 +39,7 @@ public class gameManager : MonoBehaviour
     public GameObject noteObject;
     public TMP_Text noteText;
     public TMP_Text readNotePrompt;
+    public TMP_Text upgradeTurretPrompt;
     public TMP_Text playerNameUI; 
 
     public TextMeshProUGUI enemiesLeft;
