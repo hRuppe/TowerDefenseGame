@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 public class TurretBehavior : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class TurretBehavior : MonoBehaviour
     [SerializeField] int defensivePoints;
     [SerializeField] Transform firePoint;
     [SerializeField] GameObject bulletPrefab;
-    Vector3 direction;
+    private Vector3 direction;
 
     Transform enemy;
 
@@ -26,6 +27,8 @@ public class TurretBehavior : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(gameManager.instance.player.transform.position.normalized - transform.position.normalized);
+
         if (enemy != null)
         {
             // Rotate turret towards the enemy
@@ -35,6 +38,50 @@ public class TurretBehavior : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
             // Fire at the enemy
         }
+
+        //if(gameManager.instance.player.transform.position.x - transform.position.x <= 4 && gameManager.instance.player.transform.position.z - transform.position.z <= 4)
+        //{
+        //    if(CompareTag("LevelOneTurret"))
+        //    {
+        //        if(gameManager.instance.playerScript.playerBolts < gameManager.instance.level2TurretPrice - gameManager.instance.level1TurretPrice)
+        //        {
+        //            gameManager.instance.upgradeTurretPrompt.text = gameManager.instance.level2TurretPrice - gameManager.instance.level1TurretPrice + " bolts to upgrade Turret";
+        //        }
+        //        else
+        //        {
+        //            gameManager.instance.upgradeTurretPrompt.text = "Press E to Upgrade Turret";
+        //        }
+        //        gameManager.instance.upgradeTurretPrompt.gameObject.SetActive(true);
+
+        //        if (Input.GetButtonDown("PlaceItem") && gameManager.instance.playerScript.playerBolts > gameManager.instance.level2TurretPrice - gameManager.instance.level1TurretPrice)
+        //        {
+        //            Instantiate(gameManager.instance.level2Turret, transform.position, transform.rotation);
+        //            Destroy(gameObject);
+        //        }
+        //    }
+        //    else if(CompareTag("LevelTwoTurret"))
+        //    {
+        //        if (gameManager.instance.playerScript.playerBolts < gameManager.instance.rocketTurretPrice - gameManager.instance.level2TurretPrice)
+        //        {
+        //            gameManager.instance.upgradeTurretPrompt.text = gameManager.instance.rocketTurretPrice - gameManager.instance.level2TurretPrice + " bolts to upgrade Turret";
+        //        }
+        //        else
+        //        {
+        //            gameManager.instance.upgradeTurretPrompt.text = "Press E to Upgrade Turret";
+        //        }
+        //        gameManager.instance.upgradeTurretPrompt.gameObject.SetActive(true);
+
+        //        if (Input.GetButtonDown("PlaceItem") && gameManager.instance.playerScript.playerBolts > gameManager.instance.level2TurretPrice - gameManager.instance.level1TurretPrice)
+        //        {
+        //            Instantiate(gameManager.instance.rocketTurret, transform.position, transform.rotation);
+        //            Destroy(gameObject);
+        //        }
+        //    }
+        //}
+        //else
+        //{
+        //    gameManager.instance.upgradeTurretPrompt.gameObject.SetActive(false);
+        //}
     }
 
     IEnumerator Fire()
@@ -66,6 +113,5 @@ public class TurretBehavior : MonoBehaviour
             enemy = null;
         }
     }
- 
 }
 
