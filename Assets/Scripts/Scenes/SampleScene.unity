@@ -6486,8 +6486,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1482266561}
     - target: {fileID: 5742944913479443913, guid: 1cc0703c40a320c41b868ba38de9f0d2, type: 3}
+      propertyPath: playerHealth
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 5742944913479443913, guid: 1cc0703c40a320c41b868ba38de9f0d2, type: 3}
       propertyPath: playerExpPoints
-      value: 50
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 5742944913479443918, guid: 1cc0703c40a320c41b868ba38de9f0d2, type: 3}
       propertyPath: m_RootOrder
