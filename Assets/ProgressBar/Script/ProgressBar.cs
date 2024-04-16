@@ -20,7 +20,7 @@ public class ProgressBar : MonoBehaviour
     public Color BarBackGroundColor;
     public Sprite BarBackGroundSprite;
     [Range(1f, 100f)]
-    public int Alert = 20;
+    public int Alert = 50;
     public Color BarAlertColor;
 
     [Header("Sound Alert")]
