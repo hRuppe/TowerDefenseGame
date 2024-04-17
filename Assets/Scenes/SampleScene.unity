@@ -859,7 +859,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5f32516f7bc4b04cb958ad0ac34a53e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemStats: {fileID: 11400000, guid: 1d3d3f9c07b9bd940940087442ddb5f5, type: 2}
 --- !u!4 &546865826
 Transform:
   m_ObjectHideFlags: 0
@@ -4428,7 +4427,7 @@ PrefabInstance:
       objectReference: {fileID: 1482266561}
     - target: {fileID: 5742944913479443913, guid: 1cc0703c40a320c41b868ba38de9f0d2, type: 3}
       propertyPath: playerExpPoints
-      value: 50
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 5742944913479443918, guid: 1cc0703c40a320c41b868ba38de9f0d2, type: 3}
       propertyPath: m_RootOrder

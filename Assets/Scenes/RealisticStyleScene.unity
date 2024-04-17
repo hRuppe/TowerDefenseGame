@@ -5102,14 +5102,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 810460360, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 2.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 810460360, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 5.6
-      objectReference: {fileID: 0}
     - target: {fileID: 975304841, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -5122,86 +5114,6 @@ PrefabInstance:
       propertyPath: barbedWireModel
       value: 
       objectReference: {fileID: 135698753}
-    - target: {fileID: 1196248588931445946, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1805734500647233282, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.6625
-      objectReference: {fileID: 0}
-    - target: {fileID: 1805734500647233282, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.9001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1805734500647233282, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 1805734500647233282, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 108
-      objectReference: {fileID: 0}
-    - target: {fileID: 1915139535464699804, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3255179022742216085, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.2299262
-      objectReference: {fileID: 0}
-    - target: {fileID: 4017450651904249163, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.175
-      objectReference: {fileID: 0}
-    - target: {fileID: 4017450651904249163, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.58747
-      objectReference: {fileID: 0}
-    - target: {fileID: 4017450651904249163, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4017450651904249163, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -47
-      objectReference: {fileID: 0}
-    - target: {fileID: 5180545123264640459, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
-      propertyPath: m_text
-      value: "Congratulations    \nYou have completed level 1"
-      objectReference: {fileID: 0}
-    - target: {fileID: 5180545123264640459, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
-      propertyPath: m_fontSize
-      value: 18.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5180545123264640459, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
-      propertyPath: m_VerticalAlignment
-      value: 1024
-      objectReference: {fileID: 0}
-    - target: {fileID: 5180545123264640459, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5655695605775825162, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
-      propertyPath: m_Type
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5655695605775825162, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: e10eb304fcdedb84f9f34bcc63cd0b31, type: 3}
-    - target: {fileID: 5655695605775825162, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
-      propertyPath: m_Color.a
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5655695605775825162, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
-      propertyPath: m_UseSpriteMesh
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6441277770859708658, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
-      propertyPath: m_Name
-      value: ESC Text WM
-      objectReference: {fileID: 0}
     - target: {fileID: 8474867177488896508, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
       propertyPath: player
       value: 

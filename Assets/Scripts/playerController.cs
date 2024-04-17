@@ -77,7 +77,6 @@ public class playerController : MonoBehaviour
         shop();
         placeTurret();
         UpdateProgressBar();
-        GainExperience(playerExpPoints);
         /* AimDownSights();*/
     }
 
@@ -422,23 +421,26 @@ public class playerController : MonoBehaviour
 
     public void GainExperience(int amount)
     {
+        // Add the received experience points
         playerExpPoints += amount;
 
-        // Ensure that the player's experience points are positive
-        playerExpPoints = Mathf.Max(playerExpPoints, 0);
-
-        // Calculate how many times the player has reached or exceeded 100 experience points
-        int levelUps = playerExpPoints / 100;
-
-        // Level up the player for each multiple of 100 experience points
-        for (int i = 0; i < levelUps; i++)
+        // Check if the player has enough experience points to level up
+        if (playerExpPoints >= expPtsToLvl)
         {
-            LevelUp();
-        }
+            // Calculate how many times the player has reached or exceeded 100 experience points
+            int levelUps = playerExpPoints / expPtsToLvl;
 
-        // Update the remaining experience points after leveling up
-        playerExpPoints %= 100;
+            // Level up the player for each multiple of 100 experience points
+            for (int i = 0; i < levelUps; i++)
+            {
+                LevelUp();
+            }
+
+            // Update the remaining experience points after leveling up
+            playerExpPoints %= expPtsToLvl;
+        }
     }
+
 
     private void LevelUp()
     {
