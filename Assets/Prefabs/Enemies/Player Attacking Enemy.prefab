@@ -2470,6 +2470,10 @@ MonoBehaviour:
   agent: {fileID: 6313502371585292953}
   anim: {fileID: 3027268701469257913}
   healthBar: {fileID: 318097403453683726}
+  itemsToDrop:
+  - {fileID: 4283809602498014686, guid: 56f4efb03ee63bf4c83fa1a4e475b063, type: 3}
+  - {fileID: 8176456871037065057, guid: f94e74795d7696f4e91271bc5c513d06, type: 3}
+  numOfItemsToDrop: 1
   enemySFX:
   - {fileID: 8300000, guid: 4ae27fb2c4afcf64ca0f708579a903f1, type: 3}
   - {fileID: 8300000, guid: ba4b87556ea6a9442864b4adbc976372, type: 3}
