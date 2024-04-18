@@ -5197,6 +5197,10 @@ PrefabInstance:
       propertyPath: barbedWireModel
       value: 
       objectReference: {fileID: 135698753}
+    - target: {fileID: 1825479840040830, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 114769782452131154, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
       propertyPath: Alert
       value: 50
