@@ -37,11 +37,11 @@ public class playerController : MonoBehaviour
     public float scrollSensitivity = 1.0f; // Control the scroll wheel sensitivity 
 
     [Header("---- SFX ----")]
-    [SerializeField] AudioClip[] footstepSFX;
+    [SerializeField] AudioSource sprintAudioSource;
+    [SerializeField] AudioSource jumpAudioSource;
+    [SerializeField] AudioClip[] jumpClips; 
 
-    private bool canPlayFootstep = true;
-    private float footstepDelay = 0.3f;
-    AudioSource playerAudioSource; 
+    AudioSource walkingAudioSource; 
     private Vector3 playerVelocity;
     int jumpTimes;
     Vector3 moveDir;
@@ -61,7 +61,7 @@ public class playerController : MonoBehaviour
         speedOrig = playerSpeed;
 
         // Initialize player audio source
-        playerAudioSource = GetComponent<AudioSource>();
+        walkingAudioSource = GetComponent<AudioSource>();
     }
 
     // Called once per frame
@@ -95,6 +95,7 @@ public class playerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && jumpTimes < jumpCount)
         {
+            PlayRandomJumpSound(); 
             jumpTimes++;
             playerVelocity.y = jumpHeight;
         }
@@ -105,9 +106,23 @@ public class playerController : MonoBehaviour
         playerVelocity.y -= gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
 
-        if (controller.isGrounded && (horizontalInput != 0f || verticalInput != 0f) && canPlayFootstep)
+        if (controller.isGrounded && (horizontalInput != 0f || verticalInput != 0f))
         {
-            //StartCoroutine(PlayFootstepWithDelay());
+            if (isSprinting)
+            {
+                sprintAudioSource.enabled = true;
+                walkingAudioSource.enabled = false;
+            }
+            else
+            {
+                walkingAudioSource.enabled = true;
+                sprintAudioSource.enabled = false; 
+            }
+        }
+        else
+        {
+            walkingAudioSource.enabled = false;
+            sprintAudioSource.enabled = false;
         }
     }
 
@@ -454,17 +469,11 @@ public class playerController : MonoBehaviour
         return playerCurrency;
     }
 
-    IEnumerator PlayFootstepWithDelay()
+    private void PlayRandomJumpSound()
     {
-        canPlayFootstep = false;
-        PlayRandomFootstepSFX();
-        yield return new WaitForSeconds(footstepDelay);
-        canPlayFootstep = true;
-    }
-
-    private void PlayRandomFootstepSFX()
-    {
-        int randIndex = Random.Range(0, footstepSFX.Length);
-        playerAudioSource.PlayOneShot(footstepSFX[randIndex]);
+        int randIndex = Random.Range(0, jumpClips.Length);
+        AudioClip selectedClip = jumpClips[randIndex];
+        jumpAudioSource.clip = selectedClip;
+        jumpAudioSource.Play();
     }
 }
