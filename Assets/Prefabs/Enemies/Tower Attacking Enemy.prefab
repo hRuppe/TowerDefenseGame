@@ -853,6 +853,9 @@ MonoBehaviour:
   agent: {fileID: 2572393564846090208}
   anim: {fileID: 6786905387522076096}
   healthBar: {fileID: 4960698721089004921}
+  itemsToDrop:
+  - {fileID: 4283809602498014686, guid: 56f4efb03ee63bf4c83fa1a4e475b063, type: 3}
+  numOfItemsToDrop: 1
   enemySFX:
   - {fileID: 8300000, guid: 4ae27fb2c4afcf64ca0f708579a903f1, type: 3}
   - {fileID: 8300000, guid: ba4b87556ea6a9442864b4adbc976372, type: 3}
@@ -946,7 +949,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 100
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

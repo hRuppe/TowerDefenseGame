@@ -1,5 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
+using UnityEditor.UIElements;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -12,7 +15,9 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
     [SerializeField] protected NavMeshAgent agent;
     [SerializeField] protected Animator anim;
     [SerializeField] protected Slider healthBar;
-    
+    [SerializeField] protected GameObject[] itemsToDrop;
+    [SerializeField] protected int numOfItemsToDrop; 
+
     [Header("---- Audio Components ----")]
     [SerializeField] protected AudioClip[] enemySFX;
     [SerializeField] protected AudioClip[] footstepSFX;
@@ -46,6 +51,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
     protected AudioSource audioSource;
     protected AudioSource weaponAudioSource; 
     protected float nextSoundTime;
+    float upwardForceMagnitude = 6f; 
 
     int expGained = 11;
 
@@ -136,6 +142,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
         {
             gameManager.instance.updateEnemyNumber();
             gameManager.instance.playerScript.GainExperience(expGained); // Add experience points
+            DropItems(); // Drop bolts / currency
             Destroy(gameObject);
         }
     }
@@ -230,6 +237,49 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
         if (randomClip != null && audioSource != null)
         {
             weaponAudioSource.PlayOneShot(randomClip);
+        }
+    }
+
+    public void DropItems()
+    {
+
+        for (int i = 0; i < numOfItemsToDrop; i++)
+        {
+            // If there's multiple items in the items to drop array then drop a random item
+            GameObject randDrop;
+            if (itemsToDrop.Length > 1)
+            {
+                int randIndex = Random.Range(0, itemsToDrop.Length);
+                randDrop = itemsToDrop[randIndex];
+                GameObject droppedItem = Instantiate(randDrop, gameObject.transform.position, gameObject.transform.rotation);
+
+                // Get rigidbody of dropped item
+                Rigidbody rb = droppedItem.GetComponent<Rigidbody>();
+
+                // Apply force to rigidbody
+                if (rb != null)
+                {
+                    Vector3 upwardForce = Vector3.up * upwardForceMagnitude;
+
+                    rb.AddForce(upwardForce, ForceMode.Impulse);
+                }
+
+            }
+            else
+            {
+                GameObject droppedItem = Instantiate(itemsToDrop[0], gameObject.transform.position, gameObject.transform.rotation);
+
+                // Get rigidbody of dropped item
+                Rigidbody rb = droppedItem.GetComponent<Rigidbody>();
+
+                // Apply force to rigidbody
+                if (rb != null)
+                {
+                    Vector3 upwardForce = Vector3.up * upwardForceMagnitude;
+
+                    rb.AddForce(upwardForce, ForceMode.Impulse);
+                }
+            }
         }
     }
 }

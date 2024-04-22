@@ -29,7 +29,7 @@ public class BoltPickUp : MonoBehaviour
     void RotatePickup()
     {
         isRotating = true;
-        transform.Rotate(rotation * Time.deltaTime * rotationSpeed,0 , 0);
+        transform.Rotate(0, rotation * Time.deltaTime * rotationSpeed, 0);
         isRotating = false;
     }
 }

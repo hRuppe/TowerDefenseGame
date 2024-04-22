@@ -86,6 +86,7 @@
     <Compile Include="Assets\Models\Flooded_Grounds\Scripts\FPSController\CharController_Motor.cs" />
     <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Ramps\Runtime\RampAsset.cs" />
     <Compile Include="Assets\Scripts\Items Scripts\BoltPickUp.cs" />
+    <Compile Include="Assets\Scripts\Enemy Scripts\BossEnemy.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\BloomOptimized.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\DepthOfField.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\NoiseAndScratches.cs" />
