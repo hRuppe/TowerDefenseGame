@@ -16,6 +16,7 @@ public class mainMenu : MonoBehaviour
         newGameBtn.interactable = false;
     }
 
+    // New game button
     public void newGame()
     {
         // Save player name in playerprefs
@@ -24,10 +25,14 @@ public class mainMenu : MonoBehaviour
         // Load first level
         SceneManager.LoadScene(1,LoadSceneMode.Single);
     }
+
+    // Settings button
     public void settingsScreen()
     {
         SceneManager.LoadScene(2,LoadSceneMode.Single);
     }
+
+    // Exits game button
     public void exitGame()
     {
         Application.Quit();
