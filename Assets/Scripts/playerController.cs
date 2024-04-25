@@ -39,6 +39,8 @@ public class playerController : MonoBehaviour
     [Header("---- SFX ----")]
     [SerializeField] AudioSource sprintAudioSource;
     [SerializeField] AudioSource jumpAudioSource;
+    [SerializeField] AudioSource dashAudioSource;
+    [SerializeField] AudioSource gunAudioSource;
     [SerializeField] AudioClip[] jumpClips; 
 
     AudioSource walkingAudioSource; 
@@ -156,6 +158,7 @@ public class playerController : MonoBehaviour
             {
                 if (!isDashing)
                 {
+                    dashAudioSource.Play(); 
                     playerSpeed = 20;
                     playerVelocity.y = 0;
                     gravityValue = 0f;
@@ -201,6 +204,7 @@ public class playerController : MonoBehaviour
         shootDist = gunStat.shootDist;
         shootDmg = gunStat.shootDmg;
         hitEffect = gunStat.hitEffect;
+        gunAudioSource.clip = gunStat.gunSound; 
 
         // Stores the gun in the players inventory and stores the gun stats in the gunList
         gunList.Add(gunStat);
@@ -222,6 +226,7 @@ public class playerController : MonoBehaviour
         if (gunList.Count > 0 && isShooting == false && Input.GetButton("Shoot"))
         {
             isShooting = true;
+            gunAudioSource.Play();
 
             // Get the direction the player is aiming
             Vector3 shootingDirection = GetAimingDirection();
