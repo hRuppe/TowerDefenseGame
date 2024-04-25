@@ -14,7 +14,9 @@ public class EnemySpawner : MonoBehaviour
     // Gets the 'Spawn()' coroutine started 
     private void Start()
     {
-        StartCoroutine(Spawn()); 
+        StartCoroutine(Spawn());
+        gameManager.instance.enemiesToKill += numberOfEnemiesToSpawn;
+        gameManager.instance.updateUI();
     }
 
     // Instantiates a new enemy at the location of the enemy spawner object & increases the # of enemies spawned counter
