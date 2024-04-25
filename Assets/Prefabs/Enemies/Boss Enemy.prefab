@@ -2404,13 +2404,13 @@ GameObject:
   m_Component:
   - component: {fileID: 7085567193607077368}
   - component: {fileID: 3027268701469257913}
-  - component: {fileID: 6313502371585292952}
+  - component: {fileID: 8246140605795654142}
   - component: {fileID: 6313502371585292953}
   - component: {fileID: 3090037787823703892}
   - component: {fileID: 7885628908390388821}
   - component: {fileID: -3453963294183458775}
   m_Layer: 6
-  m_Name: Player Attacking Enemy
+  m_Name: Boss Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2444,7 +2444,7 @@ Animator:
   m_GameObject: {fileID: 7574823120900204354}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a3df1ee0122743543af7a9b78323538f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 70201b0378971b74fb74974912bf9349, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2454,7 +2454,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6313502371585292952
+--- !u!114 &8246140605795654142
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2463,16 +2463,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 7574823120900204354}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 198c94f393fb2394fb74024c69fa6f99, type: 3}
+  m_Script: {fileID: 11500000, guid: 190b2cb19a28e2741a91878c8d882565, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 8896132389208857583}
   agent: {fileID: 6313502371585292953}
   anim: {fileID: 3027268701469257913}
   healthBar: {fileID: 318097403453683726}
-  itemsToDrop:
-  - {fileID: 8176456871037065057, guid: f94e74795d7696f4e91271bc5c513d06, type: 3}
-  numOfItemsToDrop: 1
+  itemsToDrop: []
+  numOfItemsToDrop: 0
   enemySFX:
   - {fileID: 8300000, guid: 4ae27fb2c4afcf64ca0f708579a903f1, type: 3}
   - {fileID: 8300000, guid: ba4b87556ea6a9442864b4adbc976372, type: 3}
@@ -2490,12 +2489,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b2b8ffa7f41197a4c87d4e6022da65af, type: 3}
   - {fileID: 8300000, guid: a3a6e84909ad7854ea1709b2cfc742b0, type: 3}
   thudSFX: {fileID: 8300000, guid: d0468a619a5406b4c9428ca916cf8651, type: 3}
-  HP: 5
+  HP: 25
   speed: 5.5
-  attackDmg: 10
+  attackDmg: 20
   attackRange: 4
   minTimeBetweenSounds: 5
-  maxTimeBetweenSounds: 20
+  maxTimeBetweenSounds: 15
 --- !u!195 &6313502371585292953
 NavMeshAgent:
   m_ObjectHideFlags: 0
