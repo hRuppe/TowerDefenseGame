@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class BossEnemy : BaseEnemy
@@ -42,7 +43,7 @@ public class BossEnemy : BaseEnemy
                 LookForPlayerWhileMovingToLocation();
                 break;
             case EnemyState.AttackingLocation:
-
+                AttackTower(); 
                 break; 
             case EnemyState.MovingToPlayer:
                 MoveEnemyTowardPlayer();
@@ -58,6 +59,7 @@ public class BossEnemy : BaseEnemy
         // Check if it can see the player first
         if (HasLineOfSight())
         {
+            Debug.Log("has line of sight"); 
             ChangeState(EnemyState.MovingToPlayer); 
         }
 
@@ -93,6 +95,7 @@ public class BossEnemy : BaseEnemy
         }
         else if (!HasLineOfSight())
         {
+            Debug.Log("lost line of sight"); 
             ChangeState(EnemyState.MovingToLocation);
         }
     }
@@ -106,9 +109,6 @@ public class BossEnemy : BaseEnemy
         float angleToPlayer = Vector3.Angle(transform.forward, playerDir);
         RaycastHit hit;
 
-        Debug.Log("Distance to player: " + distanceToPlayer);
-        Debug.Log("Angle to player: " + angleToPlayer);
-
         // Check view distance & sight angle
         if (distanceToPlayer <= viewDistance && angleToPlayer <= sightAngle)
         {
@@ -117,18 +117,16 @@ public class BossEnemy : BaseEnemy
             {
                 if (hit.collider.gameObject.TryGetComponent<playerController>(out playerController pc))
                 {
-                    Debug.Log("Enemy has line of sight");
                     return true;
                 }
             }
         }
-        
         return false;
     }
 
     void OnDrawGizmos()
     {
-        Vector3 playerDir = (currentPlayerPos - transform.position).normalized;
+        Vector3 playerDir = (currentPlayerPos - transform.position);
         float angleToPlayer = Vector3.Angle(transform.forward, playerDir);
   
         RaycastHit hit;
@@ -137,6 +135,7 @@ public class BossEnemy : BaseEnemy
         if (distanceToPlayer <= viewDistance && angleToPlayer <= sightAngle)
         {
             // Shoot raycast to make sure objects are not between
+            Debug.DrawRay(transform.position, playerDir); 
             if (Physics.Raycast(transform.position, playerDir, out hit))
             {
                 if (hit.collider.gameObject.TryGetComponent<playerController>(out playerController pc))
@@ -165,8 +164,10 @@ public class BossEnemy : BaseEnemy
 
     void AttackPlayer()
     {
-        // If player gets out of attack range change state back to MovingToPlayer
+        UpdatePlayerPos(); 
+        // If player gets out of attack range change state back to MovingToPlayer 
         distanceToPlayer = Vector3.Distance(transform.position, currentPlayerPos);
+
         if (distanceToPlayer > attackRange)
         {
             // Set all attack bools to false
@@ -178,6 +179,9 @@ public class BossEnemy : BaseEnemy
         }
         else
         {
+            // Turn off running animation
+            anim.SetBool("Run", false);
+
             // Look at the player while attacking
             transform.LookAt(player.transform.position);
 
@@ -196,11 +200,55 @@ public class BossEnemy : BaseEnemy
 
     public void TryDamagePlayer()
     {
-        // Implementation remains the same
+        if (spearDamageScript.GetSpearContactedPlayer())
+        {
+            gameManager.instance.playerScript.playerHealth -= attackDmg;
+            StartCoroutine(gameManager.instance.playerDamageFlash());
+        }
+
+        spearDamageScript.ResetSpearContactedPlayer();
     }
 
     void UpdatePlayerPos()
     {
         currentPlayerPos = player.transform.position;
+    }
+
+    // Stops the enemy from moving & starts his attack animation loop
+    void AttackTower()
+    {
+        if (HasLineOfSight())
+        {
+            ResumeAgentMovement();
+            enemyRB.freezeRotation = false; 
+            ChangeState(EnemyState.MovingToPlayer);
+
+            // Set all attack bools to false
+            foreach (string attackName in attackAnimationNames)
+            {
+                anim.SetBool(attackName, false);
+            }
+
+            // Set running animation to true
+            anim.SetBool("Run", true); 
+        }
+
+        // Turn off running animation
+        anim.SetBool("Run", false);
+
+        // Stops enemy from moving
+        StopAgentMovement();
+        enemyRB.freezeRotation = true;
+
+        // Randomly choose an attack animation
+        int randomIndex = Random.Range(0, attackAnimationNames.Length);
+
+        // Set all attack bools to false so only one animation plays at a time
+        foreach (string attackName in attackAnimationNames)
+        {
+            anim.SetBool(attackName, false);
+        }
+        // Start random attack animation
+        anim.SetBool(attackAnimationNames[randomIndex], true);
     }
 }

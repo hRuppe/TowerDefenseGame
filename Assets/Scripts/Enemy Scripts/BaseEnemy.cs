@@ -130,7 +130,6 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
     // Function for enemy to take damage
     public void takeDamage(int dmg)
     {
-
         HP -= dmg;
 
         UpdateEnemyHealthBar(HP); 
