@@ -36,6 +36,8 @@ public class BossEnemy : BaseEnemy
     {
         base.Update();
 
+        UpdatePlayerPos();
+
         // Controls what each state has the enemy do
         switch (currentState)
         {
@@ -95,6 +97,7 @@ public class BossEnemy : BaseEnemy
         }
         else if (!HasLineOfSight())
         {
+            anim.SetBool("Look Around", true); 
             Debug.Log("lost line of sight"); 
             ChangeState(EnemyState.MovingToLocation);
         }
@@ -102,63 +105,48 @@ public class BossEnemy : BaseEnemy
 
     bool HasLineOfSight()
     {
-        UpdatePlayerPos(); 
+        UpdatePlayerPos();
 
-        Vector3 playerDir = (currentPlayerPos - transform.position);
+        Vector3 playerDir = (currentPlayerPos - transform.position).normalized;
+        Vector3 enemyForward = transform.forward;
+        float dotProduct = Vector3.Dot(playerDir, enemyForward);
+        float angleToPlayer = Mathf.Acos(dotProduct) * Mathf.Rad2Deg;
+
         distanceToPlayer = Vector3.Distance(transform.position, currentPlayerPos);
-        float angleToPlayer = Vector3.Angle(transform.forward, playerDir);
-        RaycastHit hit;
 
-        // Check view distance & sight angle
         if (distanceToPlayer <= viewDistance && angleToPlayer <= sightAngle)
         {
-            // Shoot raycast to make sure objects are not between
-            if (Physics.Raycast(transform.position, playerDir, out hit))
-            {
-                if (hit.collider.gameObject.TryGetComponent<playerController>(out playerController pc))
-                {
-                    return true;
-                }
-            }
+            // Perform raycast check here
+            return true;
         }
+
         return false;
     }
 
     void OnDrawGizmos()
     {
-        Vector3 playerDir = (currentPlayerPos - transform.position);
-        float angleToPlayer = Vector3.Angle(transform.forward, playerDir);
-  
-        RaycastHit hit;
+        // Update player direction
+        Vector3 playerDir = (currentPlayerPos - transform.position).normalized;
+        float angleToPlayer = Mathf.Acos(Vector3.Dot(transform.forward, playerDir)) * Mathf.Rad2Deg;
 
-        // Check view distance & sight angle
+        // Check if player is within view distance and angle
         if (distanceToPlayer <= viewDistance && angleToPlayer <= sightAngle)
         {
-            // Shoot raycast to make sure objects are not between
-            Debug.DrawRay(transform.position, playerDir); 
-            if (Physics.Raycast(transform.position, playerDir, out hit))
-            {
-                if (hit.collider.gameObject.TryGetComponent<playerController>(out playerController pc))
-                {
-                    Gizmos.color = Color.yellow;
-                }
-            }
+            Gizmos.color = Color.yellow; // Player is in sight
         }
         else
         {
-            Gizmos.color = Color.white;
+            Gizmos.color = Color.white; // Player is not in sight
         }
 
-        // Draws 2 rays showing the fov of the enemy
-        Gizmos.DrawRay(transform.position, Quaternion.Euler(0f, -sightAngle / 2f, 0f) * transform.forward * viewDistance);
-        Gizmos.DrawRay(transform.position, Quaternion.Euler(0f, sightAngle / 2f, 0f) * transform.forward * viewDistance);
+        // Draw vision cone
+        float halfSightAngle = sightAngle / 2f;
+        Vector3 leftRayDirection = Quaternion.Euler(0f, -halfSightAngle, 0f) * transform.forward;
+        Vector3 rightRayDirection = Quaternion.Euler(0f, halfSightAngle, 0f) * transform.forward;
 
-        // Draws lines to connect rays together
-        Gizmos.DrawLine(transform.position, transform.position + Quaternion.Euler(0f, -sightAngle / 2f, 0f) * transform.forward * viewDistance);
-        Gizmos.DrawLine(transform.position, transform.position + Quaternion.Euler(0f, sightAngle / 2f, 0f) * transform.forward * viewDistance);
-        Gizmos.DrawLine(transform.position + Quaternion.Euler(0f, -sightAngle / 2f, 0f) * transform.forward * viewDistance,
-                        transform.position + Quaternion.Euler(0f, sightAngle / 2f, 0f) * transform.forward * viewDistance);
-
+        Gizmos.DrawLine(transform.position, transform.position + leftRayDirection * viewDistance);
+        Gizmos.DrawLine(transform.position, transform.position + rightRayDirection * viewDistance);
+        Gizmos.DrawLine(transform.position + leftRayDirection * viewDistance, transform.position + rightRayDirection * viewDistance);
     }
 
 
@@ -179,9 +167,6 @@ public class BossEnemy : BaseEnemy
         }
         else
         {
-            // Turn off running animation
-            anim.SetBool("Run", false);
-
             // Look at the player while attacking
             transform.LookAt(player.transform.position);
 
@@ -218,27 +203,22 @@ public class BossEnemy : BaseEnemy
     void AttackTower()
     {
         if (HasLineOfSight())
-        {
-            ResumeAgentMovement();
-            enemyRB.freezeRotation = false; 
-            ChangeState(EnemyState.MovingToPlayer);
-
+        { 
             // Set all attack bools to false
             foreach (string attackName in attackAnimationNames)
             {
                 anim.SetBool(attackName, false);
             }
 
-            // Set running animation to true
-            anim.SetBool("Run", true); 
-        }
+            ResumeAgentMovement();
+            UnfreezeRBRotation();
 
-        // Turn off running animation
-        anim.SetBool("Run", false);
+            ChangeState(EnemyState.MovingToPlayer);
+        }
 
         // Stops enemy from moving
         StopAgentMovement();
-        enemyRB.freezeRotation = true;
+        FreezeRBRotation(); 
 
         // Randomly choose an attack animation
         int randomIndex = Random.Range(0, attackAnimationNames.Length);
@@ -250,5 +230,15 @@ public class BossEnemy : BaseEnemy
         }
         // Start random attack animation
         anim.SetBool(attackAnimationNames[randomIndex], true);
+    }
+
+    void FreezeRBRotation()
+    {
+        enemyRB.freezeRotation = true; 
+    }
+
+    void UnfreezeRBRotation()
+    {
+        enemyRB.freezeRotation = false; 
     }
 }
