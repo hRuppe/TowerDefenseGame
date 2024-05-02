@@ -13,6 +13,7 @@ TagManager:
   - LevelTwoTurret
   - Bolt
   - Price
+  - PoisonBoxCollider
   layers:
   - Default
   - TransparentFX

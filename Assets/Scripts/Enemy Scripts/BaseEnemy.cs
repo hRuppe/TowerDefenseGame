@@ -159,7 +159,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
 
     public void StopAgentMovement()
     {
-        agent.isStopped = true; 
+        agent.isStopped = true;
     }
 
     public void ResumeAgentMovement()

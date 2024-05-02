@@ -5166,6 +5166,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1.2299262
       objectReference: {fileID: 0}
+    - target: {fileID: 3570315803007112842, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4017450651904249163, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.175
@@ -5226,6 +5230,10 @@ PrefabInstance:
       propertyPath: playerScript
       value: 
       objectReference: {fileID: 1921313448}
+    - target: {fileID: 8474867177488896508, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
+      propertyPath: playerDamageScreen
+      value: 
+      objectReference: {fileID: 1034291170}
     - target: {fileID: 8474867177488896508, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
       propertyPath: turretModels.Array.data[0]
       value: 
@@ -7084,6 +7092,11 @@ Transform:
   m_Father: {fileID: 820558197}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1034291170 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3570315803007112842, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
+  m_PrefabInstance: {fileID: 666305295}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1035394889 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 464912, guid: c2e8a3a68e2bc204b950f65c7c7ecef6, type: 3}

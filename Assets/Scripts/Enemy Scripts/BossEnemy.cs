@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
+using System.Threading;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -10,7 +11,19 @@ public class BossEnemy : BaseEnemy
     GameObject player;
     Vector3 currentPlayerPos;
     SpearDamage spearDamageScript;
-    [Header("---- Player Finding Settings ----")]
+    bool playerInPoisonAOE;
+    float timeSinceLostLOS = 0f;
+
+    [Header("---- Poison Attack Settings ----")]
+    [SerializeField] int poisonDamage;
+    [SerializeField] float poisonRange;
+
+    [Header("---- Poison Attack Components ----")]
+    [SerializeField] ParticleSystem poisonVFX; 
+    [SerializeField] Transform PoisonSpawnPos;
+    [SerializeField] AudioClip poisonSFX; 
+
+    [Header("---- Enemy Sight Settings ----")]
     [SerializeField] float sightAngle = 45f; // Field of view angle
     [SerializeField] float viewDistance = 10f; // Maximum distance for line of sight
 
@@ -34,9 +47,16 @@ public class BossEnemy : BaseEnemy
 
     protected override void Update()
     {
+        // Run all base enemy's update code
         base.Update();
 
+        // Update player posiiton
         UpdatePlayerPos();
+
+        TrackTimeSinceEnemyHasSeenPlayer();
+        
+        // Check if player in poison range
+        CheckIfPlayerIsInPoisonRange();
 
         // Controls what each state has the enemy do
         switch (currentState)
@@ -56,21 +76,36 @@ public class BossEnemy : BaseEnemy
         }
     }
 
+    private void TrackTimeSinceEnemyHasSeenPlayer()
+    {
+        if (HasLineOfSight())
+        {
+            timeSinceLostLOS = 0;
+        }
+        else
+        {
+            timeSinceLostLOS += Time.deltaTime;
+        }
+    }
+
     public void LookForPlayerWhileMovingToLocation()
     {
         // Check if it can see the player first
         if (HasLineOfSight())
         {
-            Debug.Log("has line of sight"); 
+            Debug.Log("has line of sight");
+            inAttackRange = false; 
+            SetAllAttackBoolsFalse();
             ChangeState(EnemyState.MovingToPlayer); 
         }
 
-        // If not already set, sets the destination for the enemy (should only enter this the 1st time it enters MoveToLocation)
+        // If not already set, sets the position for the enemy to run to (should only enter this the 1st time it enters MoveToLocation)
         if (agent.destination != positionToAttack)
         {
             SetPositionToAttack();
-            agent.SetDestination(positionToAttack);
         }
+
+        agent.SetDestination(positionToAttack);
 
         // Check if the current position is within attack range
         if (Vector3.Distance(transform.position, positionToAttack) <= attackRange)
@@ -81,6 +116,7 @@ public class BossEnemy : BaseEnemy
         // Change state if enemy is within location attack range
         if (inAttackRange)
         {
+            inAttackRange = false; 
             ChangeState(EnemyState.AttackingLocation);
         }
     }
@@ -95,9 +131,9 @@ public class BossEnemy : BaseEnemy
         {
             ChangeState(EnemyState.AttackingPlayer);
         }
-        else if (!HasLineOfSight())
+        else if (!HasLineOfSight() && timeSinceLostLOS > 3.5f)
         {
-            anim.SetBool("Look Around", true); 
+            anim.SetTrigger("Look Around"); 
             Debug.Log("lost line of sight"); 
             ChangeState(EnemyState.MovingToLocation);
         }
@@ -107,7 +143,7 @@ public class BossEnemy : BaseEnemy
     {
         UpdatePlayerPos();
 
-        Vector3 playerDir = (currentPlayerPos - transform.position).normalized;
+        Vector3 playerDir = (currentPlayerPos - new Vector3(0, 1.6f, 0) - transform.position).normalized;
         Vector3 enemyForward = transform.forward;
         float dotProduct = Vector3.Dot(playerDir, enemyForward);
         float angleToPlayer = Mathf.Acos(dotProduct) * Mathf.Rad2Deg;
@@ -116,37 +152,32 @@ public class BossEnemy : BaseEnemy
 
         if (distanceToPlayer <= viewDistance && angleToPlayer <= sightAngle)
         {
-            // Perform raycast check here
+            // Layer mask to ignore the enemy's collider
+            int layerMask = ~(1 << gameObject.layer);
+
+            // Adjusts raycast to match enemy eye level
+            Vector3 raycastOrigin = transform.position + Vector3.up * 1.8f;
+
+            // Raycast to check for objects between enemy & player
+            RaycastHit hit;
+
+            Debug.DrawRay(raycastOrigin, playerDir * distanceToPlayer, Color.yellow);
+
+            if (Physics.Raycast(raycastOrigin, playerDir, out hit, viewDistance, layerMask))
+            {
+                // Returns false if raycast hits something other than player
+                if (hit.collider.gameObject != player)
+                {
+                    Debug.Log(hit.collider.gameObject);
+                    return false;
+                }
+            }
+
+            timeSinceLostLOS = 0; 
             return true;
         }
 
         return false;
-    }
-
-    void OnDrawGizmos()
-    {
-        // Update player direction
-        Vector3 playerDir = (currentPlayerPos - transform.position).normalized;
-        float angleToPlayer = Mathf.Acos(Vector3.Dot(transform.forward, playerDir)) * Mathf.Rad2Deg;
-
-        // Check if player is within view distance and angle
-        if (distanceToPlayer <= viewDistance && angleToPlayer <= sightAngle)
-        {
-            Gizmos.color = Color.yellow; // Player is in sight
-        }
-        else
-        {
-            Gizmos.color = Color.white; // Player is not in sight
-        }
-
-        // Draw vision cone
-        float halfSightAngle = sightAngle / 2f;
-        Vector3 leftRayDirection = Quaternion.Euler(0f, -halfSightAngle, 0f) * transform.forward;
-        Vector3 rightRayDirection = Quaternion.Euler(0f, halfSightAngle, 0f) * transform.forward;
-
-        Gizmos.DrawLine(transform.position, transform.position + leftRayDirection * viewDistance);
-        Gizmos.DrawLine(transform.position, transform.position + rightRayDirection * viewDistance);
-        Gizmos.DrawLine(transform.position + leftRayDirection * viewDistance, transform.position + rightRayDirection * viewDistance);
     }
 
 
@@ -159,10 +190,8 @@ public class BossEnemy : BaseEnemy
         if (distanceToPlayer > attackRange)
         {
             // Set all attack bools to false
-            foreach (string attackName in attackAnimationNames)
-            {
-                anim.SetBool(attackName, false);
-            }
+            SetAllAttackBoolsFalse(); 
+
             ChangeState(EnemyState.MovingToPlayer);
         }
         else
@@ -174,10 +203,8 @@ public class BossEnemy : BaseEnemy
             int randomIndex = Random.Range(0, attackAnimationNames.Length);
 
             // Set all attack bools to false so only one animation plays at a time
-            foreach (string attackName in attackAnimationNames)
-            {
-                anim.SetBool(attackName, false);
-            }
+            SetAllAttackBoolsFalse();
+
             // Start random attack animation
             anim.SetBool(attackAnimationNames[randomIndex], true);
         }
@@ -203,43 +230,84 @@ public class BossEnemy : BaseEnemy
     void AttackTower()
     {
         if (HasLineOfSight())
-        { 
-            // Set all attack bools to false
-            foreach (string attackName in attackAnimationNames)
-            {
-                anim.SetBool(attackName, false);
-            }
+        {
+            SetAllAttackBoolsFalse(); 
 
             UnfreezeRBRotation();
-            transform.LookAt(player.transform); 
             ResumeAgentMovement();
             
             ChangeState(EnemyState.MovingToPlayer);
         }
-
-        // Stops enemy from moving
-        StopAgentMovement();
-        FreezeRBRotation(); 
-
-        // Randomly choose an attack animation
-        int randomIndex = Random.Range(0, attackAnimationNames.Length);
-
-        // Set all attack bools to false so only one animation plays at a time
-        foreach (string attackName in attackAnimationNames)
+        else
         {
-            anim.SetBool(attackName, false);
+            // Stops enemy from moving
+            StopAgentMovement();
+            FreezeRBRotation();
+
+            // Randomly choose an attack animation
+            int randomIndex = Random.Range(0, attackAnimationNames.Length);
+
+            // Set all attack bools to false so only one animation plays at a time
+            SetAllAttackBoolsFalse(); 
+
+            // Start random attack animation
+            anim.SetBool(attackAnimationNames[randomIndex], true);
         }
-        // Start random attack animation
-        anim.SetBool(attackAnimationNames[randomIndex], true);
     }
 
     void FreezeRBRotation()
     {
-        enemyRB.freezeRotation = true; 
+        enemyRB.freezeRotation = true;
     }
 
     void UnfreezeRBRotation()
     {
-        enemyRB.freezeRotation = false; 
+        enemyRB.freezeRotation = false;
+    }
+
+    void SetAllAttackBoolsFalse()
+    {
+        // Set all attack bools to false
+        foreach (string attackName in attackAnimationNames)
+        {
+            anim.SetBool(attackName, false);
+        }
+    }
+
+    // Called in kick animation
+    void SpawnPoison()
+    {
+        // Play sfx 
+        weaponAudioSource.PlayOneShot(poisonSFX); 
+
+        // Spawn poison
+        ParticleSystem poisonInstance = Instantiate(poisonVFX, PoisonSpawnPos.position, transform.rotation);
+
+        // Try to damage player
+        TryDamagePlayerInAOE(); 
+
+        // Destroy
+        Destroy(poisonInstance.gameObject, .55f);
+    }
+
+    public void TryDamagePlayerInAOE()
+    {
+        if (playerInPoisonAOE)
+        {
+            gameManager.instance.playerScript.playerHealth -= attackDmg;
+            StartCoroutine(gameManager.instance.playerDamageFlash());
+        }
+    }
+
+    void CheckIfPlayerIsInPoisonRange()
+    {
+        if (distanceToPlayer <= poisonRange)
+        {
+            playerInPoisonAOE = true;
+        }
+        else
+        {
+            playerInPoisonAOE = false;
+        }
     }
 }
