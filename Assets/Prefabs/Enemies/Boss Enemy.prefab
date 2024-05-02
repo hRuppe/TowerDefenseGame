@@ -2496,7 +2496,7 @@ MonoBehaviour:
   minTimeBetweenSounds: 5
   maxTimeBetweenSounds: 15
   sightAngle: 75
-  viewDistance: 20
+  viewDistance: 27
 --- !u!195 &6313502371585292953
 NavMeshAgent:
   m_ObjectHideFlags: 0

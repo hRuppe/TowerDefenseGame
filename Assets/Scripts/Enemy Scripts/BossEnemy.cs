@@ -210,9 +210,10 @@ public class BossEnemy : BaseEnemy
                 anim.SetBool(attackName, false);
             }
 
-            ResumeAgentMovement();
             UnfreezeRBRotation();
-
+            transform.LookAt(player.transform); 
+            ResumeAgentMovement();
+            
             ChangeState(EnemyState.MovingToPlayer);
         }
 
