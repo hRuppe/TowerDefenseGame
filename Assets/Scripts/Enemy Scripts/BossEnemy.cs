@@ -21,7 +21,14 @@ public class BossEnemy : BaseEnemy
     [Header("---- Poison Attack Components ----")]
     [SerializeField] ParticleSystem poisonVFX; 
     [SerializeField] Transform PoisonSpawnPos;
-    [SerializeField] AudioClip poisonSFX; 
+    [SerializeField] AudioClip poisonSFX;
+
+    [Header("---- Battlecry Attack Components ----")]
+    [SerializeField] Transform leftSpawnPos;
+    [SerializeField] Transform rightSpawnPos;
+    [SerializeField] GameObject allyToSpawn;
+    [SerializeField] ParticleSystem spawnVFX;
+    [SerializeField] AudioClip spawnSFX; 
 
     [Header("---- Enemy Sight Settings ----")]
     [SerializeField] float sightAngle = 45f; // Field of view angle
@@ -133,8 +140,19 @@ public class BossEnemy : BaseEnemy
         }
         else if (!HasLineOfSight() && timeSinceLostLOS > 3.5f)
         {
-            anim.SetTrigger("Look Around"); 
-            Debug.Log("lost line of sight"); 
+            Debug.Log("lost line of sight");
+
+            // Random 20% chance that it triggers the battle cry attack instead of look around animation
+            float randomValue = Random.value;
+            if (randomValue < 0.2f)
+            {
+                anim.SetTrigger("BattleCryAttack");
+            }
+            else
+            {
+                anim.SetTrigger("Look Around");
+            }
+
             ChangeState(EnemyState.MovingToLocation);
         }
     }
@@ -168,7 +186,6 @@ public class BossEnemy : BaseEnemy
                 // Returns false if raycast hits something other than player
                 if (hit.collider.gameObject != player)
                 {
-                    Debug.Log(hit.collider.gameObject);
                     return false;
                 }
             }
@@ -206,7 +223,15 @@ public class BossEnemy : BaseEnemy
             SetAllAttackBoolsFalse();
 
             // Start random attack animation
-            anim.SetBool(attackAnimationNames[randomIndex], true);
+            float randomValue = Random.value;
+            if (randomValue < 0.05f)
+            {
+                anim.SetTrigger("BattleCryAttack");
+            }
+            else
+            {
+                anim.SetBool(attackAnimationNames[randomIndex], true);
+            }
         }
     }
 
@@ -309,5 +334,20 @@ public class BossEnemy : BaseEnemy
         {
             playerInPoisonAOE = false;
         }
+    }
+
+    // Called in battlecry animation
+    void BattleCryAttack()
+    {
+        PlayRandomSound();
+
+        audioSource.PlayOneShot(spawnSFX);
+        ParticleSystem leftVFX = Instantiate(spawnVFX, leftSpawnPos.position, transform.rotation);
+        ParticleSystem rightVFX = Instantiate(spawnVFX, rightSpawnPos.position, transform.rotation);
+        Instantiate(allyToSpawn, leftSpawnPos.position, transform.rotation);
+        Instantiate(allyToSpawn, rightSpawnPos.position, transform.rotation);
+
+        Destroy(leftVFX.gameObject, 2); 
+        Destroy(rightVFX.gameObject, 2);
     }
 }
