@@ -1300,10 +1300,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\r\nLeft stick up \r\n\r\nLeft stick Down \r\n\r\nLeft stick left \r\n\r\nLeft
-    stick right \r\n\r\nRight stick \r\n\r\nRight Trigger \r\n\r\nLeft Trigger \r\n\r\nD-pad
-    up/down \r\n\r\nA \r\n\r\nHold A \r\n\r\nA \r\n\r\nStart \r\n\r\nM \r\n\r\nB
-    \r\n\r\nF \r\n\r\n"
+  m_text: "\r\nTBD \r\n\r\nW\n\r\nS\n\r\nA\n\r\nD\n\r\nTBD \r\n\r\nLeft Click\r\n\r\nClick
+    Scroll Wheel \r\n\r\nScroll Wheel\r\n\r\nE \r\n\r\nHold E\r\n\r\nESC\r\n\r\nESC
+    \r\n\r\nM \r\n\r\nM \r\n\r\nTBD"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
