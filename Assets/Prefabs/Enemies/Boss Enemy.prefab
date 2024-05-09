@@ -2587,15 +2587,18 @@ MonoBehaviour:
   thudSFX: {fileID: 8300000, guid: d0468a619a5406b4c9428ca916cf8651, type: 3}
   HP: 25
   speed: 5.5
-  attackDmg: 20
+  attackDmg: 8
   attackRange: 4.5
   minTimeBetweenSounds: 5
   maxTimeBetweenSounds: 15
+  swingAttackDamage: 5
+  swingAttackSFX: {fileID: 8300000, guid: b5a205fa731d7aa47b39a3892c1ed0cd, type: 3}
   poisonDamage: 20
   poisonRange: 4.5
   poisonVFX: {fileID: 198000011254678926, guid: abb9f519b142e304d9c45b56afa768bc, type: 3}
   PoisonSpawnPos: {fileID: 5576799935784906026}
   poisonSFX: {fileID: 8300000, guid: 968819eb60608204db350cabab3ceef8, type: 3}
+  timeBeforeAnotherBattleCryAttack: 15
   leftSpawnPos: {fileID: 4474654727301757194}
   rightSpawnPos: {fileID: 1572301972990121033}
   allyToSpawn: {fileID: 7574823120900204354, guid: a592bf05e51418341a296a1cace16b9c, type: 3}

@@ -13,15 +13,25 @@ public class BossEnemy : BaseEnemy
     SpearDamage spearDamageScript;
     bool playerInPoisonAOE;
     float timeSinceLostLOS = 0f;
+    float timeSinceLastBattleCryAttack = 0f;
+
+    [Header("---- Basic Swing Attack Settings ----")]
+    [SerializeField] int swingAttackDamage = 5;
+
+    [Header("---- Basic Swing Attack Components ----")]
+    [SerializeField] AudioClip swingAttackSFX; 
 
     [Header("---- Poison Attack Settings ----")]
-    [SerializeField] int poisonDamage;
+    [SerializeField] int poisonDamage = 10;
     [SerializeField] float poisonRange;
 
     [Header("---- Poison Attack Components ----")]
     [SerializeField] ParticleSystem poisonVFX; 
     [SerializeField] Transform PoisonSpawnPos;
     [SerializeField] AudioClip poisonSFX;
+
+    [Header("---- Battlecry Attack Settings ----")]
+    [SerializeField] float timeBeforeAnotherBattleCryAttack = 15f; 
 
     [Header("---- Battlecry Attack Components ----")]
     [SerializeField] Transform leftSpawnPos;
@@ -59,8 +69,12 @@ public class BossEnemy : BaseEnemy
 
         // Update player posiiton
         UpdatePlayerPos();
-
+        
+        // Track no line of sight time
         TrackTimeSinceEnemyHasSeenPlayer();
+
+        // Track time since last used the battlecry attack 
+        timeSinceLastBattleCryAttack += Time.deltaTime;
         
         // Check if player in poison range
         CheckIfPlayerIsInPoisonRange();
@@ -142,11 +156,13 @@ public class BossEnemy : BaseEnemy
         {
             Debug.Log("lost line of sight");
 
-            // Random 20% chance that it triggers the battle cry attack instead of look around animation
             float randomValue = Random.value;
-            if (randomValue < 0.2f)
+            
+            // 20% chance that it triggers the battle cry attack instead of look around animation
+            if (randomValue < 0.2f && timeSinceLastBattleCryAttack > timeBeforeAnotherBattleCryAttack)
             {
-                anim.SetTrigger("BattleCryAttack");
+                anim.SetBool("BattleCryAttack", true);
+                timeSinceLastBattleCryAttack = 0f;
             }
             else
             {
@@ -224,9 +240,12 @@ public class BossEnemy : BaseEnemy
 
             // Start random attack animation
             float randomValue = Random.value;
-            if (randomValue < 0.05f)
+
+            // 15% chance for battle cry attack to happen
+            if (randomValue < 0.15f && timeSinceLastBattleCryAttack > timeBeforeAnotherBattleCryAttack)
             {
-                anim.SetTrigger("BattleCryAttack");
+                anim.SetBool("BattleCryAttack", true);
+                timeSinceLastBattleCryAttack = 0f;
             }
             else
             {
@@ -239,7 +258,7 @@ public class BossEnemy : BaseEnemy
     {
         if (spearDamageScript.GetSpearContactedPlayer())
         {
-            gameManager.instance.playerScript.playerHealth -= attackDmg;
+            gameManager.instance.playerScript.playerHealth -= swingAttackDamage;
             StartCoroutine(gameManager.instance.playerDamageFlash());
         }
 
@@ -297,6 +316,8 @@ public class BossEnemy : BaseEnemy
         {
             anim.SetBool(attackName, false);
         }
+
+        anim.SetBool("BattleCryAttack", false);
     }
 
     // Called in kick animation
@@ -324,6 +345,7 @@ public class BossEnemy : BaseEnemy
         }
     }
 
+
     void CheckIfPlayerIsInPoisonRange()
     {
         if (distanceToPlayer <= poisonRange)
@@ -350,4 +372,18 @@ public class BossEnemy : BaseEnemy
         Destroy(leftVFX.gameObject, 2); 
         Destroy(rightVFX.gameObject, 2);
     }
+
+    public void PlaySwingSFX()
+    {
+        audioSource.PlayOneShot(swingAttackSFX);
+    }
+
+    public void TryDamageLocation()
+    {
+        if (currentState == EnemyState.AttackingLocation)
+        {
+            DamageLocation(); 
+        }
+    }
+
 }

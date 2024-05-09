@@ -51,7 +51,8 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
     protected AudioSource audioSource;
     protected AudioSource weaponAudioSource; 
     protected float nextSoundTime;
-    float upwardForceMagnitude = 6f; 
+    float upwardForceMagnitude = 6f;
+    float origSpeed; 
 
     int expGained = 11;
 
@@ -159,12 +160,12 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
 
     public void StopAgentMovement()
     {
-        agent.isStopped = true;
+        agent.isStopped = true; 
     }
 
     public void ResumeAgentMovement()
     {
-        agent.isStopped = false;
+        agent.isStopped = false; 
     }
 
     public void UpdateEnemyHealthBar(float currentHealth)
