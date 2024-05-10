@@ -83,9 +83,7 @@
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Components\BloomComponent.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\ScreenOverlay.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\BlurOptimized.cs" />
-    <Compile Include="Assets\Scripts\Menu Scripts\WinMenuButtons.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\Scripts\FPSController\CharController_Motor.cs" />
-    <Compile Include="Assets\Scripts\Menu Scripts\PauseMenu.cs" />
     <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Ramps\Runtime\RampAsset.cs" />
     <Compile Include="Assets\Scripts\Items Scripts\BoltPickUp.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\BloomOptimized.cs" />
@@ -97,14 +95,12 @@
     <Compile Include="Assets\Scripts\Weapon Scrips\gunPickup.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\ColorCorrectionLookup.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\Twirl.cs" />
-    <Compile Include="Assets\Scripts\Menu Scripts\SettingsMenu.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\Quads.cs" />
     <Compile Include="Assets\Scene Teleportation Kit\Scripts\teleport\Teleporter.cs" />
     <Compile Include="Assets\Scripts\cameraController.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\Scripts\DisableRenderer.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Components\ColorGradingComponent.cs" />
     <Compile Include="Assets\Scene Teleportation Kit\Scripts\player\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\LoseMenu.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\TiltShift.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Models\BloomModel.cs" />
     <Compile Include="Assets\ProgressBar\Script\ProgressBarCircle.cs" />
@@ -140,7 +136,6 @@
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Components\TaaComponent.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Models\VignetteModel.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Models\GrainModel.cs" />
-    <Compile Include="Assets\Scripts\WinMenu.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\PostProcessingModel.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\CameraMotionBlur.cs" />
     <Compile Include="Assets\Scripts\Enemy Scripts\EnemySpawner.cs" />
@@ -166,15 +161,12 @@
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\Antialiasing.cs" />
     <Compile Include="Assets\Scene Teleportation Kit\Scripts\teleport\PortTrigger.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\ScreenSpaceAmbientOcclusion.cs" />
-    <Compile Include="Assets\Scripts\Menu Scripts\ExitButton.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Models\AmbientOcclusionModel.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\Vortex.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
     <Compile Include="Assets\ProgressBar\Script\ProgressBar.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Models\BuiltinDebugViewsModel.cs" />
-    <Compile Include="Assets\Scripts\Menu Scripts\KeyBindingMenu.cs" />
     <Compile Include="Assets\Scripts\playerController.cs" />
-    <Compile Include="Assets\Scripts\Menu Scripts\LoseMenuButtons.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\ContrastStretch.cs" />
     <Compile Include="Assets\Scripts\Enemy Scripts\BaseEnemy.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Components\EyeAdaptationComponent.cs" />
@@ -198,6 +190,14 @@
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Models\AntialiasingModel.cs" />
     <Compile Include="Assets\Scripts\Economy\EconemyScript.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Models\DitheringModel.cs" />
+    <Compile Include="Assets\Scripts\Menu Scripts\KeyBindingMenu.cs" />
+    <Compile Include="Assets\Scripts\Menu Scripts\LoseMenuButtons.cs" />
+    <Compile Include="Assets\Scripts\Menu Scripts\SettingsMenu.cs" />
+    <Compile Include="Assets\Scripts\Menu Scripts\WinMenu.cs" />
+    <Compile Include="Assets\Scripts\Menu Scripts\ExitButton.cs" />
+    <Compile Include="Assets\Scripts\LoseMenu.cs" />
+    <Compile Include="Assets\Scripts\Menu Scripts\WinMenuButtons.cs" />
+    <Compile Include="Assets\Scripts\Menu Scripts\PauseMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\Tonemapper.shader" />

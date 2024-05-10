@@ -1300,7 +1300,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\r\nTBD \r\n\r\nW\n\r\nS\n\r\nA\n\r\nD\n\r\nTBD \r\n\r\nLeft Click\r\n\r\nClick
+  m_text: "\r\nR\n\r\nW\n\r\nS\n\r\nA\n\r\nD\n\r\nMouse\r\n\r\nLeft Click\r\n\r\nClick
     Scroll Wheel \r\n\r\nScroll Wheel\r\n\r\nE \r\n\r\nHold E\r\n\r\nESC\r\n\r\nESC
     \r\n\r\nM \r\n\r\nM \r\n\r\nTBD"
   m_isRightToLeft: 0
