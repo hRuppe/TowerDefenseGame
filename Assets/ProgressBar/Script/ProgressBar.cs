@@ -52,7 +52,7 @@ public class ProgressBar : MonoBehaviour
     {
         bar = transform.Find("Bar").GetComponent<Image>();
         barBackground = GetComponent<Image>();
-        txtTitle = transform.Find("Text").GetComponent<Text>();
+        //txtTitle = transform.Find("Text").GetComponent<Text>();
         barBackground = transform.Find("BarBackground").GetComponent<Image>();
         audiosource = GetComponent<AudioSource>();
     }
@@ -76,7 +76,7 @@ public class ProgressBar : MonoBehaviour
     void UpdateValue(float val)
     {
         bar.fillAmount = val / 100;
-        txtTitle.text = Title + " " + val + "%";
+        //txtTitle.text = Title + " " + val + "%";
 
         if (Alert >= val)
         {
@@ -109,7 +109,7 @@ public class ProgressBar : MonoBehaviour
             if (Alert >= barValue && Time.time > nextPlay)
             {
                 nextPlay = Time.time + RepeatRate;
-                //audiosource.PlayOneShot(sound);
+                audiosource.PlayOneShot(sound);
             }
         }
     }

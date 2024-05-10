@@ -65,7 +65,7 @@
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\SunShafts.cs" />
     <Compile Include="Assets\Scripts\ItemShopMenu.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\PostEffectsHelper.cs" />
-    <Compile Include="Assets\Scripts\mainMenu.cs" />
+    <Compile Include="Assets\Scripts\Menu Scripts\mainMenu.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Utils\MaterialFactory.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Components\ScreenSpaceReflectionComponent.cs" />
     <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Scripts\ProximityActivate.cs" />
@@ -191,6 +191,14 @@
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Models\AntialiasingModel.cs" />
     <Compile Include="Assets\Scripts\Economy\EconemyScript.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Models\DitheringModel.cs" />
+    <Compile Include="Assets\Scripts\Menu Scripts\KeyBindingMenu.cs" />
+    <Compile Include="Assets\Scripts\Menu Scripts\LoseMenuButtons.cs" />
+    <Compile Include="Assets\Scripts\Menu Scripts\SettingsMenu.cs" />
+    <Compile Include="Assets\Scripts\Menu Scripts\WinMenu.cs" />
+    <Compile Include="Assets\Scripts\Menu Scripts\ExitButton.cs" />
+    <Compile Include="Assets\Scripts\LoseMenu.cs" />
+    <Compile Include="Assets\Scripts\Menu Scripts\WinMenuButtons.cs" />
+    <Compile Include="Assets\Scripts\Menu Scripts\PauseMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\Tonemapper.shader" />

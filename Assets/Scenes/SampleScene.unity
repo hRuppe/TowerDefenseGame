@@ -859,7 +859,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5f32516f7bc4b04cb958ad0ac34a53e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemStats: {fileID: 11400000, guid: 1d3d3f9c07b9bd940940087442ddb5f5, type: 2}
 --- !u!4 &546865826
 Transform:
   m_ObjectHideFlags: 0
@@ -2764,17 +2763,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 472700, guid: d638ef2ca2fe20c4c9c08e125692d3f4, type: 3}
   m_PrefabInstance: {fileID: 344592329}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1482266561 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114769782856897659, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
-  m_PrefabInstance: {fileID: 1998233619}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 149d864443ddca94ba93b092e7acd5ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1508741639 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 6eda8701cab57474bb48b82c4d94944d, type: 3}
@@ -3566,6 +3554,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 393b236c42954a640b513d46de90ac38, type: 3}
+--- !u!114 &1794417545 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114769782440863781, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
+  m_PrefabInstance: {fileID: 1998233619}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 149d864443ddca94ba93b092e7acd5ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1798918363 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 472700, guid: d638ef2ca2fe20c4c9c08e125692d3f4, type: 3}
@@ -4425,10 +4424,10 @@ PrefabInstance:
     - target: {fileID: 5742944913479443913, guid: 1cc0703c40a320c41b868ba38de9f0d2, type: 3}
       propertyPath: Pb
       value: 
-      objectReference: {fileID: 1482266561}
+      objectReference: {fileID: 1794417545}
     - target: {fileID: 5742944913479443913, guid: 1cc0703c40a320c41b868ba38de9f0d2, type: 3}
       propertyPath: playerExpPoints
-      value: 50
+      value: 115
       objectReference: {fileID: 0}
     - target: {fileID: 5742944913479443918, guid: 1cc0703c40a320c41b868ba38de9f0d2, type: 3}
       propertyPath: m_RootOrder

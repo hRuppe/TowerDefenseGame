@@ -119,6 +119,7 @@ public class gameManager : MonoBehaviour
             }
         }
 
+      
         // Checks to see if player has hit required defensive score to progress
         CheckDefensiveScore(); 
         turretButtons();
@@ -193,14 +194,14 @@ public class gameManager : MonoBehaviour
 
     public void pause()
     {
-        Time.timeScale = 0;
+        Time.timeScale = 0f;
 
         Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.None;
     }
     public void unPause()
     {
-        Time.timeScale = 1;
+        Time.timeScale = 1f;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -213,14 +214,16 @@ public class gameManager : MonoBehaviour
 
     public void youWin()
     {
+        Cursor.visible = true;
         winMenu.SetActive(true);
-        isPaused = true;
+        
     }
 
     public void YouLose()
     {
+        pause();
+        Cursor.visible = true;
         loseMenu.SetActive(true);
-        isPaused = true;
     }
 
     public void updateEnemyNumber()
