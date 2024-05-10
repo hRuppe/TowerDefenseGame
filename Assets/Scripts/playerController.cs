@@ -7,7 +7,7 @@ using UnityEngine;
 public class playerController : MonoBehaviour
 {
     [Header("---- Componets ----")]
-    [SerializeField] CharacterController controller;
+    public CharacterController controller;
 
 
     [Header("---- Player Stats ----")]
@@ -26,6 +26,12 @@ public class playerController : MonoBehaviour
     public int playerExpPoints = 0;
     public int playerBolts;
 
+    [Header("---- Tutorial Stats ----")]
+    [SerializeField] bool hasMoved;
+    public bool hasOpenedNote;
+    public bool hasPickedUpBolt;
+
+
     [Header("---- Weapon Stats ----")]
     [SerializeField] float shootRate;
     [SerializeField] int shootDist;
@@ -39,10 +45,12 @@ public class playerController : MonoBehaviour
     [Header("---- SFX ----")]
     [SerializeField] AudioSource sprintAudioSource;
     [SerializeField] AudioSource jumpAudioSource;
+    [SerializeField] AudioSource dashAudioSource;
+    [SerializeField] AudioSource gunAudioSource;
     [SerializeField] AudioClip[] jumpClips; 
 
-    AudioSource walkingAudioSource; 
-    private Vector3 playerVelocity;
+    AudioSource walkingAudioSource;
+    [HideInInspector] Vector3 playerVelocity;
     int jumpTimes;
     Vector3 moveDir;
     bool isSprinting = false;
@@ -53,7 +61,7 @@ public class playerController : MonoBehaviour
     //float counter = 0;
     //int HPorignal;
     int selectedGun;
-    int expPtsToLvl = 100; 
+    int expPtsToLvl = 100;
 
     private void Start()
     {
@@ -62,6 +70,14 @@ public class playerController : MonoBehaviour
 
         // Initialize player audio source
         walkingAudioSource = GetComponent<AudioSource>();
+
+        if(!hasMoved)
+        {
+            gameManager.instance.tutorialUI.text = "Use W,A,S,D to move";
+            gameManager.instance.tutorialUI.gameObject.SetActive(true);
+            Time.timeScale = 0f;
+            
+        }
     }
 
     // Called once per frame
@@ -78,6 +94,18 @@ public class playerController : MonoBehaviour
         placeTurret();
         UpdateProgressBar();
         /* AimDownSights();*/
+        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D)) && hasMoved == false)
+        {
+            hasMoved = true;
+            gameManager.instance.isPaused = false;
+            gameManager.instance.tutorialUI.gameObject.SetActive(false);
+        }
+        if(Input.GetButtonDown("Menu") && !hasPickedUpBolt)
+        {
+            hasPickedUpBolt = true;
+            gameManager.instance.tutorialUI.gameObject.SetActive(false);
+            gameManager.instance.isPaused = false;
+        }
     }
 
     // Player movement logic
@@ -88,9 +116,9 @@ public class playerController : MonoBehaviour
             jumpTimes = 0;
             playerVelocity.y = 0f;
         }
-
+        
         moveDir = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
-        controller.Move(moveDir * Time.deltaTime * playerSpeed);                
+        controller.Move(moveDir * Time.deltaTime * playerSpeed);        
 
         if (Input.GetButtonDown("Jump") && jumpTimes < jumpCount)
         {
@@ -155,6 +183,7 @@ public class playerController : MonoBehaviour
             {
                 if (!isDashing)
                 {
+                    dashAudioSource.Play(); 
                     playerSpeed = 20;
                     playerVelocity.y = 0;
                     gravityValue = 0f;
@@ -200,6 +229,7 @@ public class playerController : MonoBehaviour
         shootDist = gunStat.shootDist;
         shootDmg = gunStat.shootDmg;
         hitEffect = gunStat.hitEffect;
+        gunAudioSource.clip = gunStat.gunSound; 
 
         // Stores the gun in the players inventory and stores the gun stats in the gunList
         gunList.Add(gunStat);
@@ -221,6 +251,7 @@ public class playerController : MonoBehaviour
         if (gunList.Count > 0 && isShooting == false && Input.GetButton("Shoot"))
         {
             isShooting = true;
+            gunAudioSource.Play();
 
             // Get the direction the player is aiming
             Vector3 shootingDirection = GetAimingDirection();

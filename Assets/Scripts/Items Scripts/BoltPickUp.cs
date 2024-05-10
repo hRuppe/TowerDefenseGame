@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BoltPickUp : MonoBehaviour
@@ -13,6 +14,13 @@ public class BoltPickUp : MonoBehaviour
         if (other.CompareTag("Player") && tag == "Bolt")
         {
             gameManager.instance.playerScript.playerBolts += this.GetComponent<ItemPickup>().itemStats.boltCurrency;
+
+            if(gameManager.instance.playerScript.hasPickedUpBolt == false)
+            {
+                gameManager.instance.tutorialUI.text = "This is a bolt! You can use these to buy and upgrade turrets! Press B to open the Buy menu!";
+                gameManager.instance.tutorialUI.gameObject.SetActive(true);
+                Time.timeScale = 0f;
+            }
             Destroy(gameObject);
         }
     }
