@@ -16,8 +16,11 @@ public class TurretBehavior : MonoBehaviour
     [SerializeField] Transform firePoint;
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] Transform turretGun;
+    [SerializeField] AudioSource shootingAudioSource;
+    [SerializeField] AudioClip turretSound;
     public List<Transform> enemyList = new List<Transform>();
     private Vector3 direction;
+    bool firing;
 
     Transform enemy;
 
@@ -29,12 +32,16 @@ public class TurretBehavior : MonoBehaviour
 
     void Update()
     {
-        if (enemyList.Count != 0 && enemyList[0].IsDestroyed())
+        if (enemyList[0].IsDestroyed())
         {
             enemyList.RemoveAt(0);
             if (enemyList.Count > 0)
             {
                 enemy = enemyList[0];
+            }
+            else if(enemyList.Count == 0)
+            {
+                firing = false;
             }
         }
 
@@ -52,12 +59,15 @@ public class TurretBehavior : MonoBehaviour
 
     IEnumerator Fire()
     {
-        while (enemy != null)
+        while (enemy != null && !firing)
         {
+            firing = true;
             yield return new WaitForSeconds(shootRate);
+            firing = false;
             // Instantiate bullet prefab at firePoint position and rotation
             bulletPrefab.GetComponent<BulletDamage>().shootDirection = direction;
             Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            shootingSound();
         }
     }
 
@@ -71,6 +81,10 @@ public class TurretBehavior : MonoBehaviour
         }
 
         Debug.Log(other.gameObject);
+    }
+    void shootingSound()
+    {
+        shootingAudioSource.PlayOneShot(turretSound);
     }
 
     void OnTriggerExit(Collider other)
