@@ -40,7 +40,8 @@ public class gameManager : MonoBehaviour
     public TMP_Text noteText;
     public TMP_Text readNotePrompt;
     public TMP_Text upgradeTurretPrompt;
-    public TMP_Text playerNameUI; 
+    public TMP_Text playerNameUI;
+    public TMP_Text tutorialUI;
 
     public TextMeshProUGUI enemiesLeft;
     public TextMeshProUGUI currency;
@@ -100,7 +101,7 @@ public class gameManager : MonoBehaviour
         {
             pause();
         }
-        else if (!isPaused && !shopMenu.activeSelf)
+        else if (!isPaused && !shopMenu.activeSelf && !tutorialUI.isActiveAndEnabled)
         {
             unPause();
         }

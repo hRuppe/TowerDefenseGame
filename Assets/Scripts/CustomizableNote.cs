@@ -27,6 +27,9 @@ public class CustomizableNote : MonoBehaviour
     {
         if (Input.GetButtonDown("Read Note") && !noteOpen && inNoteRange)
         {
+            gameManager.instance.playerScript.hasOpenedNote = true;
+            gameManager.instance.tutorialUI.gameObject.SetActive(false);
+            gameManager.instance.isPaused = false;
             OpenNote();
         }
         if (Input.GetButton("Close Note") && noteOpen && inNoteRange)
@@ -38,6 +41,13 @@ public class CustomizableNote : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         gameManager.instance.noteText.text = noteText;
+
+        if(gameManager.instance.playerScript.hasOpenedNote == false)
+        {
+            gameManager.instance.tutorialUI.text = "Oh look a note! Open it to see what it says!";
+            gameManager.instance.tutorialUI.gameObject.SetActive(true);
+            Time.timeScale = 0f;
+        }
 
         if (other.CompareTag("Player"))
         {

@@ -856,6 +856,7 @@ MonoBehaviour:
   itemsToDrop:
   - {fileID: 4283809602498014686, guid: 56f4efb03ee63bf4c83fa1a4e475b063, type: 3}
   numOfItemsToDrop: 1
+  itemSpawnPoint: {fileID: 7177640687107897000}
   enemySFX:
   - {fileID: 8300000, guid: 4ae27fb2c4afcf64ca0f708579a903f1, type: 3}
   - {fileID: 8300000, guid: ba4b87556ea6a9442864b4adbc976372, type: 3}
@@ -2065,6 +2066,7 @@ Transform:
   - {fileID: 1917488595809941597}
   - {fileID: 7108899237152329922}
   - {fileID: 1125833560554221848}
+  - {fileID: 7033195866323454331}
   m_Father: {fileID: 3954733520205740552}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 20.187063, y: 15.516594, z: 0.5675324}
@@ -2539,6 +2541,37 @@ Transform:
   m_Father: {fileID: 1125833560554221848}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 1.2034621, y: -8.559776, z: -15.308202}
+--- !u!1 &7177640687107897000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7033195866323454331}
+  m_Layer: 6
+  m_Name: itemSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7033195866323454331
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7177640687107897000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6019000773137952060}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7206959912290099243
 GameObject:
   m_ObjectHideFlags: 0

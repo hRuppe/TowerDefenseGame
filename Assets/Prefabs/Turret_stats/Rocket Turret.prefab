@@ -338,6 +338,7 @@ MonoBehaviour:
   defensivePoints: 4
   firePoint: {fileID: 2851182885494590284}
   bulletPrefab: {fileID: 4944232645063333771, guid: 56f894f44fdf54e4da6807e7f453878d, type: 3}
+  turretGun: {fileID: 7973285793466273728}
 --- !u!82 &4867583460939306119
 AudioSource:
   m_ObjectHideFlags: 0

@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro.EditorUtilities;
-using UnityEditor.UIElements;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
@@ -16,7 +14,8 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
     [SerializeField] protected Animator anim;
     [SerializeField] protected Slider healthBar;
     [SerializeField] protected GameObject[] itemsToDrop;
-    [SerializeField] protected int numOfItemsToDrop; 
+    [SerializeField] protected int numOfItemsToDrop;
+    [SerializeField] GameObject itemSpawnPoint;
 
     [Header("---- Audio Components ----")]
     [SerializeField] protected AudioClip[] enemySFX;
@@ -67,10 +66,6 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
 
     protected virtual void Start()
     {
-        // Add to enemy count & update UI
-        gameManager.instance.enemiesToKill++;
-        gameManager.instance.updateUI();
-
         // Looks for location the enemy will attack (based on tag) & assigns variable if it's found
         if (GameObject.FindWithTag("Location To Defend") != null)
         {
@@ -252,34 +247,34 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
             {
                 int randIndex = Random.Range(0, itemsToDrop.Length);
                 randDrop = itemsToDrop[randIndex];
-                GameObject droppedItem = Instantiate(randDrop, gameObject.transform.position, gameObject.transform.rotation);
+                GameObject droppedItem = Instantiate(randDrop, itemSpawnPoint.transform.position, itemSpawnPoint.transform.rotation);
 
                 // Get rigidbody of dropped item
                 Rigidbody rb = droppedItem.GetComponent<Rigidbody>();
 
-                // Apply force to rigidbody
-                if (rb != null)
-                {
-                    Vector3 upwardForce = Vector3.up * upwardForceMagnitude;
+                //// Apply force to rigidbody
+                //if (rb != null)
+                //{
+                //    Vector3 upwardForce = Vector3.up * upwardForceMagnitude;
 
-                    rb.AddForce(upwardForce, ForceMode.Impulse);
-                }
+                //    rb.AddForce(upwardForce, ForceMode.Impulse);
+                //}
 
             }
             else
             {
-                GameObject droppedItem = Instantiate(itemsToDrop[0], gameObject.transform.position, gameObject.transform.rotation);
+                GameObject droppedItem = Instantiate(itemsToDrop[0], itemSpawnPoint.transform.position, itemSpawnPoint.transform.rotation);
 
                 // Get rigidbody of dropped item
                 Rigidbody rb = droppedItem.GetComponent<Rigidbody>();
 
                 // Apply force to rigidbody
-                if (rb != null)
-                {
-                    Vector3 upwardForce = Vector3.up * upwardForceMagnitude;
+                //if (rb != null)
+                //{
+                //    Vector3 upwardForce = Vector3.up * upwardForceMagnitude;
 
-                    rb.AddForce(upwardForce, ForceMode.Impulse);
-                }
+                //    rb.AddForce(upwardForce, ForceMode.Impulse);
+                //}
             }
         }
     }
