@@ -45,7 +45,9 @@ public class playerController : MonoBehaviour
     [Header("---- SFX ----")]
     [SerializeField] AudioSource sprintAudioSource;
     [SerializeField] AudioSource jumpAudioSource;
-    [SerializeField] AudioClip[] jumpClips;
+    [SerializeField] AudioSource dashAudioSource;
+    [SerializeField] AudioSource gunAudioSource;
+    [SerializeField] AudioClip[] jumpClips; 
 
     AudioSource walkingAudioSource;
     [HideInInspector] Vector3 playerVelocity;
@@ -91,7 +93,6 @@ public class playerController : MonoBehaviour
         shop();
         placeTurret();
         UpdateProgressBar();
-        GainExperience(playerExpPoints);
         /* AimDownSights();*/
         if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D)) && hasMoved == false)
         {
@@ -182,6 +183,7 @@ public class playerController : MonoBehaviour
             {
                 if (!isDashing)
                 {
+                    dashAudioSource.Play(); 
                     playerSpeed = 20;
                     playerVelocity.y = 0;
                     gravityValue = 0f;
@@ -227,6 +229,7 @@ public class playerController : MonoBehaviour
         shootDist = gunStat.shootDist;
         shootDmg = gunStat.shootDmg;
         hitEffect = gunStat.hitEffect;
+        gunAudioSource.clip = gunStat.gunSound; 
 
         // Stores the gun in the players inventory and stores the gun stats in the gunList
         gunList.Add(gunStat);
@@ -248,6 +251,7 @@ public class playerController : MonoBehaviour
         if (gunList.Count > 0 && isShooting == false && Input.GetButton("Shoot"))
         {
             isShooting = true;
+            gunAudioSource.Play();
 
             // Get the direction the player is aiming
             Vector3 shootingDirection = GetAimingDirection();
@@ -463,23 +467,26 @@ public class playerController : MonoBehaviour
 
     public void GainExperience(int amount)
     {
+        // Add the received experience points
         playerExpPoints += amount;
 
-        // Ensure that the player's experience points are positive
-        playerExpPoints = Mathf.Max(playerExpPoints, 0);
-
-        // Calculate how many times the player has reached or exceeded 100 experience points
-        int levelUps = playerExpPoints / 100;
-
-        // Level up the player for each multiple of 100 experience points
-        for (int i = 0; i < levelUps; i++)
+        // Check if the player has enough experience points to level up
+        if (playerExpPoints >= expPtsToLvl)
         {
-            LevelUp();
-        }
+            // Calculate how many times the player has reached or exceeded 100 experience points
+            int levelUps = playerExpPoints / expPtsToLvl;
 
-        // Update the remaining experience points after leveling up
-        playerExpPoints %= 100;
+            // Level up the player for each multiple of 100 experience points
+            for (int i = 0; i < levelUps; i++)
+            {
+                LevelUp();
+            }
+
+            // Update the remaining experience points after leveling up
+            playerExpPoints %= expPtsToLvl;
+        }
     }
+
 
     private void LevelUp()
     {

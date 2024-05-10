@@ -51,7 +51,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
     protected AudioSource weaponAudioSource; 
     protected float nextSoundTime;
     float upwardForceMagnitude = 6f;
-    
+    float origSpeed; 
 
     int expGained = 11;
 
@@ -100,6 +100,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
 
     protected virtual void Update()
     {
+        // Keeps health bar facing player at all times
         healthBar.transform.LookAt(gameManager.instance.player.transform);
 
         // Check if it's time to play another sound & play it, then get another sound time
@@ -125,7 +126,6 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
     // Function for enemy to take damage
     public void takeDamage(int dmg)
     {
-
         HP -= dmg;
 
         UpdateEnemyHealthBar(HP); 
@@ -160,7 +160,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
 
     public void ResumeAgentMovement()
     {
-        agent.isStopped = false;
+        agent.isStopped = false; 
     }
 
     public void UpdateEnemyHealthBar(float currentHealth)
@@ -276,6 +276,26 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
                 //    rb.AddForce(upwardForce, ForceMode.Impulse);
                 //}
             }
+        }
+    }
+
+    
+
+    // Sets positionToAttack variable to random point within the attacking location
+    public void SetPositionToAttack()
+    {
+        BoxCollider collider = locationCollider.GetComponent<BoxCollider>();
+
+        Vector3 localMin = collider.center - collider.size / 2;
+        Vector3 localMax = collider.center + collider.size / 2;
+
+        while (!locationCollider.bounds.Contains(positionToAttack))
+        {
+            float randomX = Random.Range(localMin.x, localMax.x);
+            float randomY = Random.Range(localMin.y, localMax.y);
+            float randomZ = Random.Range(localMin.z, localMax.z);
+
+            positionToAttack = locationCollider.transform.TransformPoint(new Vector3(randomX, randomY, randomZ));
         }
     }
 }

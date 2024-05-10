@@ -31,7 +31,7 @@ public class TowerAttackingEnemy : BaseEnemy
         }
     }
 
-    void MoveToLocation()
+    public void MoveToLocation()
     {
         // If not already set, sets the destination for the enemy (should only enter this the 1st time it enters MoveToLocation)
         if (agent.destination != positionToAttack)
@@ -50,24 +50,6 @@ public class TowerAttackingEnemy : BaseEnemy
         if (inAttackRange)
         {
             ChangeState(EnemyState.AttackingLocation);
-        }
-    }
-
-    // Sets positionToAttack variable to random point within the attacking location
-    public void SetPositionToAttack()
-    {
-        BoxCollider collider = locationCollider.GetComponent<BoxCollider>();
-
-        Vector3 localMin = collider.center - collider.size / 2;
-        Vector3 localMax = collider.center + collider.size / 2;
-
-        while (!locationCollider.bounds.Contains(positionToAttack))
-        {
-            float randomX = Random.Range(localMin.x, localMax.x);
-            float randomY = Random.Range(localMin.y, localMax.y);
-            float randomZ = Random.Range(localMin.z, localMax.z);
-
-            positionToAttack = locationCollider.transform.TransformPoint(new Vector3(randomX, randomY, randomZ));
         }
     }
 
