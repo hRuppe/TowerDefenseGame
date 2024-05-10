@@ -59,7 +59,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 4944232645063333771, guid: 56f894f44fdf54e4da6807e7f453878d, type: 3}
   turretGun: {fileID: 8862044970487937287}
   shootingAudioSource: {fileID: 6533742209715695596}
-  turretSound: {fileID: 8300000, guid: fecc3e7a0166a104cb810435f6fdf37b, type: 3}
+  turretSound: {fileID: 8300000, guid: bd67058a6079faf40b2dbfb35ea160b1, type: 3}
   enemyList: []
 --- !u!33 &8829102946202257469
 MeshFilter:
@@ -156,7 +156,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.035
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0

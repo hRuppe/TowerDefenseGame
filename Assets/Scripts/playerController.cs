@@ -30,7 +30,7 @@ public class playerController : MonoBehaviour
     [SerializeField] bool hasMoved;
     public bool hasOpenedNote;
     public bool hasPickedUpBolt;
-
+    
 
     [Header("---- Weapon Stats ----")]
     [SerializeField] float shootRate;
@@ -70,6 +70,14 @@ public class playerController : MonoBehaviour
 
         // Initialize player audio source
         walkingAudioSource = GetComponent<AudioSource>();
+
+        if(!hasMoved)
+        {
+            gameManager.instance.tutorialUI.text = "Use W,A,S,D to move";
+            gameManager.instance.tutorialUI.gameObject.SetActive(true);
+            Time.timeScale = 0f;
+            
+        }
 
         if(!hasMoved)
         {
