@@ -162,7 +162,6 @@ public class BossEnemy : BaseEnemy
             if (randomValue < 0.2f && timeSinceLastBattleCryAttack > timeBeforeAnotherBattleCryAttack)
             {
                 anim.SetBool("BattleCryAttack", true);
-                timeSinceLastBattleCryAttack = 0f;
             }
             else
             {
@@ -229,6 +228,8 @@ public class BossEnemy : BaseEnemy
         }
         else
         {
+            //Vector3 positionToLookAt = new Vector3(0, player.transform.position.y, player.transform.position.z); 
+
             // Look at the player while attacking
             transform.LookAt(player.transform.position);
 
@@ -245,7 +246,6 @@ public class BossEnemy : BaseEnemy
             if (randomValue < 0.15f && timeSinceLastBattleCryAttack > timeBeforeAnotherBattleCryAttack)
             {
                 anim.SetBool("BattleCryAttack", true);
-                timeSinceLastBattleCryAttack = 0f;
             }
             else
             {
@@ -371,6 +371,8 @@ public class BossEnemy : BaseEnemy
 
         Destroy(leftVFX.gameObject, 2); 
         Destroy(rightVFX.gameObject, 2);
+
+        timeSinceLastBattleCryAttack = 0f; 
     }
 
     public void PlaySwingSFX()

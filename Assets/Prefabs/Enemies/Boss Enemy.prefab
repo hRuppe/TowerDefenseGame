@@ -757,8 +757,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.08946783, y: 0.1743227, z: 1.330484}
-  m_Center: {x: -0.03078703, y: -0.009368945, z: 1.292397}
+  m_Size: {x: 1.364242, y: 0.1743227, z: 1.9627427}
+  m_Center: {x: -0.49707216, y: -0.009373451, z: 1.6085008}
 --- !u!114 &488363986517751425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2598,7 +2598,7 @@ MonoBehaviour:
   poisonVFX: {fileID: 198000011254678926, guid: abb9f519b142e304d9c45b56afa768bc, type: 3}
   PoisonSpawnPos: {fileID: 5576799935784906026}
   poisonSFX: {fileID: 8300000, guid: 968819eb60608204db350cabab3ceef8, type: 3}
-  timeBeforeAnotherBattleCryAttack: 15
+  timeBeforeAnotherBattleCryAttack: 20
   leftSpawnPos: {fileID: 4474654727301757194}
   rightSpawnPos: {fileID: 1572301972990121033}
   allyToSpawn: {fileID: 7574823120900204354, guid: a592bf05e51418341a296a1cace16b9c, type: 3}
