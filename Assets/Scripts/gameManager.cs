@@ -258,6 +258,13 @@ public class gameManager : MonoBehaviour
         {
             StartCoroutine(SpawnPortal());
         }
+
+        // Checks to see if the player has enough defensive points to add experience points
+        if(defensiveScore % 5 == 0)
+        {
+            int experiencePoints = (defensiveScore / 5) * 10;
+            playerScript.GainExperience(experiencePoints);
+        }
     }
 
     IEnumerator SpawnPortal()
