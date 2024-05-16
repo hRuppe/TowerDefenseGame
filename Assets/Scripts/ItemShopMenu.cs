@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ItemShopMenu : MonoBehaviour
 {
@@ -29,7 +25,7 @@ public class ItemShopMenu : MonoBehaviour
         gameManager.instance.playerScript.playerCurrency -= barbedWireCost;
         gameManager.instance.updateCurrency();
     }
-    
+
     public void swapToTurretMenu()
     {
         turretMenu.SetActive(true);

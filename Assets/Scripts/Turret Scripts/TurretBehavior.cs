@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.UIElements;
 
 public class TurretBehavior : MonoBehaviour
 {
@@ -35,10 +33,10 @@ public class TurretBehavior : MonoBehaviour
         if (enemyList.Count != 0 && enemyList[0].IsDestroyed())
         {
             enemyList.RemoveAt(0);
-            
+
             enemy = enemyList[0];
-            
-            if(enemyList.Count == 0)
+
+            if (enemyList.Count == 0)
             {
                 firing = false;
             }

@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 public class UpgradeTurret : MonoBehaviour
 {
@@ -27,8 +23,8 @@ public class UpgradeTurret : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        
-        if(other.CompareTag("Player"))
+
+        if (other.CompareTag("Player"))
         {
             if (CompareTag("LevelOneTurret"))
             {
@@ -58,7 +54,7 @@ public class UpgradeTurret : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             gameManager.instance.upgradeTurretPrompt.gameObject.SetActive(false);
         }

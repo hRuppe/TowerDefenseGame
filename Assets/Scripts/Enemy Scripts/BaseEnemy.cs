@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -21,7 +19,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
     [SerializeField] protected AudioClip[] enemySFX;
     [SerializeField] protected AudioClip[] footstepSFX;
     [SerializeField] protected AudioClip[] whooshSFX;
-    [SerializeField] protected AudioClip thudSFX; 
+    [SerializeField] protected AudioClip thudSFX;
 
 
     // Stats that may need adjustment in the editor
@@ -48,10 +46,10 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
     protected string[] attackAnimationNames = { "Attack1", "Attack2" };
     protected float originalSpeed;
     protected AudioSource audioSource;
-    protected AudioSource weaponAudioSource; 
+    protected AudioSource weaponAudioSource;
     protected float nextSoundTime;
     float upwardForceMagnitude = 6f;
-    float origSpeed; 
+    float origSpeed;
 
     int expGained = 11;
 
@@ -88,7 +86,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
         healthBar.maxValue = HP;
 
         // Save original speed
-        originalSpeed = speed; 
+        originalSpeed = speed;
 
         // Set audio sources
         audioSource = GetComponent<AudioSource>();
@@ -128,7 +126,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
     {
         HP -= dmg;
 
-        UpdateEnemyHealthBar(HP); 
+        UpdateEnemyHealthBar(HP);
 
         // Enemy flashes red to show it was hit
         StartCoroutine(flashDamage());
@@ -155,12 +153,12 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
 
     public void StopAgentMovement()
     {
-        agent.isStopped = true; 
+        agent.isStopped = true;
     }
 
     public void ResumeAgentMovement()
     {
-        agent.isStopped = false; 
+        agent.isStopped = false;
     }
 
     public void UpdateEnemyHealthBar(float currentHealth)
@@ -216,7 +214,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
 
     public void PlayWeaponThudSFX()
     {
-        weaponAudioSource.PlayOneShot(thudSFX);  
+        weaponAudioSource.PlayOneShot(thudSFX);
     }
 
     public void PlayWeaponWhooshSFX()
@@ -279,7 +277,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamage
         }
     }
 
-    
+
 
     // Sets positionToAttack variable to random point within the attacking location
     public void SetPositionToAttack()

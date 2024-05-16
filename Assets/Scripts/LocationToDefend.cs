@@ -1,9 +1,4 @@
-using JetBrains.Annotations;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class LocationToDefend : MonoBehaviour
 {
@@ -20,22 +15,22 @@ public class LocationToDefend : MonoBehaviour
     {
         locationHealth -= dmg;
 
-        UpdateDefenseLocationHealthBar(locationHealth); 
+        UpdateDefenseLocationHealthBar(locationHealth);
 
         if (locationHealth <= 0)
         {
-            gameManager.instance.YouLose(); 
+            gameManager.instance.YouLose();
         }
     }
 
     private void UpdateDefenseLocationHealthBar(float currentHealth)
     {
-        gameManager.instance.defensiveLocationHealthBar.value = currentHealth; 
+        gameManager.instance.defensiveLocationHealthBar.value = currentHealth;
     }
 
     public int GetLocationHealth()
     {
-        return locationHealth; 
+        return locationHealth;
     }
 
 }

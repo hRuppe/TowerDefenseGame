@@ -1,15 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 [ExecuteInEditMode]
 
-public class ProgressBarCircle : MonoBehaviour {
+public class ProgressBarCircle : MonoBehaviour
+{
     [Header("Title Setting")]
     public string Title;
     public Color TitleColor;
-    public Font TitleFont;    
+    public Font TitleFont;
 
     [Header("Bar Setting")]
     public Color BarColor;
@@ -25,7 +24,7 @@ public class ProgressBarCircle : MonoBehaviour {
     public bool repeat = false;
     public float RepearRate = 1f;
 
-    private Image bar, barBackground,Mask;
+    private Image bar, barBackground, Mask;
     private float nextPlay;
     private AudioSource audiosource;
     private Text txtTitle;
@@ -50,7 +49,7 @@ public class ProgressBarCircle : MonoBehaviour {
         barBackground = transform.Find("BarBackgroundCircle").GetComponent<Image>();
         bar = transform.Find("BarCircle").GetComponent<Image>();
         audiosource = GetComponent<AudioSource>();
-        Mask= transform.Find("Mask").GetComponent<Image>();
+        Mask = transform.Find("Mask").GetComponent<Image>();
     }
 
     private void Start()
@@ -58,7 +57,7 @@ public class ProgressBarCircle : MonoBehaviour {
         txtTitle.text = Title;
         txtTitle.color = TitleColor;
         txtTitle.font = TitleFont;
-       
+
 
         bar.color = BarColor;
         Mask.color = MaskColor;
@@ -72,7 +71,7 @@ public class ProgressBarCircle : MonoBehaviour {
 
     void UpdateValue(float val)
     {
-       
+
         bar.fillAmount = -(val / 100) + 1f;
 
         txtTitle.text = Title + " " + val + "%";
@@ -91,11 +90,11 @@ public class ProgressBarCircle : MonoBehaviour {
 
     private void Update()
     {
-       
+
 
         if (!Application.isPlaying)
         {
-           
+
             UpdateValue(50);
             txtTitle.color = TitleColor;
             txtTitle.font = TitleFont;
@@ -103,7 +102,7 @@ public class ProgressBarCircle : MonoBehaviour {
             bar.color = BarColor;
             barBackground.color = BarBackGroundColor;
             barBackground.sprite = BarBackGroundSprite;
-            
+
         }
         else
         {

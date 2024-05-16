@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BulletDamage : MonoBehaviour
@@ -11,7 +8,7 @@ public class BulletDamage : MonoBehaviour
 
     private void Start()
     {
-         timer = Time.time;
+        timer = Time.time;
     }
     private void Update()
     {

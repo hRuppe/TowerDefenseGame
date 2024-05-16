@@ -33,7 +33,7 @@ public class Asset_Store_Offers : EditorWindow
 
     private void OnGUI()
     {
-        
+
         Texture2D ad1 = EditorGUIUtility.Load("Assets/WhiteCity/Offer/Ads/ad1.psd") as Texture2D;
         Texture2D ad2 = EditorGUIUtility.Load("Assets/WhiteCity/Offer/Ads/ad2.psd") as Texture2D;
         Texture2D ad3 = EditorGUIUtility.Load("Assets/WhiteCity/Offer/Ads/ad3.psd") as Texture2D;
@@ -47,11 +47,11 @@ public class Asset_Store_Offers : EditorWindow
                      false,
                      false,
                      GUILayout.Width(windowWidth),
-                     GUILayout.Height(windowHeight-20));        //---------Ad 1-------------------------------------------------
-                                                                //  GUILayout.BeginVertical("Box");
+                     GUILayout.Height(windowHeight - 20));        //---------Ad 1-------------------------------------------------
+                                                                  //  GUILayout.BeginVertical("Box");
 
         //_scrollPosition = EditorGUILayout.BeginScrollView(scrollViewRect, _scrollPosition, new Rect(0, 0, 2000, 2000));
-       
+
         if (GUILayout.Button(ad1, "", GUILayout.Width(600), GUILayout.Height(130)))
         {
             Application.OpenURL("https://assetstore.unity.com/packages/slug/107069");
@@ -77,11 +77,11 @@ public class Startup
 {
     static Startup()
     {
-        EditorPrefs.SetInt("showCounts_WhiteCity", EditorPrefs.GetInt("showCounts_WhiteCity") + 1);       
+        EditorPrefs.SetInt("showCounts_WhiteCity", EditorPrefs.GetInt("showCounts_WhiteCity") + 1);
         if (EditorPrefs.GetInt("showCounts_WhiteCity") == 10)
-        { 
+        {
             EditorApplication.ExecuteMenuItem("Window/Asset Store Offers");
-        }         
+        }
     }
 }
 #endif

@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -23,7 +21,7 @@ public class EnemySpawner : MonoBehaviour
     void CreateEnemy()
     {
         Instantiate(enemyPrefabToSpawn, gameObject.transform.position, enemyPrefabToSpawn.transform.rotation);
-        numberOfEnemiesSpawned++; 
+        numberOfEnemiesSpawned++;
     }
 
     // This function will spawn enemies while the # of enemies spawned is less than the amount of enemies that needs to spawn

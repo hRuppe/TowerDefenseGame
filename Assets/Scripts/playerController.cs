@@ -1,7 +1,5 @@
-using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class playerController : MonoBehaviour
@@ -30,7 +28,7 @@ public class playerController : MonoBehaviour
     [SerializeField] bool hasMoved;
     public bool hasOpenedNote;
     public bool hasPickedUpBolt;
-    
+
 
     [Header("---- Weapon Stats ----")]
     [SerializeField] float shootRate;
@@ -47,7 +45,7 @@ public class playerController : MonoBehaviour
     [SerializeField] AudioSource jumpAudioSource;
     [SerializeField] AudioSource dashAudioSource;
     [SerializeField] AudioSource gunAudioSource;
-    [SerializeField] AudioClip[] jumpClips; 
+    [SerializeField] AudioClip[] jumpClips;
 
     AudioSource walkingAudioSource;
     [HideInInspector] Vector3 playerVelocity;
@@ -71,20 +69,20 @@ public class playerController : MonoBehaviour
         // Initialize player audio source
         walkingAudioSource = GetComponent<AudioSource>();
 
-        if(!hasMoved)
+        if (!hasMoved)
         {
             gameManager.instance.tutorialUI.text = "Use W,A,S,D to move";
             gameManager.instance.tutorialUI.gameObject.SetActive(true);
             Time.timeScale = 0f;
-            
+
         }
 
-        if(!hasMoved)
+        if (!hasMoved)
         {
             gameManager.instance.tutorialUI.text = "Use W,A,S,D to move";
             gameManager.instance.tutorialUI.gameObject.SetActive(true);
             Time.timeScale = 0f;
-            
+
         }
     }
 
@@ -108,7 +106,7 @@ public class playerController : MonoBehaviour
             gameManager.instance.isPaused = false;
             gameManager.instance.tutorialUI.gameObject.SetActive(false);
         }
-        if(Input.GetButtonDown("Menu") && !hasPickedUpBolt)
+        if (Input.GetButtonDown("Menu") && !hasPickedUpBolt)
         {
             hasPickedUpBolt = true;
             gameManager.instance.tutorialUI.gameObject.SetActive(false);
@@ -124,13 +122,13 @@ public class playerController : MonoBehaviour
             jumpTimes = 0;
             playerVelocity.y = 0f;
         }
-        
+
         moveDir = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
-        controller.Move(moveDir * Time.deltaTime * playerSpeed);        
+        controller.Move(moveDir * Time.deltaTime * playerSpeed);
 
         if (Input.GetButtonDown("Jump") && jumpTimes < jumpCount)
         {
-            PlayRandomJumpSound(); 
+            PlayRandomJumpSound();
             jumpTimes++;
             playerVelocity.y = jumpHeight;
         }
@@ -151,7 +149,7 @@ public class playerController : MonoBehaviour
             else
             {
                 walkingAudioSource.enabled = true;
-                sprintAudioSource.enabled = false; 
+                sprintAudioSource.enabled = false;
             }
         }
         else
@@ -191,7 +189,7 @@ public class playerController : MonoBehaviour
             {
                 if (!isDashing)
                 {
-                    dashAudioSource.Play(); 
+                    dashAudioSource.Play();
                     playerSpeed = 20;
                     playerVelocity.y = 0;
                     gravityValue = 0f;
@@ -237,7 +235,7 @@ public class playerController : MonoBehaviour
         shootDist = gunStat.shootDist;
         shootDmg = gunStat.shootDmg;
         hitEffect = gunStat.hitEffect;
-        gunAudioSource.clip = gunStat.gunSound; 
+        gunAudioSource.clip = gunStat.gunSound;
 
         // Stores the gun in the players inventory and stores the gun stats in the gunList
         gunList.Add(gunStat);
@@ -271,7 +269,7 @@ public class playerController : MonoBehaviour
                 {
                     hit.collider.GetComponent<IDamage>().takeDamage(shootDmg);
                 }
-                if(hit.collider.tag != "Turret")
+                if (hit.collider.tag != "Turret")
                 {
                     Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
                 }
@@ -446,16 +444,17 @@ public class playerController : MonoBehaviour
                 //Creates the level 2 turret that is set in the gameManager
                 Instantiate(gameManager.instance.rocketTurret, gameManager.instance.turretModels[gameManager.instance.turretIndex].transform.position, gameManager.instance.turretModels[gameManager.instance.turretIndex].transform.rotation);
                 //Disables preview view for placing turret
-                gameManager.instance.turretModels[gameManager.instance.turretIndex].SetActive(false); 
+                gameManager.instance.turretModels[gameManager.instance.turretIndex].SetActive(false);
             }
         }
     }
-   
+
     // Logic for updating the progress bar
     public void UpdateProgressBar()
     {
         // Check if the progress bar refrence is not null and the player health is within range
-        if(Pb != null && playerHealth >=0 && playerHealth <= 100){
+        if (Pb != null && playerHealth >= 0 && playerHealth <= 100)
+        {
             Pb.BarValue = playerHealth;
         }
     }
@@ -468,7 +467,7 @@ public class playerController : MonoBehaviour
     }
 
     public void DecreaseCurrency(int amount)
-    { 
+    {
         playerCurrency -= amount;
         gameManager.instance.updateCurrency();
     }
