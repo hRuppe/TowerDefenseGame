@@ -30,7 +30,10 @@ public class playerController : MonoBehaviour
     [SerializeField] bool hasMoved;
     public bool hasOpenedNote;
     public bool hasPickedUpBolt;
-    
+    public bool hasPickedUpCoin;
+    public bool hasPickedUpGun;
+    public bool hasPickedUpHealthPack;
+
 
     [Header("---- Weapon Stats ----")]
     [SerializeField] float shootRate;
@@ -40,7 +43,9 @@ public class playerController : MonoBehaviour
     [SerializeField] GameObject hitEffect;
     public List<gunStats> gunList = new List<gunStats>();
     public List<ItemStats> itemList = new List<ItemStats>();
-    public float scrollSensitivity = 1.0f; // Control the scroll wheel sensitivity 
+    public float scrollSensitivity = 1.0f; // Control the scroll wheel sensitivity
+    [SerializeField] GameObject barbedWireModel;
+    [SerializeField] GameObject barbedWirePrefab;
 
     [Header("---- SFX ----")]
     [SerializeField] AudioSource sprintAudioSource;
@@ -101,6 +106,7 @@ public class playerController : MonoBehaviour
         shop();
         placeTurret();
         UpdateProgressBar();
+        placeItem();
         /* AimDownSights();*/
         if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D)) && hasMoved == false)
         {
@@ -111,6 +117,12 @@ public class playerController : MonoBehaviour
         if(Input.GetButtonDown("Menu") && !hasPickedUpBolt)
         {
             hasPickedUpBolt = true;
+            gameManager.instance.tutorialUI.gameObject.SetActive(false);
+            gameManager.instance.isPaused = false;
+        }
+        if(Input.GetKeyDown("h") && !hasPickedUpHealthPack)
+        {
+            hasPickedUpHealthPack = true;
             gameManager.instance.tutorialUI.gameObject.SetActive(false);
             gameManager.instance.isPaused = false;
         }
@@ -495,6 +507,16 @@ public class playerController : MonoBehaviour
         }
     }
 
+    private void placeItem()
+    {
+        if (barbedWireModel.activeSelf && Input.GetButtonDown("PlaceItem"))
+        {
+            Instantiate(barbedWirePrefab, barbedWireModel.transform.position, barbedWireModel.transform.rotation);
+            barbedWireModel.SetActive(false);
+            gameManager.instance.shopMenu.GetComponent<Canvas>().enabled = true;
+            gameManager.instance.shopMenu.SetActive(false);
+        }
+    }
 
     private void LevelUp()
     {

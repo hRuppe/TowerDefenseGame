@@ -10,7 +10,7 @@ public class healthPickup : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && tag == "MedKit")
         {
             playerController playerController = other.GetComponent<playerController>();
             if (playerController != null)
@@ -18,6 +18,13 @@ public class healthPickup : MonoBehaviour
                 // Calculate the health to add based on the player's max health
                 float healthToAddFloat = Mathf.Min(100f - playerController.playerHealth, itemStats.healthAmount);
                 int healthToAdd = Mathf.FloorToInt(healthToAddFloat); // Convert float to int
+
+                if (gameManager.instance.playerScript.hasPickedUpHealthPack == false)
+                {
+                    gameManager.instance.tutorialUI.text = "This is a Medkit! If you are low on health this med kit will heal you instantly. If your health is full it goes to your invenetory! You can press H to heal yourself if you have a Medkit in your inventory, Press H to Continue";
+                    gameManager.instance.tutorialUI.gameObject.SetActive(true);
+                    Time.timeScale = 0f;
+                }
 
                 // If player's health is less than 100, add health
                 if (playerController.playerHealth < 100)

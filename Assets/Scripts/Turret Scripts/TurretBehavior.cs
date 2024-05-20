@@ -32,13 +32,21 @@ public class TurretBehavior : MonoBehaviour
 
     void Update()
     {
-        if (enemyList.Count != 0 && enemyList[0].IsDestroyed())
+        if (enemyList.Count > 1 && enemyList[0].IsDestroyed())
         {
             enemyList.RemoveAt(0);
             
             enemy = enemyList[0];
             
             if(enemyList.Count == 0)
+            {
+                firing = false;
+            }
+        }
+        else if(enemyList.Count == 1 && enemyList[0].IsDestroyed())
+        {
+            enemyList.RemoveAt(0);
+            if (enemyList.Count == 0)
             {
                 firing = false;
             }

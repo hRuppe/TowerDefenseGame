@@ -12,20 +12,10 @@ public class ItemShopMenu : MonoBehaviour
     [SerializeField] GameObject barbedWirePrefab;
     [SerializeField] int barbedWireCost;
 
-    void Update()
-    {
-        if (barbedWireModel.activeSelf && Input.GetButtonDown("PlaceItem"))
-        {
-            Instantiate(barbedWirePrefab, barbedWireModel.transform.position, barbedWireModel.transform.rotation);
-            barbedWireModel.SetActive(false);
-            gameManager.instance.shopMenu.GetComponent<Canvas>().enabled = true;
-            gameManager.instance.shopMenu.SetActive(false);
-        }
-    }
     public void buyBarbedWire()
     {
         barbedWireModel.SetActive(true);
-        gameManager.instance.shopMenu.GetComponent<Canvas>().enabled = false;
+        gameManager.instance.shopMenu.gameObject.SetActive(false);
         gameManager.instance.playerScript.playerCurrency -= barbedWireCost;
         gameManager.instance.updateCurrency();
     }
@@ -39,5 +29,11 @@ public class ItemShopMenu : MonoBehaviour
     {
         shopMenu.SetActive(true);
         turretMenu.SetActive(false);
+
+        if(gameManager.instance.playerScript.hasPickedUpCoin)
+        {
+            gameManager.instance.tutorialUI.gameObject.SetActive(false);
+            gameManager.instance.isPaused = false;
+        }
     }
 }
