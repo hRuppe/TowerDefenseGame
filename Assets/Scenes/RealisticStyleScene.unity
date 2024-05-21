@@ -9423,6 +9423,18 @@ PrefabInstance:
       propertyPath: Pb
       value: 
       objectReference: {fileID: 1864017572}
+    - target: {fileID: 5742944913479443913, guid: 1cc0703c40a320c41b868ba38de9f0d2, type: 3}
+      propertyPath: hasMoved
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5742944913479443913, guid: 1cc0703c40a320c41b868ba38de9f0d2, type: 3}
+      propertyPath: hasOpenedNote
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5742944913479443913, guid: 1cc0703c40a320c41b868ba38de9f0d2, type: 3}
+      propertyPath: hasPickedUpBolt
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5742944913479443918, guid: 1cc0703c40a320c41b868ba38de9f0d2, type: 3}
       propertyPath: m_RootOrder
       value: 10
