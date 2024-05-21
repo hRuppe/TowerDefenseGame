@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.UIElements;
 
 public class TowerAttackingEnemy : BaseEnemy
 {
@@ -13,12 +8,12 @@ public class TowerAttackingEnemy : BaseEnemy
         base.Start();
 
         // Starts enemy in moving state
-        ChangeState(EnemyState.MovingToLocation); 
+        ChangeState(EnemyState.MovingToLocation);
     }
 
     protected override void Update()
     {
-        base.Update(); 
+        base.Update();
 
         switch (currentState)
         {
@@ -57,7 +52,7 @@ public class TowerAttackingEnemy : BaseEnemy
     void AttackTower()
     {
         // Stops enemy from moving
-        StopAgentMovement(); 
+        StopAgentMovement();
         enemyRB.freezeRotation = true;
 
         // Randomly choose an attack animation

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -23,13 +21,13 @@ public class mainMenu : MonoBehaviour
         PlayerPrefs.SetString("PlayerName", nameInput.text);
 
         // Load first level
-        SceneManager.LoadScene(1,LoadSceneMode.Single);
+        SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
 
     // Settings button
     public void settingsScreen()
     {
-        SceneManager.LoadScene(2,LoadSceneMode.Single);
+        SceneManager.LoadScene(2, LoadSceneMode.Single);
     }
 
     // Exits game button

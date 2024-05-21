@@ -1,11 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.AI;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.GraphicsBuffer;
-using Unity.VisualScripting;
 
 public class gameManager : MonoBehaviour
 {
@@ -46,7 +43,7 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI enemiesLeft;
     public TextMeshProUGUI currency;
     public TextMeshProUGUI shopCurrency;
-    public TextMeshProUGUI defensiveScoreUI; 
+    public TextMeshProUGUI defensiveScoreUI;
 
     [HideInInspector] public int enemiesToKill;
     [HideInInspector] public int defensiveScore;
@@ -77,7 +74,7 @@ public class gameManager : MonoBehaviour
         // Check for player name
         if (PlayerPrefs.HasKey("PlayerName"))
         {
-            playerNameUI.text = PlayerPrefs.GetString("PlayerName"); 
+            playerNameUI.text = PlayerPrefs.GetString("PlayerName");
         }
     }
 
@@ -86,7 +83,7 @@ public class gameManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel") && !playerDeadMenu.activeSelf && !winMenu.activeSelf)
         {
-            if(shopMenu.activeSelf)
+            if (shopMenu.activeSelf)
             {
                 shopMenu.SetActive(false);
                 unPause();
@@ -95,7 +92,7 @@ public class gameManager : MonoBehaviour
             {
                 isPaused = !isPaused;
                 pauseMenu.SetActive(isPaused);
-            } 
+            }
         }
         if (isPaused)
         {
@@ -120,9 +117,9 @@ public class gameManager : MonoBehaviour
             }
         }
 
-      
+
         // Checks to see if player has hit required defensive score to progress
-        CheckDefensiveScore(); 
+        CheckDefensiveScore();
         turretButtons();
     }
     void turretButtons()
@@ -217,7 +214,7 @@ public class gameManager : MonoBehaviour
     {
         Cursor.visible = true;
         winMenu.SetActive(true);
-        
+
     }
 
     public void YouLose()
@@ -243,7 +240,7 @@ public class gameManager : MonoBehaviour
     {
         enemiesLeft.text = enemiesToKill.ToString("F0");
         defensiveScoreUI.text = "Defensive Score " + defensiveScore;
-        defensiveScoreUI.text = "Defensive Score " + defensiveScore + "/" + defensiveScoreToProgress; 
+        defensiveScoreUI.text = "Defensive Score " + defensiveScore + "/" + defensiveScoreToProgress;
     }
 
     public void updateCurrency()
@@ -252,14 +249,14 @@ public class gameManager : MonoBehaviour
         currency.text = playerScript.playerCurrency.ToString("F0");
 
         //Updates the currency in the shop
-        shopCurrency.text = '$' + playerScript.playerCurrency.ToString("F0"); 
+        shopCurrency.text = '$' + playerScript.playerCurrency.ToString("F0");
     }
 
     private void CheckDefensiveScore()
     {
         if (defensiveScore >= defensiveScoreToProgress)
         {
-            StartCoroutine(SpawnPortal()); 
+            StartCoroutine(SpawnPortal());
         }
     }
 
@@ -268,13 +265,13 @@ public class gameManager : MonoBehaviour
         if (!spawnedPortal)
         {
             spawnedPortal = true;
-            yield return new WaitForSeconds(3f); 
+            yield return new WaitForSeconds(3f);
             Vector3 portalSpawnPos = player.transform.position + player.transform.forward * 10f;
-            portalPrefab.GetComponent<ParticleSystem>().Play(); 
+            portalPrefab.GetComponent<ParticleSystem>().Play();
             Instantiate(portalPrefab, portalSpawnPos, player.transform.rotation);
         }
     }
 
 
-    
+
 }

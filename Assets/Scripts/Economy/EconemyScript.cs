@@ -1,8 +1,6 @@
-using UnityEngine;
-using Unity.Services.Core;
 using Unity.Services.Authentication;
-using Unity.Services.Economy;
-using Unity.Services.Economy.Model;
+using Unity.Services.Core;
+using UnityEngine;
 
 public class EconomySetupTest : MonoBehaviour
 {

@@ -1,8 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Net;
-using System.Threading;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class BossEnemy : BaseEnemy
@@ -19,26 +14,26 @@ public class BossEnemy : BaseEnemy
     [SerializeField] int swingAttackDamage = 5;
 
     [Header("---- Basic Swing Attack Components ----")]
-    [SerializeField] AudioClip swingAttackSFX; 
+    [SerializeField] AudioClip swingAttackSFX;
 
     [Header("---- Poison Attack Settings ----")]
     [SerializeField] int poisonDamage = 10;
     [SerializeField] float poisonRange;
 
     [Header("---- Poison Attack Components ----")]
-    [SerializeField] ParticleSystem poisonVFX; 
+    [SerializeField] ParticleSystem poisonVFX;
     [SerializeField] Transform PoisonSpawnPos;
     [SerializeField] AudioClip poisonSFX;
 
     [Header("---- Battlecry Attack Settings ----")]
-    [SerializeField] float timeBeforeAnotherBattleCryAttack = 15f; 
+    [SerializeField] float timeBeforeAnotherBattleCryAttack = 15f;
 
     [Header("---- Battlecry Attack Components ----")]
     [SerializeField] Transform leftSpawnPos;
     [SerializeField] Transform rightSpawnPos;
     [SerializeField] GameObject allyToSpawn;
     [SerializeField] ParticleSystem spawnVFX;
-    [SerializeField] AudioClip spawnSFX; 
+    [SerializeField] AudioClip spawnSFX;
 
     [Header("---- Enemy Sight Settings ----")]
     [SerializeField] float sightAngle = 45f; // Field of view angle
@@ -69,13 +64,13 @@ public class BossEnemy : BaseEnemy
 
         // Update player posiiton
         UpdatePlayerPos();
-        
+
         // Track no line of sight time
         TrackTimeSinceEnemyHasSeenPlayer();
 
         // Track time since last used the battlecry attack 
         timeSinceLastBattleCryAttack += Time.deltaTime;
-        
+
         // Check if player in poison range
         CheckIfPlayerIsInPoisonRange();
 
@@ -86,8 +81,8 @@ public class BossEnemy : BaseEnemy
                 LookForPlayerWhileMovingToLocation();
                 break;
             case EnemyState.AttackingLocation:
-                AttackTower(); 
-                break; 
+                AttackTower();
+                break;
             case EnemyState.MovingToPlayer:
                 MoveEnemyTowardPlayer();
                 break;
@@ -115,9 +110,9 @@ public class BossEnemy : BaseEnemy
         if (HasLineOfSight())
         {
             Debug.Log("has line of sight");
-            inAttackRange = false; 
+            inAttackRange = false;
             SetAllAttackBoolsFalse();
-            ChangeState(EnemyState.MovingToPlayer); 
+            ChangeState(EnemyState.MovingToPlayer);
         }
 
         // If not already set, sets the position for the enemy to run to (should only enter this the 1st time it enters MoveToLocation)
@@ -137,7 +132,7 @@ public class BossEnemy : BaseEnemy
         // Change state if enemy is within location attack range
         if (inAttackRange)
         {
-            inAttackRange = false; 
+            inAttackRange = false;
             ChangeState(EnemyState.AttackingLocation);
         }
     }
@@ -146,7 +141,7 @@ public class BossEnemy : BaseEnemy
     {
         // Get player position & set enemy destination
         UpdatePlayerPos();
-        agent.SetDestination(currentPlayerPos); 
+        agent.SetDestination(currentPlayerPos);
 
         if (agent.remainingDistance > 0f && agent.remainingDistance <= attackRange)
         {
@@ -157,7 +152,7 @@ public class BossEnemy : BaseEnemy
             Debug.Log("lost line of sight");
 
             float randomValue = Random.value;
-            
+
             // 20% chance that it triggers the battle cry attack instead of look around animation
             if (randomValue < 0.2f && timeSinceLastBattleCryAttack > timeBeforeAnotherBattleCryAttack)
             {
@@ -205,7 +200,7 @@ public class BossEnemy : BaseEnemy
                 }
             }
 
-            timeSinceLostLOS = 0; 
+            timeSinceLostLOS = 0;
             return true;
         }
 
@@ -215,14 +210,14 @@ public class BossEnemy : BaseEnemy
 
     void AttackPlayer()
     {
-        UpdatePlayerPos(); 
+        UpdatePlayerPos();
         // If player gets out of attack range change state back to MovingToPlayer 
         distanceToPlayer = Vector3.Distance(transform.position, currentPlayerPos);
 
         if (distanceToPlayer > attackRange)
         {
             // Set all attack bools to false
-            SetAllAttackBoolsFalse(); 
+            SetAllAttackBoolsFalse();
 
             ChangeState(EnemyState.MovingToPlayer);
         }
@@ -275,11 +270,11 @@ public class BossEnemy : BaseEnemy
     {
         if (HasLineOfSight())
         {
-            SetAllAttackBoolsFalse(); 
+            SetAllAttackBoolsFalse();
 
             UnfreezeRBRotation();
             ResumeAgentMovement();
-            
+
             ChangeState(EnemyState.MovingToPlayer);
         }
         else
@@ -292,7 +287,7 @@ public class BossEnemy : BaseEnemy
             int randomIndex = Random.Range(0, attackAnimationNames.Length);
 
             // Set all attack bools to false so only one animation plays at a time
-            SetAllAttackBoolsFalse(); 
+            SetAllAttackBoolsFalse();
 
             // Start random attack animation
             anim.SetBool(attackAnimationNames[randomIndex], true);
@@ -324,13 +319,13 @@ public class BossEnemy : BaseEnemy
     void SpawnPoison()
     {
         // Play sfx 
-        weaponAudioSource.PlayOneShot(poisonSFX); 
+        weaponAudioSource.PlayOneShot(poisonSFX);
 
         // Spawn poison
         ParticleSystem poisonInstance = Instantiate(poisonVFX, PoisonSpawnPos.position, transform.rotation);
 
         // Try to damage player
-        TryDamagePlayerInAOE(); 
+        TryDamagePlayerInAOE();
 
         // Destroy
         Destroy(poisonInstance.gameObject, .55f);
@@ -369,10 +364,10 @@ public class BossEnemy : BaseEnemy
         Instantiate(allyToSpawn, leftSpawnPos.position, transform.rotation);
         Instantiate(allyToSpawn, rightSpawnPos.position, transform.rotation);
 
-        Destroy(leftVFX.gameObject, 2); 
+        Destroy(leftVFX.gameObject, 2);
         Destroy(rightVFX.gameObject, 2);
 
-        timeSinceLastBattleCryAttack = 0f; 
+        timeSinceLastBattleCryAttack = 0f;
     }
 
     public void PlaySwingSFX()
@@ -384,7 +379,7 @@ public class BossEnemy : BaseEnemy
     {
         if (currentState == EnemyState.AttackingLocation)
         {
-            DamageLocation(); 
+            DamageLocation();
         }
     }
 

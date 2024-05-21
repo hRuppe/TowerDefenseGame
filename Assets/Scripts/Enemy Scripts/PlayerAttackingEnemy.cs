@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAttackingEnemy : BaseEnemy
 {
-    float distanceToPlayer; 
-    GameObject player; 
+    float distanceToPlayer;
+    GameObject player;
     Vector3 currentPlayerPos;
     SpearDamage spearDamageScript;
 
@@ -30,12 +28,12 @@ public class PlayerAttackingEnemy : BaseEnemy
     {
         base.Update();
 
-        UpdatePlayerPos(); 
+        UpdatePlayerPos();
 
         switch (currentState)
         {
             case EnemyState.MovingToPlayer:
-                MoveEnemyTowardPlayer(); 
+                MoveEnemyTowardPlayer();
                 break;
             case EnemyState.AttackingPlayer:
                 AttackPlayer();
@@ -47,7 +45,7 @@ public class PlayerAttackingEnemy : BaseEnemy
     {
         // Get player position & set enemy destination
         agent.SetDestination(currentPlayerPos);
-        
+
         if (agent.remainingDistance > 0f && agent.remainingDistance <= attackRange)
         {
             ChangeState(EnemyState.AttackingPlayer);
@@ -91,7 +89,7 @@ public class PlayerAttackingEnemy : BaseEnemy
         if (spearDamageScript.GetSpearContactedPlayer())
         {
             gameManager.instance.playerScript.playerHealth -= attackDmg;
-            StartCoroutine(gameManager.instance.playerDamageFlash()); 
+            StartCoroutine(gameManager.instance.playerDamageFlash());
         }
 
         spearDamageScript.ResetSpearContactedPlayer();

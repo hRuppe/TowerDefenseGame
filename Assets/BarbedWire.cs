@@ -1,8 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class BarbedWire : MonoBehaviour
 {
@@ -18,7 +15,7 @@ public class BarbedWire : MonoBehaviour
     private void Start()
     {
         gameManager.instance.defensiveScore += defensivePoints;
-        gameManager.instance.updateUI(); 
+        gameManager.instance.updateUI();
     }
 
     private void OnTriggerEnter(Collider other)

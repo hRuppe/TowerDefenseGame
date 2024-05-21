@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class demo : MonoBehaviour {
+public class demo : MonoBehaviour
+{
 
     public ProgressBar Pb;
     public ProgressBarCircle PbC;
@@ -13,9 +12,10 @@ public class demo : MonoBehaviour {
         PbC.BarValue = 50;
     }
 
-    void FixedUpdate () {
-		
-        if(Input.GetKey(KeyCode.KeypadPlus))
+    void FixedUpdate()
+    {
+
+        if (Input.GetKey(KeyCode.KeypadPlus))
         {
             Pb.BarValue += 1;
             PbC.BarValue += 1;

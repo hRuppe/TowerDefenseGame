@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CustomizableNote : MonoBehaviour
@@ -10,9 +7,9 @@ public class CustomizableNote : MonoBehaviour
     [SerializeField] string noteText;
 
     bool noteOpen = false;
-    bool inNoteRange = false; 
+    bool inNoteRange = false;
     TMP_Text readNotePrompt;
-    AudioSource audioSource; 
+    AudioSource audioSource;
 
     private void Start()
     {
@@ -42,7 +39,7 @@ public class CustomizableNote : MonoBehaviour
     {
         gameManager.instance.noteText.text = noteText;
 
-        if(gameManager.instance.playerScript.hasOpenedNote == false)
+        if (gameManager.instance.playerScript.hasOpenedNote == false)
         {
             gameManager.instance.tutorialUI.text = "Oh look a note! Open it to see what it says!";
             gameManager.instance.tutorialUI.gameObject.SetActive(true);
@@ -54,7 +51,7 @@ public class CustomizableNote : MonoBehaviour
             // Show open note prompt
             readNotePrompt.gameObject.SetActive(true);
 
-            inNoteRange = true; 
+            inNoteRange = true;
         }
     }
 
@@ -76,7 +73,7 @@ public class CustomizableNote : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        noteOpen = false; 
+        noteOpen = false;
         gameManager.instance.noteObject.SetActive(false);
         gameManager.instance.readNotePrompt.gameObject.SetActive(false);
         gameManager.instance.readNotePrompt.text = "Press 'r' to read note...";

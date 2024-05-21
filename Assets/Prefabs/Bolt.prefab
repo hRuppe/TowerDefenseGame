@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4283809602704518750}
   - component: {fileID: 7866421223887691823}
   - component: {fileID: 3684059167511694523}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bolt
   m_TagString: Bolt
   m_Icon: {fileID: 0}

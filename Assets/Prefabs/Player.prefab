@@ -608,6 +608,12 @@ MonoBehaviour:
   playerLevel: 1
   playerExpPoints: 0
   playerBolts: 2
+  hasMoved: 0
+  hasOpenedNote: 0
+  hasPickedUpBolt: 0
+  hasPickedUpCoin: 0
+  hasPickedUpGun: 0
+  hasPickedUpHealthPack: 0
   shootRate: 0
   shootDist: 0
   shootDmg: 0
@@ -616,6 +622,8 @@ MonoBehaviour:
   gunList: []
   itemList: []
   scrollSensitivity: 1
+  barbedWireModel: {fileID: 61490287}
+  barbedWirePrefab: {fileID: 2092526567100419536, guid: bd6fe75683ffc6941a4c09c57b1bd7ea, type: 3}
   sprintAudioSource: {fileID: 1506625421}
   jumpAudioSource: {fileID: 1031516339}
   dashAudioSource: {fileID: 1293682671}
@@ -1033,6 +1041,11 @@ PrefabInstance:
 --- !u!4 &61490282 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2092526567100419541, guid: bd6fe75683ffc6941a4c09c57b1bd7ea, type: 3}
+  m_PrefabInstance: {fileID: 2092526567060982207}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &61490287 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2092526567100419536, guid: bd6fe75683ffc6941a4c09c57b1bd7ea, type: 3}
   m_PrefabInstance: {fileID: 2092526567060982207}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3433994409644514693
