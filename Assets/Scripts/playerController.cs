@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class playerController : MonoBehaviour
@@ -7,6 +8,9 @@ public class playerController : MonoBehaviour
     [Header("---- Componets ----")]
     public CharacterController controller;
 
+    [Header("---- UI ----")]
+    public TextMeshProUGUI inventoryText;
+    public GameObject inventoryCanvas;  // Reference to the Inventory Canvas
 
     [Header("---- Player Stats ----")]
     [SerializeField] float playerSpeed;
@@ -89,6 +93,10 @@ public class playerController : MonoBehaviour
             Time.timeScale = 0f;
 
         }
+
+        // Initialize inventory display
+        UpdateInventoryDisplay();
+        inventoryCanvas.SetActive(false); // Hide the inventory by default
     }
 
     // Called once per frame
@@ -98,10 +106,7 @@ public class playerController : MonoBehaviour
         sprint();
         StartCoroutine(shoot());
         SwitchGun();
-        pauseMenu();
         StartCoroutine(dash());
-        menu();
-        shop();
         placeTurret();
         UpdateProgressBar();
         placeItem();
@@ -124,6 +129,11 @@ public class playerController : MonoBehaviour
             gameManager.instance.tutorialUI.gameObject.SetActive(false);
             gameManager.instance.isPaused = false;
         }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            ToggleInventory();
+        }
+
     }
 
     // Player movement logic
@@ -256,11 +266,9 @@ public class playerController : MonoBehaviour
 
     public void ItemPickup(ItemStats itemStats)
     {
-        // If the item is something that does not need to be seen
-        // newItem.GetComponent<Renderer>().enabled = false;
-        // Store the item in the players inventory and store the item stats in the itemList
         itemList.Add(itemStats);
-        // Add things later here to update the sound or the UI ECT
+        UpdateInventoryDisplay();
+
     }
 
     // Shooting logic
@@ -419,18 +427,7 @@ public class playerController : MonoBehaviour
     //        isAiming = false;
     //    }
     //}
-    public void pauseMenu()
-    {
-        // Pause menu logic
-    }
-    public void menu()
-    {
-        // Menu logic
-    }
-    public void shop()
-    {
-        // Shop logic
-    }
+    
     public void placeTurret()
     {
         // checks for placeTurret button(E key) and checks to make sure that the turret is being displayed for placement so that the user can't just place turrets randomly
@@ -537,5 +534,19 @@ public class playerController : MonoBehaviour
         AudioClip selectedClip = jumpClips[randIndex];
         jumpAudioSource.clip = selectedClip;
         jumpAudioSource.Play();
+    }
+    // Method to update the inventory display
+    public void UpdateInventoryDisplay()
+    {
+        inventoryText.text = "Inventory:\n";
+        foreach (ItemStats item in itemList)
+        {
+            inventoryText.text += item.itemName + "\n"; 
+        }
+    }
+    // Method to toggle the inventory display
+    public void ToggleInventory()
+    {
+        inventoryCanvas.SetActive(!inventoryCanvas.activeSelf);
     }
 }

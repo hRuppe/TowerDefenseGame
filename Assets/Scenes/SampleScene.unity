@@ -3570,6 +3570,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 472700, guid: d638ef2ca2fe20c4c9c08e125692d3f4, type: 3}
   m_PrefabInstance: {fileID: 1117221189}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1811201656 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 829774517431564019, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
+  m_PrefabInstance: {fileID: 1998233619}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1859336030
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3953,6 +3964,50 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1185991759, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2484374
+      objectReference: {fileID: 0}
+    - target: {fileID: 927162070419091113, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.1954368
+      objectReference: {fileID: 0}
+    - target: {fileID: 927162070419091113, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 927162070419091113, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 5.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1155068987918963349, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.275
+      objectReference: {fileID: 0}
+    - target: {fileID: 2260729600104811472, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 289.8907
+      objectReference: {fileID: 0}
+    - target: {fileID: 2260729600104811472, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.9622
+      objectReference: {fileID: 0}
+    - target: {fileID: 2260729600104811472, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.7675
+      objectReference: {fileID: 0}
+    - target: {fileID: 2260729600104811472, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 28.9319
+      objectReference: {fileID: 0}
+    - target: {fileID: 2260729600104811473, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4261477029422875979, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8474867177488896508, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
       propertyPath: player
       value: 
@@ -3961,6 +4016,10 @@ PrefabInstance:
       propertyPath: playerScript
       value: 
       objectReference: {fileID: 1201977663}
+    - target: {fileID: 8474867177488896508, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
+      propertyPath: itemTextObject
+      value: 
+      objectReference: {fileID: 1811201656}
     - target: {fileID: 8474867177488896508, guid: 9811b641166b5564bb8a188b16fe3242, type: 3}
       propertyPath: turretModels.Array.data[0]
       value: 
@@ -4425,6 +4484,10 @@ PrefabInstance:
       propertyPath: Pb
       value: 
       objectReference: {fileID: 1794417545}
+    - target: {fileID: 5742944913479443913, guid: 1cc0703c40a320c41b868ba38de9f0d2, type: 3}
+      propertyPath: playerHealth
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 5742944913479443913, guid: 1cc0703c40a320c41b868ba38de9f0d2, type: 3}
       propertyPath: playerExpPoints
       value: 115

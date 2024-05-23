@@ -15,7 +15,6 @@ public class gameManager : MonoBehaviour
     public GameObject player;
     public playerController playerScript;
 
-    [Header("---- UI ----")]
     [Header("---- UI Elements ----")]
     public GameObject pauseMenu;
     public GameObject winMenu;
@@ -76,6 +75,8 @@ public class gameManager : MonoBehaviour
         {
             playerNameUI.text = PlayerPrefs.GetString("PlayerName");
         }
+      
+
     }
 
     // Update is called once per frame
@@ -116,8 +117,6 @@ public class gameManager : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Confined;
             }
         }
-
-
         // Checks to see if player has hit required defensive score to progress
         CheckDefensiveScore();
         turretButtons();
@@ -273,5 +272,6 @@ public class gameManager : MonoBehaviour
     }
 
 
-
 }
+
+
