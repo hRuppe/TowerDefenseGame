@@ -12,7 +12,10 @@ GameObject:
   - component: {fileID: 5880891370268443387}
   - component: {fileID: 8537110493235656241}
   - component: {fileID: 605503759}
-  - component: {fileID: 605503758}
+  - component: {fileID: 681155350}
+  - component: {fileID: 681155351}
+  - component: {fileID: 421551441635654697}
+  - component: {fileID: 6566928322399672908}
   m_Layer: 0
   m_Name: Medkit
   m_TagString: Untagged
@@ -98,7 +101,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.18524352, z: -0.000000007450581}
---- !u!114 &605503758
+--- !u!114 &681155350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7888358981939075044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81fb98931f901834b8081ace5df7d6d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemStats: {fileID: 11400000, guid: 65d4b6d2d049c38419d69663dda41551, type: 2}
+--- !u!114 &681155351
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,4 +126,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7bb0681056e66b4d906aed8b6f1a414, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemStats: {fileID: 11400000, guid: c2958aea24dc9a349bdca4d235acf83f, type: 2}
+  Medkit: {fileID: 11400000, guid: 65d4b6d2d049c38419d69663dda41551, type: 2}
+--- !u!114 &421551441635654697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7888358981939075044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81fb98931f901834b8081ace5df7d6d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemStats: {fileID: 11400000, guid: 65d4b6d2d049c38419d69663dda41551, type: 2}
+--- !u!114 &6566928322399672908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7888358981939075044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7bb0681056e66b4d906aed8b6f1a414, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Medkit: {fileID: 11400000, guid: 65d4b6d2d049c38419d69663dda41551, type: 2}

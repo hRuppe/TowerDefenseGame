@@ -17,4 +17,4 @@ MonoBehaviour:
   itemCount: 1
   boltCurrency: 0
   currencyAmount: 0
-  itemPrice: 0
+  itemPrice: 10
