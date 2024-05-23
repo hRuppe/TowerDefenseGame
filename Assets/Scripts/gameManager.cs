@@ -43,6 +43,7 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI currency;
     public TextMeshProUGUI shopCurrency;
     public TextMeshProUGUI defensiveScoreUI;
+    public cameraController cameraController;
 
     [HideInInspector] public int enemiesToKill;
     [HideInInspector] public int defensiveScore;
@@ -82,26 +83,10 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Check for Cancel key to toggle pause/unpause
         if (Input.GetButtonDown("Cancel") && !playerDeadMenu.activeSelf && !winMenu.activeSelf)
         {
-            if (shopMenu.activeSelf)
-            {
-                shopMenu.SetActive(false);
-                unPause();
-            }
-            else
-            {
-                isPaused = !isPaused;
-                pauseMenu.SetActive(isPaused);
-            }
-        }
-        if (isPaused)
-        {
-            pause();
-        }
-        else if (!isPaused && !shopMenu.activeSelf && !tutorialUI.isActiveAndEnabled)
-        {
-            unPause();
+            TogglePauseMenu();
         }
         //Checks for input of menu button(Currently set to M) and checks no other menu screens are open
         if (Input.GetButtonDown("Menu") && !playerDeadMenu.activeSelf && !winMenu.activeSelf && !turretModels[0].activeSelf && !turretModels[1].activeSelf && !turretModels[2].activeSelf)
@@ -189,18 +174,94 @@ public class gameManager : MonoBehaviour
         }
     }
 
+    // New method to toggle the pause menu
+    // New method to toggle the pause menu
+    void TogglePauseMenu()
+    {
+        isPaused = !isPaused;
+        pauseMenu.SetActive(isPaused);
+        if (isPaused)
+        {
+            pause();
+            LockCursor();
+            BlockInputDuringPause(); // Call the method to block input during pause
+            cameraController.enabled = false; // Disable camera controller script
+            Debug.Log("Cursor locked and input blocked during pause");
+        }
+        else
+        {
+            unPause();
+            UnlockCursor();
+            // Re-enable player and camera movement scripts
+            playerScript.enabled = true;
+            cameraController.enabled = true;
+            Debug.Log("Cursor unlocked and input restored after pause");
+        }
+    }
+
+
+    // Method to lock cursor movement
+    void LockCursor()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+    }
+
+    // Method to unlock cursor movement
+    void UnlockCursor()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    void BlockInputDuringPause()
+    {
+        // Lock the cursor
+        LockCursor();
+
+        // Debug statement to check playerScript
+        if (playerScript == null)
+        {
+            Debug.LogError("playerScript is null!");
+        }
+
+        // Debug statement to check cameraControllerScript
+        if (cameraController == null)
+        {
+            Debug.LogError("cameraControllerScript is null!");
+        }
+
+        // Disable player movement scripts or components if playerScript is not null
+        if (playerScript != null)
+        {
+            playerScript.enabled = false;
+        }
+
+        // Disable camera movement scripts or components if cameraControllerScript is not null
+        if (cameraController != null)
+        {
+            cameraController.enabled = false;
+        }
+
+        // Disable any other scripts or components that handle input or movement
+        // You may need to adjust this based on your specific setup
+    }
+
+
     public void pause()
     {
         Time.timeScale = 0f;
-
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        isPaused = true;
     }
+
     public void unPause()
     {
         Time.timeScale = 1f;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        isPaused = false;
     }
     public IEnumerator playerDamageFlash()
     {

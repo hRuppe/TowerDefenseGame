@@ -2,39 +2,55 @@ using UnityEngine;
 
 public class healthPickup : MonoBehaviour
 {
-    [SerializeField] ItemStats itemStats;
+    [SerializeField] ItemStats Medkit;
     int expGained = 5;
-
 
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && tag == "MedKit")
         {
             playerController playerController = other.GetComponent<playerController>();
+
             if (playerController != null)
             {
-                // Calculate the health to add based on the player's max health
-                float healthToAddFloat = Mathf.Min(100f - playerController.playerHealth, itemStats.healthAmount);
-                int healthToAdd = Mathf.FloorToInt(healthToAddFloat); // Convert float to int
+                // Check if the player has a medkit in their inventory
+                bool hasMedkit = false;
+                ItemStats medkit = null;
 
-                if (gameManager.instance.playerScript.hasPickedUpHealthPack == false)
+                foreach (ItemStats item in playerController.itemList)
                 {
-                    gameManager.instance.tutorialUI.text = "This is a Medkit! If you are low on health this med kit will heal you instantly. If your health is full it goes to your invenetory! You can press H to heal yourself if you have a Medkit in your inventory, Press H to Continue";
-                    gameManager.instance.tutorialUI.gameObject.SetActive(true);
-                    Time.timeScale = 0f;
+                    if (item.itemName == Medkit.itemName && item.itemCount > 0)
+                    {
+                        hasMedkit = true;
+                        medkit = item;
+                        break;
+                    }
                 }
 
-                // If player's health is less than 100, add health
-                if (playerController.playerHealth < 100)
+                // If the player has a medkit, use it
+                if (hasMedkit && medkit != null)
                 {
+                    // Consume the medkit from the inventory
+                    medkit.itemCount--;
+
+                    // Calculate the health to add based on the medkit's healthAmount
+                    float healthToAddFloat = Mathf.Min(100f - playerController.playerHealth, Medkit.healthAmount);
+                    int healthToAdd = Mathf.FloorToInt(healthToAddFloat); // Convert float to int
+
+                    // Increase the player's health
                     playerController.playerHealth += healthToAdd;
+
+                    // Display a message or play a sound to indicate the medkit has been used
+                    Debug.Log("Medkit used. Health added: " + healthToAdd);
                 }
                 else
                 {
-                    // Otherwise, add itemStats to player's items list
-                    playerController.ItemPickup(itemStats);
+                    // If the player doesn't have a medkit, display a message or play a sound
+                    Debug.Log("No medkit available in inventory.");
                 }
-                gameManager.instance.playerScript.GainExperience(expGained); // Add experience points
+
+                // Add experience points
+                gameManager.instance.playerScript.GainExperience(expGained);
 
                 // Destroy health pack object
                 Destroy(gameObject);
