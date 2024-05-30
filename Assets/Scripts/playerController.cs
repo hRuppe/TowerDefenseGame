@@ -266,7 +266,8 @@ public class playerController : MonoBehaviour
     // Shooting logic
     IEnumerator shoot()
     {
-        if (gunList.Count > 0 && isShooting == false && Input.GetButton("Shoot"))
+        if (gunList.Count > 0 && isShooting == false && Input.GetButton("Shoot") && !gameManager.instance.winMenu.activeSelf && !gameManager.instance.pauseMenu.activeSelf 
+            && !gameManager.instance.shopMenu.activeSelf && !gameManager.instance.loseMenu.activeSelf && !gameManager.instance.playerDeadMenu.activeSelf)
         {
             isShooting = true;
             gunAudioSource.Play();

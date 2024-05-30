@@ -16,6 +16,7 @@ TagManager:
   - PoisonBoxCollider
   - Coin
   - MedKit
+  - Menu
   layers:
   - Default
   - TransparentFX
