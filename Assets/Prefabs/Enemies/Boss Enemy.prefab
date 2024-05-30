@@ -2619,7 +2619,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a3a6e84909ad7854ea1709b2cfc742b0, type: 3}
   thudSFX: {fileID: 8300000, guid: d0468a619a5406b4c9428ca916cf8651, type: 3}
   HP: 25
-  speed: 5.5
+  speed: 6.25
   attackDmg: 8
   attackRange: 4.5
   minTimeBetweenSounds: 5
