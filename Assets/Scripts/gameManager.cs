@@ -175,7 +175,6 @@ public class gameManager : MonoBehaviour
     }
 
     // New method to toggle the pause menu
-    // New method to toggle the pause menu
     void TogglePauseMenu()
     {
         isPaused = !isPaused;
