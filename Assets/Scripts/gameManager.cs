@@ -42,6 +42,7 @@ public class gameManager : MonoBehaviour
 
     public TextMeshProUGUI enemiesLeft;
     public TextMeshProUGUI currency;
+    public TextMeshProUGUI boltAmountText;
     public TextMeshProUGUI shopCurrency;
     public TextMeshProUGUI defensiveScoreUI;
 
@@ -70,6 +71,7 @@ public class gameManager : MonoBehaviour
         //checks for button clicks on buy menu first is for the basic turrets and the second is for the leveled up turret
 
         updateCurrency();
+        updateBoltAmount();
 
         // Check for player name
         if (PlayerPrefs.HasKey("PlayerName"))
@@ -238,7 +240,7 @@ public class gameManager : MonoBehaviour
 
     public void updateUI()
     {
-        enemiesLeft.text = enemiesToKill.ToString("F0");
+        enemiesLeft.text = "Enemies Left: "+ enemiesToKill.ToString("F0");
         defensiveScoreUI.text = "Defensive Score " + defensiveScore;
         defensiveScoreUI.text = "Defensive Score " + defensiveScore + "/" + defensiveScoreToProgress;
     }
@@ -246,10 +248,15 @@ public class gameManager : MonoBehaviour
     public void updateCurrency()
     {
         // Update the currency in the upper left side of the screen
-        currency.text = playerScript.playerCurrency.ToString("F0");
+        currency.text = "Coins: " + playerScript.playerCurrency.ToString();
 
         //Updates the currency in the shop
-        shopCurrency.text = '$' + playerScript.playerCurrency.ToString("F0");
+        shopCurrency.text = '$' + playerScript.playerCurrency.ToString();
+    }
+
+    public void updateBoltAmount()
+    {
+        boltAmountText.text = "Bolts: " + playerScript.playerBolts.ToString();
     }
 
     private void CheckDefensiveScore()

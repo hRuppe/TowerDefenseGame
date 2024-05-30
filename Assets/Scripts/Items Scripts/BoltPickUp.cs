@@ -11,6 +11,7 @@ public class BoltPickUp : MonoBehaviour
         if (other.CompareTag("Player") && tag == "Bolt")
         {
             gameManager.instance.playerScript.playerBolts += this.GetComponent<ItemPickup>().itemStats.boltCurrency;
+            gameManager.instance.updateBoltAmount();
 
             if (gameManager.instance.playerScript.hasPickedUpBolt == false)
             {

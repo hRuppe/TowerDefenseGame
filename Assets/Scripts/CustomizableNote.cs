@@ -78,6 +78,6 @@ public class CustomizableNote : MonoBehaviour
         gameManager.instance.readNotePrompt.gameObject.SetActive(false);
         gameManager.instance.readNotePrompt.text = "Press 'r' to read note...";
 
-        inNoteRange = true;
+        inNoteRange = false;
     }
 }
