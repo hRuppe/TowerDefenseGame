@@ -46,7 +46,7 @@ public class healthPickup : MonoBehaviour
                 else
                 {
                     // If the player doesn't have a medkit, display a message or play a sound
-                    Debug.Log("No medkit available in inventory.");
+                    Debug.Log("No medkit available in inventory.");h
                 }
 
                 // Add experience points
