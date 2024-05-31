@@ -184,7 +184,7 @@ public class gameManager : MonoBehaviour
         {
             pause();
             LockCursor();
-            BlockInputDuringPause(); // Call the method to block input during pause
+            //BlockInputDuringPause(); // Call the method to block input during pause
             cameraController.enabled = false; // Disable camera controller script
             Debug.Log("Cursor locked and input blocked during pause");
         }
