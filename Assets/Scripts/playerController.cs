@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class playerController : MonoBehaviour
@@ -7,6 +8,9 @@ public class playerController : MonoBehaviour
     [Header("---- Componets ----")]
     public CharacterController controller;
 
+    [Header("---- UI ----")]
+    public TextMeshProUGUI inventoryText;
+    public GameObject inventoryCanvas;  // Reference to the Inventory Canvas
 
     [Header("---- Player Stats ----")]
     [SerializeField] float playerSpeed;
@@ -89,6 +93,10 @@ public class playerController : MonoBehaviour
             Time.timeScale = 0f;
 
         }
+
+        // Initialize inventory display
+        UpdateInventoryDisplay();
+        inventoryCanvas.SetActive(false); // Hide the inventory by default
     }
 
     // Called once per frame
@@ -98,10 +106,7 @@ public class playerController : MonoBehaviour
         sprint();
         StartCoroutine(shoot());
         SwitchGun();
-        pauseMenu();
         StartCoroutine(dash());
-        menu();
-        shop();
         placeTurret();
         UpdateProgressBar();
         placeItem();
@@ -118,12 +123,21 @@ public class playerController : MonoBehaviour
             gameManager.instance.tutorialUI.gameObject.SetActive(false);
             gameManager.instance.isPaused = false;
         }
-        if(Input.GetKeyDown("h") && !hasPickedUpHealthPack)
+        if (Input.GetKeyDown("h") && !hasPickedUpHealthPack)
         {
             hasPickedUpHealthPack = true;
             gameManager.instance.tutorialUI.gameObject.SetActive(false);
             gameManager.instance.isPaused = false;
         }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            ToggleInventory();
+        }
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            UseMedkit();
+        }
+
     }
 
     // Player movement logic
@@ -256,11 +270,9 @@ public class playerController : MonoBehaviour
 
     public void ItemPickup(ItemStats itemStats)
     {
-        // If the item is something that does not need to be seen
-        // newItem.GetComponent<Renderer>().enabled = false;
-        // Store the item in the players inventory and store the item stats in the itemList
         itemList.Add(itemStats);
-        // Add things later here to update the sound or the UI ECT
+        UpdateInventoryDisplay();
+
     }
 
     // Shooting logic
@@ -420,18 +432,7 @@ public class playerController : MonoBehaviour
     //        isAiming = false;
     //    }
     //}
-    public void pauseMenu()
-    {
-        // Pause menu logic
-    }
-    public void menu()
-    {
-        // Menu logic
-    }
-    public void shop()
-    {
-        // Shop logic
-    }
+
     public void placeTurret()
     {
         // checks for placeTurret button(E key) and checks to make sure that the turret is being displayed for placement so that the user can't just place turrets randomly
@@ -539,4 +540,100 @@ public class playerController : MonoBehaviour
         jumpAudioSource.clip = selectedClip;
         jumpAudioSource.Play();
     }
+    // Method to update the inventory display
+    public void UpdateInventoryDisplay()
+    {
+        inventoryText.text = "Inventory:\n";
+
+        // Create a dictionary to store item counts
+        Dictionary<string, int> itemCounts = new Dictionary<string, int>();
+
+        // Count the number of each item in the itemList
+        foreach (ItemStats item in itemList)
+        {
+            string itemName = item.itemName; // Get the item name
+
+            // Debug log to check item name
+            Debug.Log("Item Name: " + itemName);
+
+            if (itemCounts.ContainsKey(itemName))
+            {
+                // Increment the item count if it already exists
+                itemCounts[itemName]++;
+            }
+            else
+            {
+                // Initialize the item count if it doesn't exist
+                itemCounts[itemName] = 1;
+            }
+        }
+
+        // Display item names along with their counts
+        foreach (KeyValuePair<string, int> entry in itemCounts)
+        {
+            inventoryText.text += entry.Key + " x" + entry.Value + "\n";
+        }
+    }
+
+
+
+    // Method to toggle the inventory display
+    public void ToggleInventory()
+    {
+        inventoryCanvas.SetActive(!inventoryCanvas.activeSelf);
+    }
+
+    public void UseMedkit()
+    {
+        // Check if the player has a medkit in their inventory
+        bool hasMedkit = false;
+        ItemStats medkit = null;
+
+        foreach (ItemStats item in itemList)
+        {
+            if (item.itemName == "Medkit" && item.itemCount > 0)
+            {
+                hasMedkit = true;
+                medkit = item;
+                break;
+            }
+        }
+
+        // Debug log to check if Medkit was found
+        if (hasMedkit)
+        {
+            Debug.Log("Found Medkit in inventory");
+        }
+        else
+        {
+            Debug.Log("Medkit not found in inventory");
+            Debug.Log("Item List Count: " + itemList.Count);
+
+        }
+
+        // If the player has a medkit, use it
+        if (hasMedkit && medkit != null)
+        {
+            // Consume the medkit from the inventory
+            medkit.itemCount--;
+
+            // Calculate the health to add based on the medkit's healthAmount
+            float healthToAddFloat = Mathf.Min(100f - playerHealth, medkit.healthAmount);
+            int healthToAdd = Mathf.FloorToInt(healthToAddFloat); // Convert float to int
+
+            // Increase the player's health
+            playerHealth += healthToAdd;
+
+            // If the medkit count reaches 0, remove it from the itemList
+            if (medkit.itemCount <= 0)
+            {
+                itemList.Remove(medkit);
+            }
+
+            // Update the inventory display
+            UpdateInventoryDisplay();
+        }
+    }
+
+
 }
