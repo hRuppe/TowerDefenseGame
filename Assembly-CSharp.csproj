@@ -63,7 +63,7 @@
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\Blur.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Utils\ColorGradingCurve.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\SunShafts.cs" />
-    <Compile Include="Assets\Scripts\ItemShopMenu.cs" />
+    <Compile Include="Assets\Scripts\Items Scripts\ItemShopMenu.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\PostEffectsHelper.cs" />
     <Compile Include="Assets\Scripts\Menu Scripts\mainMenu.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Utils\MaterialFactory.cs" />
@@ -71,7 +71,7 @@
     <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Scripts\ProximityActivate.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\DepthOfFieldDeprecated.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\Bloom.cs" />
-    <Compile Include="Assets\Scripts\PurchaseButton.cs" />
+    <Compile Include="Assets\Scripts\shop\PurchaseButton.cs" />
     <Compile Include="Assets\Scripts\CustomizableNote.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\PostProcessingProfile.cs" />
     <Compile Include="Assets\Scripts\Enemy Scripts\PlayerAttackingEnemy.cs" />
@@ -105,7 +105,7 @@
     <Compile Include="Assets\Models\Flooded_Grounds\Scripts\DisableRenderer.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Components\ColorGradingComponent.cs" />
     <Compile Include="Assets\Scene Teleportation Kit\Scripts\player\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\LoseMenu.cs" />
+    <Compile Include="Assets\Scripts\Menu Scripts\LoseMenu.cs" />
     <Compile Include="Assets\Models\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\TiltShift.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Models\BloomModel.cs" />
     <Compile Include="Assets\ProgressBar\Script\ProgressBarCircle.cs" />
@@ -124,7 +124,7 @@
     <Compile Include="Assets\Models\WhiteCity\Offer\Asset_Store_Offers.cs" />
     <Compile Include="Assets\Scripts\Turret Scripts\UpgradeTurret.cs" />
     <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Scripts\SimpleCharacterMotor.cs" />
-    <Compile Include="Assets\shopPrice.cs" />
+    <Compile Include="Assets\Scripts\shop\shopPrice.cs" />
     <Compile Include="Assets\Scene Teleportation Kit\Scripts\player\PlayerMovement.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Attributes\GetSetAttribute.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Components\ChromaticAberrationComponent.cs" />
@@ -182,7 +182,7 @@
     <Compile Include="Assets\Scripts\Weapon Scrips\gunStats.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Models\ChromaticAberrationModel.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Models\ColorGradingModel.cs" />
-    <Compile Include="Assets\BarbedWire.cs" />
+    <Compile Include="Assets\Scripts\BarbedWire.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Models\ScreenSpaceReflectionModel.cs" />
     <Compile Include="Assets\Models\Flooded_Grounds\PostProcessing\Runtime\Components\DepthOfFieldComponent.cs" />
     <Compile Include="Assets\UnityTechnologies\ParticlePack\EffectExamples\Misc Effects\Scripts\SpawnEffect.cs" />

@@ -2504,6 +2504,7 @@ MonoBehaviour:
   healthBar: {fileID: 318097403453683726}
   itemsToDrop:
   - {fileID: 8176456871037065057, guid: f94e74795d7696f4e91271bc5c513d06, type: 3}
+  - {fileID: 7888358981939075044, guid: f281bc33191a33d48aaa6b157ebaa913, type: 3}
   numOfItemsToDrop: 1
   itemSpawnPoint: {fileID: 5240733320663042059}
   enemySFX:

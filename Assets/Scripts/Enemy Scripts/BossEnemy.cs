@@ -151,17 +151,7 @@ public class BossEnemy : BaseEnemy
         {
             Debug.Log("lost line of sight");
 
-            float randomValue = Random.value;
-
-            // 20% chance that it triggers the battle cry attack instead of look around animation
-            if (randomValue < 0.2f && timeSinceLastBattleCryAttack > timeBeforeAnotherBattleCryAttack)
-            {
-                anim.SetBool("BattleCryAttack", true);
-            }
-            else
-            {
-                anim.SetTrigger("Look Around");
-            }
+            anim.SetTrigger("Look Around");
 
             ChangeState(EnemyState.MovingToLocation);
         }
